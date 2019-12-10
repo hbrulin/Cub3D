@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/10 13:48:44 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/10 13:55:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ int main(int argc, char **argv)
 	t_map map;
 	map.nb_line = 0;
 	map.tab_map = NULL;
-
-	argc =1;
 
 	if (argc == 1)
 	{

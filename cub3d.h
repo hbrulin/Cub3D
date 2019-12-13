@@ -31,6 +31,7 @@ typedef	struct s_map
 }				t_map;
 
 void	ft_parser(t_map *map, char *file);
+int		check_map(t_map *map);
 
 
 #endif

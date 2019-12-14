@@ -6,7 +6,7 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2019/12/10 13:54:03 by hbrulin          ###   ########.fr        #
+#    Updated: 2019/12/14 19:46:59 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,9 +31,10 @@ ifeq ($(OS), Linux)
 else
 	MLXDIR	= miniLibx_opengl
 	MLX_LNK	= -l mlx -framework OpenGL -framework AppKit
+
 endif
 
-MLX_LNK	+= -L $(MLXDIR)
+MLX_LNK	+= -L $(MLXDIR) -l mlx
 MLX_INC	= -I $(MLXDIR)
 MLX_LIB	= $(addprefix $(MLX)/,mlx.a)
 
@@ -55,7 +56,7 @@ make_mlx:
 	@make -C $(MLXDIR)
 
 $(NAME): $(OBJ) make_ft make_mlx
-	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME) -fsanitize=address
+	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME) -fsanitize=address -g
 	@echo "$(NAME) created"
 
 $(BUILD_DIR)/%.o: %.c Makefile

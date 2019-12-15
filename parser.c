@@ -6,14 +6,14 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/14 20:50:41 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/15 16:01:23 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 
-int		check_map(t_map *map)
+int		ft_parser(t_map *map)
 {
 	int i;
 	int j;
@@ -85,23 +85,66 @@ int		check_map(t_map *map)
 	return (0);
 }
 
-//rajouter une condition selon lauelle si pas de personnage
-
-void	ft_parser(t_map *map, char *file)
+t_list	*ft_read(t_map *map, int fd)
 {
 	int 	ret;
-	int i;
-	int fd;
 	char *line;
+	t_list	*list;
+	t_list	*tmp;
+
+	list = NULL;
+	while ((ret = get_next_line(fd, &line)) > 0) //gnl a securiser malloc
+	{
+		if (line[0] == 'R')
+			map->R = ft_strdup(line);
+		if (line[0] == 'N' && line[1] == 'O')
+			map->NO = ft_strdup(line);
+		if (line[0] == 'S' && line[1] == 'O')
+			map->SO = ft_strdup(line);
+		if (line[0] == 'W' && line[1] == 'E')
+			map->WE = ft_strdup(line);
+		if (line[0] == 'E' && line[1] == 'A')
+			map->EA = ft_strdup(line);
+		if (line[0] == 'S' && line[1] == ' ')
+			map->S = ft_strdup(line);
+		if (line[0] == 'F' && line[1] == ' ')
+			map->F = ft_strdup(line);
+		if (line[0] == 'C' && line[1] == ' ')
+			map->C = ft_strdup(line);
+		else if (ft_isdigit(line[0]))
+		{
+			tmp = malloc(sizeof(t_list));
+			tmp->content = ft_strdup(line);
+			tmp->next = 0;
+			ft_lstadd_back(&list, tmp);
+			map->nb_line++;
+		}
+		free(line);
+	}
+	free(line);
+	close(fd);
+	return (list);
+}
+
+void	get_map(t_map *map, char *file)
+{
+	int fd;
+	t_list	*list;
+	t_list	*tmp;
+	int i;
 
 	fd = open(file, O_RDONLY);
-	if (!(map->tab_map = (char**)malloc(sizeof(char *) * map->nb_line))) //voir pour le +1
+	list = ft_read(map, fd);
+	if (!(map->tab_map = (char**)malloc(sizeof(char *) * ft_lstsize(list) + 1)))
 			return ;
 	i = 0;
-	while ((ret = get_next_line(fd, &line)) > 0) //gn a securiser malloc
+	tmp = list;
+	while (tmp)
 	{
-		map->tab_map[i] = ft_strdup(line);
+		map->tab_map[i] = ft_strdup(tmp->content);
+		tmp = tmp->next;
 		i++;
 	}
-	//map->tab_map[i] = "\0"; //pourquoi je ne peux pas mettre ca a la fin de mon char **
+	//ft_lstclear(&list, del); il faut free la liste
+	map->tab_map[i] = 0;
 }

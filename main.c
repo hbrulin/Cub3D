@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/14 21:00:32 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/15 10:53:56 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int main(int argc, char **argv)
 	}
 	
 	init_env(&env);
+	ft_new_image(&env);
 
 	/*i = 0;
 	while (map.tab_map[i])
@@ -61,5 +62,6 @@ int main(int argc, char **argv)
 		i++;
 	}*/
 
+	mlx_loop(env.mlx_ptr);
     return (0);
 }

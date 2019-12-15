@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/14 21:12:49 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/15 13:06:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef	struct s_env
 typedef struct s_img
 {
 	void	*img_ptr;
-	char	*img_data;
+	int		*img_data;
 	int		bpp;
 	int		size_line;
 	int		endian;

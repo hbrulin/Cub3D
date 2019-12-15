@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/15 13:49:11 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/15 14:07:53 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y)
 	img->img_data[(p_y * img->size_line) * p_x + img->bpp + 1] = g; 
 	img->img_data[(p_y * img->size_line) * p_x + img->bpp + 2] = r;*/
 
-	img->img_data[p_y * img->size_line + p_x] = color;
+	img->img_data[p_y * img->height + p_x] = color;
 }
 
 void	draw(t_env *env, t_img *img)
@@ -46,10 +46,11 @@ void	draw(t_env *env, t_img *img)
 
 	color = mlx_get_color_value (env->mlx_ptr, 0x00FFA500);
 
-	while  (++p_y < env->height / 4) 
+	//si la window n'est pas carre, ne va pas jusquala fin, pourquoi?
+	while  (++p_y < img->height) 
 	{
 		p_x = -1;
-		while (++p_x < env->width)
+		while (++p_x < img->width)
 			ft_put_pixel(img, color, p_x, p_y);
 	}
 }
@@ -62,7 +63,9 @@ void	ft_new_image(t_env *env)
 
 	//ici je caste en int pour que ca puisse stocker la couleur
     img.img_data = (int *)mlx_get_data_addr (img.img_ptr, &img.bpp, &img.size_line, &img.endian);
-	img.bpp /= 8;
+	img.bpp /= 8; //necessaire sans le decalage de bits?
+	img.width = env->width;
+	img.height = env->height;
 	draw(env, &img);
 
 	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, img.img_ptr, 0, 0);

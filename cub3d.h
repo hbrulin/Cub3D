@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 14:08:06 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 14:44:30 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,22 @@ typedef struct s_img
 	int		height;
 }				t_img;
 
-int		ft_parser(t_map *map);
-int		get_map(t_map *map, char *file);
-int		check_map(t_map *map);
-int		init_env(t_env *env, t_map *map);
-void	ft_new_image(t_env *env);
+typedef struct s_color
+{
+	int r_floor;
+	int g_floor;
+	int b_floor;
+	int r_ceiling;
+	int g_ceiling;
+	int b_ceiling;
+	unsigned int color;
+}				t_color;
+
+int				get_map(t_map *map, char *file);
+int				ft_parser(t_map *map);
+int				init_env(t_env *env, t_map *map);
+int				ft_new_image(t_env *env, t_map *map);
+int				get_rgb(t_map *map, t_color *colors);
 unsigned int	rgb_to_hex(int r, int g, int b);
 
 

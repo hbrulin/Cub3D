@@ -6,14 +6,14 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2019/12/15 10:48:44 by hbrulin          ###   ########.fr        #
+#    Updated: 2019/12/16 14:06:18 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3D
 OS	= $(shell uname)
 
-SRCS = main.c parser.c env.c image.c
+SRCS = main.c parser.c env.c image.c color.c
 
 HEADER = cub3d.h
 

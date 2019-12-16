@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 11:11:26 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 13:57:42 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int main(int argc, char **argv)
 		return (error);
 	if((error = init_env(&env, &map)) != SUCCESS)
 		return (error);
-	//ft_new_image(&env);
+	ft_new_image(&env);
 
 
 /*
@@ -46,6 +46,6 @@ int main(int argc, char **argv)
 	printf("%s\n", map.F);
 	printf("%s\n", map.C);
 */
-	//mlx_loop(env.mlx_ptr);
+	mlx_loop(env.mlx_ptr);
     return (SUCCESS);
 }

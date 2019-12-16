@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 14:58:38 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 16:10:48 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,14 @@ unsigned int	rgb_to_hex(int r, int g, int b)
 	return(hex);
 }
 
-int	get_rgb(t_map *map, t_color *colors)
+void	color_floor_ceiling(t_env *env, t_color *colors)
+{
+	// ya til erreur a checker ici?
+	colors->color_floor = mlx_get_color_value (env->mlx_ptr, rgb_to_hex(colors->r_floor, colors->g_floor, colors->b_floor));
+	colors->color_ceiling = mlx_get_color_value (env->mlx_ptr, rgb_to_hex(colors->r_ceiling, colors->g_ceiling, colors->b_ceiling));
+}
+
+int	get_rgb(t_env *env, t_map *map, t_color *colors)
 {
 	int i;
 	char **tab;
@@ -54,5 +61,6 @@ int	get_rgb(t_map *map, t_color *colors)
 		ft_putstr("Wrong ceiling color");
 		return (WRONG_INPUT);
 	}
+	color_floor_ceiling(env, colors);
 	return (SUCCESS);
 }

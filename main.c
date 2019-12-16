@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 14:37:38 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 16:11:40 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int main(int argc, char **argv)
 		return (error);
 	if((error = init_env(&env, &map)) != SUCCESS)
 		return (error);
-	if((error = ft_new_image(&env, &map)) != SUCCESS)
+	if((error = fill_floor_ceiling(&env, &map))!= SUCCESS)
 		return (error);
 
-
+	
 /*
 	int  i = 0;
 	while (map.tab_map[i])

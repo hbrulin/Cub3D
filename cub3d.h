@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 14:44:30 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 16:11:11 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef	enum	e_error
 	NO_MAP,
 	WRONG_MAP,
 	WRONG_INPUT,
-	MALLOC_FAIL
+	MALLOC_FAIL,
+	IMG_FAIL
 }				t_error;
 
 typedef	struct s_map
@@ -75,15 +76,19 @@ typedef struct s_color
 	int r_ceiling;
 	int g_ceiling;
 	int b_ceiling;
-	unsigned int color;
+	unsigned int color_floor;
+	unsigned int color_ceiling;
 }				t_color;
 
 int				get_map(t_map *map, char *file);
 int				ft_parser(t_map *map);
 int				init_env(t_env *env, t_map *map);
-int				ft_new_image(t_env *env, t_map *map);
-int				get_rgb(t_map *map, t_color *colors);
+int	get_rgb(t_env *env, t_map *map, t_color *colors);
 unsigned int	rgb_to_hex(int r, int g, int b);
+t_img	*ft_new_image(t_env *env, int width, int height);
+void	fill(t_img *img, unsigned int color);
+int		fill_floor_ceiling(t_env *env, t_map *map);
+void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
 
 
 #endif

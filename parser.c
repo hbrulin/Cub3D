@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 10:56:08 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 10:57:35 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,10 @@ int		ft_read(t_map *map, int fd)
 	}
 	free(line);
 	if (!map->R || !map->NO || !map->SO || !map->WE || !map->EA || !map->S || !map->F || !map->C || !map->list)
+	{
+		ft_putstr("Missing element");
 		return (WRONG_MAP);
+	}
 	return (SUCCESS);
 }
 

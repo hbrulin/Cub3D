@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 10:56:24 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 11:11:26 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,14 @@ int main(int argc, char **argv)
 		return (NO_MAP);
 	if((error = get_map(&map, argv[1])) != SUCCESS)
 		return (error);
-	if(ft_parser(&map) == WRONG_MAP)
-		return (WRONG_MAP);
-	init_env(&env);
-	ft_new_image(&env);
+	if((error = ft_parser(&map)) != SUCCESS)
+		return (error);
+	if((error = init_env(&env, &map)) != SUCCESS)
+		return (error);
+	//ft_new_image(&env);
 
+
+/*
 	int  i = 0;
 	while (map.tab_map[i])
 	{
@@ -42,7 +45,7 @@ int main(int argc, char **argv)
 	printf("%s\n", map.S);
 	printf("%s\n", map.F);
 	printf("%s\n", map.C);
-
-	mlx_loop(env.mlx_ptr);
+*/
+	//mlx_loop(env.mlx_ptr);
     return (SUCCESS);
 }

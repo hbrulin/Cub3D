@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 10:40:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 11:13:59 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef	enum	e_error
 	SUCCESS,
 	NO_MAP,
 	WRONG_MAP,
+	WRONG_INPUT,
 	MALLOC_FAIL
 }				t_error;
 
@@ -70,7 +71,7 @@ typedef struct s_img
 int		ft_parser(t_map *map);
 int		get_map(t_map *map, char *file);
 int		check_map(t_map *map);
-void	init_env(t_env *env);
+int		init_env(t_env *env, t_map *map);
 void	ft_new_image(t_env *env);
 
 

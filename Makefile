@@ -6,7 +6,7 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2019/12/16 16:52:26 by hbrulin          ###   ########.fr        #
+#    Updated: 2019/12/16 19:51:19 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,10 @@ OS	= $(shell uname)
 
 SRCS = main.c parser.c env.c image.c color.c floor_ceiling.c events.c
 
-HEADER = cub3d.h
+HEADER = cub3d.h 
+KEYCODE = keycode.h
 
-CFLAGS = -Wall -Werror -Wextra -MMD -I$(HEADER) -g
+CFLAGS = -Wall -Werror -Wextra -MMD -I$(HEADER) -I$(KEYCODE) -g
 BUILD_DIR = obj
 
 OBJS = $(SRCS:.c=.o)

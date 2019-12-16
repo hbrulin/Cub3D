@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 18:03:23 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 19:44:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,40 @@ typedef struct s_img
 	int		height;
 }				t_img;
 
-typedef struct s_color
+/*typedef struct s_color
 {
-	int r_floor;
-	int g_floor;
-	int b_floor;
+	unsigned char r_floor;
+	unsigned char g_floor;
+	unsigned char b_floor;
 	int r_ceiling;
 	int g_ceiling;
 	int b_ceiling;
 	unsigned int color_floor;
 	unsigned int color_ceiling;
+}				t_color;*/
+
+typedef struct	s_rgb
+{
+		unsigned char	b;
+		unsigned char	g;
+		unsigned char	r;
+		unsigned char	a;
+}				t_rgb;
+
+typedef union	u_color
+{
+		unsigned int	all;
+		char			tab[4];
+		t_rgb			rgb;
 }				t_color;
+
+
 
 int				get_map(t_map *map, char *file);
 int				ft_parser(t_map *map);
 int				init_env(t_env *env, t_map *map);
-int	get_rgb(t_env *env, t_map *map, t_color *colors);
-unsigned int	rgb_to_hex(int r, int g, int b);
+int	get_rgb(t_map *map, t_color *color_floor, t_color *color_ceiling);
+//unsigned int	rgb_to_hex(int r, int g, int b);
 t_img	*ft_new_image(t_env *env, int width, int height);
 void	fill(t_img *img, unsigned int color);
 int		fill_floor_ceiling(t_env *env, t_map *map);

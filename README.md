@@ -6,12 +6,16 @@ COMPILATEUR QUI MARCHE gcc obj/main.o obj/parser.o -L minilibx_opengl -l mlx lib
   	unsigned char g;
   	unsigned char b;
 	
-	//faire une regle pour changer si big endian?
-	r = (color & 0xFF00000) >> 16;
-  	g = (color & 0xFF000) >> 8;
-  	b = (color & 0xFF);
+/*unsigned int	rgb_to_hex(int r, int g, int b)
+{
+	unsigned int hex = (0 << 24) | ((unsigned char)r << 16) | ((unsigned char)g << 8) | ((unsigned char)b<<0); 
+	printf("%u", hex);
+	return(hex);
+}
 
-	//bonne couleur mais mauvais emplacement
-	img->img_data[(p_y * img->size_line) * p_x + img->bpp] = b;
-	img->img_data[(p_y * img->size_line) * p_x + img->bpp + 1] = g; 
-	img->img_data[(p_y * img->size_line) * p_x + img->bpp + 2] = r;*/
+void	color_floor_ceiling(t_env *env, t_color *colors)
+{
+	// ya til erreur a checker ici?
+	colors->color_floor = mlx_get_color_value (env->mlx_ptr, rgb_to_hex(colors->r_floor, colors->g_floor, colors->b_floor));
+	colors->color_ceiling = mlx_get_color_value (env->mlx_ptr, rgb_to_hex(colors->r_ceiling, colors->g_ceiling, colors->b_ceiling));
+}*/

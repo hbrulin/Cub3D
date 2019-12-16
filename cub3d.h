@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/15 16:02:47 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 10:40:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,18 @@
 #include <string.h>
 #include <errno.h>
 
+typedef	enum	e_error
+{
+	SUCCESS,
+	NO_MAP,
+	WRONG_MAP,
+	MALLOC_FAIL
+}				t_error;
+
 typedef	struct s_map
 {
 	char **tab_map;
+	t_list	*list;
 	int	nb_line;
 	char *R;
 	char *NO;
@@ -59,10 +68,10 @@ typedef struct s_img
 
 
 int		ft_parser(t_map *map);
+int		get_map(t_map *map, char *file);
 int		check_map(t_map *map);
 void	init_env(t_env *env);
 void	ft_new_image(t_env *env);
-void	get_map(t_map *map, char *file);
 
 
 #endif

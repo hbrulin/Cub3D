@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/15 16:01:23 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 10:56:08 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int		ft_parser(t_map *map)
 	{
 		if (map->tab_map[0][j] != '1' && map->tab_map[0][j] != ' ')
 		{
-			printf("%i", 1); //retirer cela partout, utiliser les return pour checker erreurs
-			return (-1);
+			ft_putstr("The map is not closed\n");
+			return (WRONG_MAP);
 		}
 		j++;
 	}
@@ -38,8 +38,8 @@ int		ft_parser(t_map *map)
 	{
 		if (map->tab_map[map->nb_line - 1][j] != '1' && map->tab_map[map->nb_line - 1][j] != ' ')
 		{
-			printf("%i", 2);
-			return (-1);
+			ft_putstr("The map is not closed\n");
+			return (WRONG_MAP);
 		}
 		j++;
 	}
@@ -58,13 +58,13 @@ int		ft_parser(t_map *map)
 			c = map->tab_map[i][j];
 			if (!(map->tab_map[i][j] == '1' || map->tab_map[i][j] == '0' || map->tab_map[i][j] == '2' || map->tab_map[i][j] == 'N' || map->tab_map[i][j] == 'S' || map->tab_map[i][j] == 'E' || map->tab_map[i][j] == 'W' || map->tab_map[i][j] == ' '))
 			{
-				printf("%i", 3);
-				return (-1);
+				ft_putstr("The map contains undefined characters\n");
+				return (WRONG_MAP);
 			}
 			if (flag_n == 1 && (map->tab_map[i][j] == 'N' || map->tab_map[i][j] == 'S' || map->tab_map[i][j] == 'E' || map->tab_map[i][j] == 'W'))
 			{
-				printf("%i", 4);
-				return (-1);
+				ft_putstr("Player pops more than once\n");
+				return (WRONG_MAP);
 			}
 			if (flag_n == 0 && (map->tab_map[i][j] == 'N' || map->tab_map[i][j] == 'S' || map->tab_map[i][j] == 'E' || map->tab_map[i][j] == 'W'))
 				flag_n = 1;
@@ -72,28 +72,27 @@ int		ft_parser(t_map *map)
 		}
 		if (map->tab_map[i][0] != '1' || map->tab_map[i][k - 1] != '1')
 		{
-			printf("%i", 5);
-			return (-1);
+			ft_putstr("The map is not closed\n");
+			return (WRONG_MAP);
 		}
 		i++;
 	}
 	if ((k_total % (map->nb_line + 1) != 0) || flag_n == 0)
 	{
-		printf("%i", 6);
-		return (-1);
+		ft_putstr("The map is uneven\n");
+		return (WRONG_MAP);
 	}
-	return (0);
+	return (SUCCESS);
 }
 
-t_list	*ft_read(t_map *map, int fd)
+int		ft_read(t_map *map, int fd)
 {
 	int 	ret;
 	char *line;
-	t_list	*list;
 	t_list	*tmp;
 
-	list = NULL;
-	while ((ret = get_next_line(fd, &line)) > 0) //gnl a securiser malloc
+	map->list = NULL;
+	while ((ret = get_next_line(fd, &line)) > 0) //gnl a securiser malloc, peut return MALLOC FAIL -> revoir GNL + cette ligne
 	{
 		if (line[0] == 'R')
 			map->R = ft_strdup(line);
@@ -116,35 +115,40 @@ t_list	*ft_read(t_map *map, int fd)
 			tmp = malloc(sizeof(t_list));
 			tmp->content = ft_strdup(line);
 			tmp->next = 0;
-			ft_lstadd_back(&list, tmp);
-			map->nb_line++;
+			ft_lstadd_back(&map->list, tmp);
 		}
 		free(line);
 	}
 	free(line);
-	close(fd);
-	return (list);
+	if (!map->R || !map->NO || !map->SO || !map->WE || !map->EA || !map->S || !map->F || !map->C || !map->list)
+		return (WRONG_MAP);
+	return (SUCCESS);
 }
 
-void	get_map(t_map *map, char *file)
+int		get_map(t_map *map, char *file)
 {
 	int fd;
-	t_list	*list;
 	t_list	*tmp;
 	int i;
+	int error;
 
 	fd = open(file, O_RDONLY);
-	list = ft_read(map, fd);
-	if (!(map->tab_map = (char**)malloc(sizeof(char *) * ft_lstsize(list) + 1)))
-			return ;
+	if((error = ft_read(map, fd)) != SUCCESS)
+		return(error);
+	close(fd);
+	if (!(map->tab_map = (char**)malloc(sizeof(char *) * ft_lstsize(map->list) + 1)))
+			return (MALLOC_FAIL);
 	i = 0;
-	tmp = list;
+	tmp = map->list;
 	while (tmp)
 	{
-		map->tab_map[i] = ft_strdup(tmp->content);
+		if(!(map->tab_map[i] = ft_strdup(tmp->content)))
+			return (MALLOC_FAIL);
 		tmp = tmp->next;
 		i++;
 	}
-	//ft_lstclear(&list, del); il faut free la liste
+	ft_lstclear(&map->list, free);
 	map->tab_map[i] = 0;
+	map->nb_line = i;
+	return (SUCCESS);
 }

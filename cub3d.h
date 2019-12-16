@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 16:11:11 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 16:52:17 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ t_img	*ft_new_image(t_env *env, int width, int height);
 void	fill(t_img *img, unsigned int color);
 int		fill_floor_ceiling(t_env *env, t_map *map);
 void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
+void	events(t_env *env);
 
 
 #endif

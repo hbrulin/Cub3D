@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 16:11:40 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 17:01:06 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,9 @@ int main(int argc, char **argv)
 	printf("%s\n", map.F);
 	printf("%s\n", map.C);
 */
-	mlx_loop(env.mlx_ptr);
+	//mlx_loop(env.mlx_ptr);
+	//mlx_destroy_window(env.mlx_ptr, env.win_ptr);
+
+	events(&env);
     return (SUCCESS);
 }

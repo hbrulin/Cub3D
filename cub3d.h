@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 16:52:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/16 18:03:23 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 #include <string.h>
-#include <errno.h>
 
 typedef	enum	e_error
 {

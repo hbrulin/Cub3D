@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:09:53 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 15:00:49 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 17:56:15 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	fill(t_env *env, unsigned int color_floor, unsigned int color_ceiling)
 	while  (++p_y <= env->img->height / 2) 
 	{
 		p_x = -1;
-		while (++p_x <= env->img->width)
+		while (++p_x < env->img->width)
 			ft_put_pixel(env->img, color_ceiling, p_x, p_y);
 	}
 
-	while  (++p_y <= env->img->height) 
+	while  (++p_y < env->img->height) 
 	{
 		p_x = -1;
-		while (++p_x <= env->img->width)
+		while (++p_x < env->img->width)
 			ft_put_pixel(env->img, color_floor, p_x, p_y);
 	}
 }

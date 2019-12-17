@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 17:07:37 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 17:27:09 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,6 @@ int	key_move	(int key, t_env *env)
 		&ft_y_down, &ft_y_up, &ft_x_down, &ft_x_up};
 
 	// j'ai change pour le qwerty
-	//est ce que ca va bien avancer en continu?
 	if (key == KEY_W)
 	{
 		if (env->map.player == 'N')

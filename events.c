@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 15:43:57 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 16:46:03 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@
 
 int	deal_key(int key, t_env *env)
 {
+
+	int x;
+	int y;
+
+	//ft_putnbr_fd(key, 1);
+
 	if (key == KEY_ESCAPE)
 	{
 		mlx_destroy_window(env->mlx_ptr, env->win_ptr);
@@ -26,29 +32,65 @@ int	deal_key(int key, t_env *env)
 		exit(0);
 	}
 
-//rotate	
+	x = env->map.tab_pos[0];
+	y = env->map.tab_pos[1];
 	if (key == KEY_LEFT)
 	{
 		if (env->map.player == 'N')
+		{
 			env->map.player = 'W';
+			env->map.tab_map[x][y] = env->map.player;
+		}
 		if (env->map.player == 'S')
+		{
 			env->map.player = 'E';
+			env->map.tab_map[x][y] = env->map.player;
+		}
 		if (env->map.player == 'E')
+		{
 			env->map.player = 'S';
+			env->map.tab_map[x][y] = env->map.player;
+		}
 		if (env->map.player == 'W')
+		{
 			env->map.player = 'N';
+			env->map.tab_map[x][y] = env->map.player;
+		}
 	}
 	if (key == KEY_RIGHT)
 	{
 		if (env->map.player == 'N')
+		{
 			env->map.player = 'E';
+			env->map.tab_map[x][y] = env->map.player;
+		}
 		if (env->map.player == 'S')
+		{
 			env->map.player = 'W';
+			env->map.tab_map[x][y] = env->map.player;
+		}
 		if (env->map.player == 'E')
+		{
 			env->map.player = 'S';
+			env->map.tab_map[x][y] = env->map.player;
+		}
 		if (env->map.player == 'W')
+		{
 			env->map.player = 'N';
+			env->map.tab_map[x][y] = env->map.player;
+		}
 	}
+
+	int  i = 0;
+	if (key == KEY_SPACEBAR)
+	{
+		while (env->map.tab_map[i])
+		{
+			printf("%s\n", env->map.tab_map[i]);
+			i++;
+		}
+	}
+
 	return (key);
 }
 
@@ -61,21 +103,65 @@ int	deal_exit(t_env *env)
 	// + il faut bien tout free et destroy etc....
 }
 
-int	move	(int key, t_env *env)
+int	key_move	(int key, t_env *env)
 {
-	// j'ai change pour le qwery
-	if (key == KEY_W)
-	if (key == KEY_A)
-	if (key == KEY_S)
-	if (key == KEY_D)
+	static void (*f_move[4])(t_env *env) = {
+		&ft_y_down, &ft_y_up, &ft_x_down, &ft_x_up};
 
+	// j'ai change pour le qwerty
+	//est ce que ca va bien avancer en continu?
+	if (key == KEY_W)
+	{
+		if (env->map.player == 'N')
+			(*f_move[0])(env);
+		if (env->map.player == 'S')
+			(*f_move[1])(env);
+		if (env->map.player == 'W')
+			(*f_move[2])(env);
+		if (env->map.player == 'E')
+			(*f_move[3])(env);
+	}
+	if (key == KEY_A)
+	{
+		if (env->map.player == 'N')
+			(*f_move[2])(env);
+		if (env->map.player == 'S')
+			(*f_move[3])(env);
+		if (env->map.player == 'W')
+			(*f_move[1])(env);
+		if (env->map.player == 'E')
+			(*f_move[0])(env);
+	}
+	if (key == KEY_S)
+	{
+		if (env->map.player == 'N')
+			(*f_move[1])(env);
+		if (env->map.player == 'S')
+			(*f_move[0])(env);
+		if (env->map.player == 'W')
+			(*f_move[3])(env);
+		if (env->map.player == 'E')
+			(*f_move[2])(env);
+	}
+	if (key == KEY_D)
+	{
+		if (env->map.player == 'N')
+			(*f_move[3])(env);
+		if (env->map.player == 'S')
+			(*f_move[2])(env);
+		if (env->map.player == 'W')
+			(*f_move[0])(env);
+		if (env->map.player == 'E')
+			(*f_move[1])(env);
+	}
+	return (SUCCESS);
 }
 
 void	events(t_env *env)
 {
 	mlx_key_hook (env->win_ptr, deal_key, env);
 	mlx_hook(env->win_ptr, 17, StructureNotifyMask, deal_exit, env);
-	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, move, env);
+	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, key_move, env);
 	
 	//faire pareil avec mlx hook pour pouvoir rester appuye et que ca avance
 

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 19:44:36 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 14:22:47 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,9 @@ typedef	struct s_map
 	char **tab_map;
 	t_list	*list;
 	int	nb_line;
-	char *R;
-	char *NO;
-	char *SO;
-	char *WE;
-	char *EA;
-	char *S;
-	char *F;
-	char *C;
+	char	player_orient;
+	int		tab_pos[2];
 }				t_map;
-
-typedef	struct s_env
-{
-	void *mlx_ptr;
-	void *win_ptr;
-	int		width;
-	int		height;
-}				t_env;
 
 typedef struct s_img
 {
@@ -67,17 +53,27 @@ typedef struct s_img
 	int		height;
 }				t_img;
 
-/*typedef struct s_color
+typedef	struct s_env
 {
-	unsigned char r_floor;
-	unsigned char g_floor;
-	unsigned char b_floor;
-	int r_ceiling;
-	int g_ceiling;
-	int b_ceiling;
-	unsigned int color_floor;
-	unsigned int color_ceiling;
-}				t_color;*/
+	void *mlx_ptr;
+	void *win_ptr;
+	int		width;
+	int		height;
+	t_map	map;
+	t_img	*img;
+}				t_env;
+
+typedef struct s_data
+{
+	char *R;
+	char *NO;
+	char *SO;
+	char *WE;
+	char *EA;
+	char *S;
+	char *F;
+	char *C;
+}			t_data;
 
 typedef struct	s_rgb
 {
@@ -96,14 +92,13 @@ typedef union	u_color
 
 
 
-int				get_map(t_map *map, char *file);
-int				ft_parser(t_map *map);
-int				init_env(t_env *env, t_map *map);
-int	get_rgb(t_map *map, t_color *color_floor, t_color *color_ceiling);
-//unsigned int	rgb_to_hex(int r, int g, int b);
+int				get_map(t_env *env, t_data *data, char *file);
+int				ft_parser(t_env *env);
+int				init_env(t_env *env, t_data *data);
+int	get_color(t_data *data, t_color *color_floor, t_color *color_ceiling);
 t_img	*ft_new_image(t_env *env, int width, int height);
-void	fill(t_img *img, unsigned int color);
-int		fill_floor_ceiling(t_env *env, t_map *map);
+int		fill_floor_ceiling(t_env *env, t_data *data);
+void	fill(t_env *env, unsigned int color_floor, unsigned int color_ceiling);
 void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
 void	events(t_env *env);
 

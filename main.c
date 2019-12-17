@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 19:34:07 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 14:29:32 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,40 +15,39 @@
 
 int main(int argc, char **argv)
 {
- 	t_map map;
  	t_env env;
+	t_data data;
  	int		error;
 	
- 	map.tab_map = NULL;
  	if (argc == 1)
  		return (NO_MAP);
  	//if general
- 	if((error = get_map(&map, argv[1])) != SUCCESS)
+ 	if((error = get_map(&env, &data, argv[1])) != SUCCESS)
  		return (error);
- 	if((error = ft_parser(&map)) != SUCCESS)
+ 	if((error = ft_parser(&env)) != SUCCESS)
  		return (error);
- 	if((error = init_env(&env, &map)) != SUCCESS)
+ 	if((error = init_env(&env, &data)) != SUCCESS)
  		return (error);
- 	if((error = fill_floor_ceiling(&env, &map))!= SUCCESS)
+ 	if((error = fill_floor_ceiling(&env, &data))!= SUCCESS)
  		return (error);
 	
- /*
- 	int  i = 0;
- 	while (map.tab_map[i])
+ 
+ 	/*int  i = 0;
+ 	while (env.map.tab_map[i])
  	{
- 		printf("%s\n", map.tab_map[i]);
+ 		printf("%s\n", env.map.tab_map[i]);
  		i++;
  	}
- 	printf("%s\n", map.R);
- 	printf("%s\n", map.SO);
- 	printf("%s\n", map.WE);
- 	printf("%s\n", map.EA);
- 	printf("%s\n", map.S);
- 	printf("%s\n", map.F);
- 	printf("%s\n", map.C);
- */
- 	//mlx_loop(env.mlx_ptr);
- 	//mlx_destroy_window(env.mlx_ptr, env.win_ptr);
+ 	printf("%s\n", data.R);
+ 	printf("%s\n", data.SO);
+ 	printf("%s\n", data.WE);
+ 	printf("%s\n", data.EA);
+ 	printf("%s\n", data.S);
+ 	printf("%s\n", data.F);
+ 	printf("%s\n", data.C);
+	printf("%c\n", env.map.player_orient);
+	printf("%i, %i\n", env.map.tab_pos[0], env.map.tab_pos[1]);*/
+ 
 
  	events(&env);
     return (SUCCESS);

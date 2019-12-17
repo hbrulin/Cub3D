@@ -6,22 +6,22 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/16 16:24:03 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 15:00:00 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 
-int	init_env(t_env *env, t_map *map)
+int	init_env(t_env *env, t_data *data)
 {
 	int i;
 	char **tab;
 
 	i = 0;
-	while (!ft_isdigit(map->R[i]))
+	while (!ft_isdigit(data->R[i]))
 		i++;
-	if(!(tab = ft_split(map->R + i, ' ')))
+	if(!(tab = ft_split(data->R + i, ' ')))
 		return (MALLOC_FAIL);
 	env->width = ft_atoi(tab[0]);
 	env->height = ft_atoi(tab[1]);
@@ -34,6 +34,10 @@ int	init_env(t_env *env, t_map *map)
 	}
 	env->mlx_ptr =  mlx_init(); //verif si NULL : comment?
 	env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D"); //idem
+
+	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
+		return (IMG_FAIL);
+
 	return (SUCCESS);
 
 	//ou faut-il free les pointeurs/destroy window? en cas d'event

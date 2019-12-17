@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 16:46:03 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 17:02:24 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,23 @@ int	deal_key(int key, t_env *env)
 		if (env->map.player == 'N')
 		{
 			env->map.player = 'W';
-			env->map.tab_map[x][y] = env->map.player;
+			//ft_putchar_fd(env->map.player, 1);
+			env->map.tab_map[y][x] = env->map.player;
 		}
 		if (env->map.player == 'S')
 		{
 			env->map.player = 'E';
-			env->map.tab_map[x][y] = env->map.player;
+			env->map.tab_map[y][x] = env->map.player;
 		}
 		if (env->map.player == 'E')
 		{
 			env->map.player = 'S';
-			env->map.tab_map[x][y] = env->map.player;
+			env->map.tab_map[y][x] = env->map.player;
 		}
 		if (env->map.player == 'W')
 		{
 			env->map.player = 'N';
-			env->map.tab_map[x][y] = env->map.player;
+			env->map.tab_map[y][x] = env->map.player;
 		}
 	}
 	if (key == KEY_RIGHT)
@@ -62,22 +63,22 @@ int	deal_key(int key, t_env *env)
 		if (env->map.player == 'N')
 		{
 			env->map.player = 'E';
-			env->map.tab_map[x][y] = env->map.player;
+			env->map.tab_map[y][x] = env->map.player;
 		}
 		if (env->map.player == 'S')
 		{
 			env->map.player = 'W';
-			env->map.tab_map[x][y] = env->map.player;
+			env->map.tab_map[y][x] = env->map.player;
 		}
 		if (env->map.player == 'E')
 		{
 			env->map.player = 'S';
-			env->map.tab_map[x][y] = env->map.player;
+			env->map.tab_map[y][x] = env->map.player;
 		}
 		if (env->map.player == 'W')
 		{
 			env->map.player = 'N';
-			env->map.tab_map[x][y] = env->map.player;
+			env->map.tab_map[y][x] = env->map.player;
 		}
 	}
 

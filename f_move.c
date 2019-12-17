@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:07:10 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 17:04:57 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 17:10:35 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_y_down(t_env *env)
 	if (env->map.tab_map[y - 1][x] == '0')
 	{
 		env->map.tab_map[y - 1][x] = env->map.player;
-		env->map.tab_map[y][x] = 0;
+		env->map.tab_map[y][x] = '0';
 		env->map.tab_pos[1] = y - 1;
 	}
 }

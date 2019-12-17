@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 14:22:47 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 15:25:52 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef	struct s_map
 	char **tab_map;
 	t_list	*list;
 	int	nb_line;
-	char	player_orient;
+	char	player;
 	int		tab_pos[2];
 }				t_map;
 

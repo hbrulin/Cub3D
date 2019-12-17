@@ -6,12 +6,17 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 14:22:07 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 15:25:29 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
+
+/*
+◦ Mis à part la description de la map, chaque type d’élément peut être séparée par une ou plusieurs lignes vides.
+◦ La description de la carte sera toujours en dernier dans le fichier, le reste des éléments peut être dans n’importe quel ordre.
+◦ Les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s).*/
 
 int		ft_parser(t_env *env)
 {
@@ -67,7 +72,7 @@ int		ft_parser(t_env *env)
 			if (flag_n == 0 && (env->map.tab_map[i][j] == 'N' || env->map.tab_map[i][j] == 'S' || env->map.tab_map[i][j] == 'E' || env->map.tab_map[i][j] == 'W'))
 			{
 				flag_n = 1;
-				env->map.player_orient = env->map.tab_map[i][j];
+				env->map.player = env->map.tab_map[i][j];
 				env->map.tab_pos[0] = j; //x
 				env->map.tab_pos[1] = i; //y
 			}

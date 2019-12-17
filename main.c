@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 14:29:32 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/17 15:25:33 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
  	printf("%s\n", data.S);
  	printf("%s\n", data.F);
  	printf("%s\n", data.C);
-	printf("%c\n", env.map.player_orient);
+	printf("%c\n", env.map.player);
 	printf("%i, %i\n", env.map.tab_pos[0], env.map.tab_pos[1]);*/
  
 

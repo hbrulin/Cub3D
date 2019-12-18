@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 11:22:36 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 15:42:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef struct s_pos
 {
 	float x;
 	float y;
-	int angle_d;
+	unsigned int angle_d;
 	float angle_rad;
-	int flag_angle_right;
+	//int flag_angle_right;
 }				t_pos;
 
 typedef	struct s_map
@@ -110,10 +110,7 @@ int		fill_floor_ceiling(t_env *env, t_data *data);
 void	fill(t_env *env, unsigned int color_floor, unsigned int color_ceiling);
 void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
 void	events(t_env *env);
-void	ft_y_down(t_env *env);
-void	ft_y_up(t_env *env);
-void	ft_x_down(t_env *env);
-void	ft_x_up(t_env *env);
-void	ft_angle_move_W(t_env *env);
+t_pos	*ft_calc(t_env *env);
+void	ft_move(t_env *env, t_pos *move, int key);
 
 #endif

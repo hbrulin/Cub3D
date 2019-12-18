@@ -6,12 +6,24 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 10:26:08 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 15:09:06 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
+
+void	init_angle(t_env *env)
+{
+	if (env->map.player == 'N')
+		env->pos.angle_d = 90;
+	else if (env->map.player == 'S')
+		env->pos.angle_d = 270;
+	else if (env->map.player == 'E')
+		env->pos.angle_d = 0;
+	else if (env->map.player == 'W')
+		env->pos.angle_d = 180;
+}
 
 int	init_env(t_env *env, t_data *data)
 {
@@ -32,8 +44,7 @@ int	init_env(t_env *env, t_data *data)
 		ft_putstr("Wrong resolution");
 		return (WRONG_INPUT);
 	}
-	env->pos.angle_d = 0;
-	env->pos.flag_angle_right = 0; //voir si necessaire
+	init_angle(env);
 	env->mlx_ptr =  mlx_init(); //verif si NULL : comment?
 	env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D"); //idem
 

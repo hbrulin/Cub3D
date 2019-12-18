@@ -6,14 +6,14 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2019/12/18 11:27:55 by hbrulin          ###   ########.fr        #
+#    Updated: 2019/12/18 15:24:44 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Cub3D
 OS	= $(shell uname)
 
-SRCS = main.c parser.c env.c image.c color.c floor_ceiling.c events.c move_W.c
+SRCS = main.c parser.c env.c image.c color.c floor_ceiling.c events.c move.c
 
 HEADER = cub3d.h 
 KEYCODE = keycode.h

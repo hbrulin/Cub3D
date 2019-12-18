@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 11:44:33 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 15:42:32 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,7 @@
 void	calc_rad(t_env *env)
 {
 	if (env->pos.angle_d < 0)
-	{
 		env->pos.angle_d *= -1;
-		env->pos.flag_angle_right = 1;
-	}
 	env->pos.angle_rad = env->pos.angle_d * M_PI / 180;
 }
 
@@ -61,34 +58,39 @@ int	deal_exit(t_env *env)
 
 int	key_move	(int key, t_env *env)
 {
-	int x;
-	int y;
-	
-	x = env->pos.x;
-	y = env->pos.y;
+	t_pos	*move;
+
 	if (key == KEY_LEFT)
-	{
-		if (env->pos.angle_d == 360)
-			env->pos.angle_d = 0;
 		env->pos.angle_d++;
-		calc_rad(env); // necessaire?
-	}
 	if (key == KEY_RIGHT)
 	{
-		if (env->pos.angle_d == -360)
-			env->pos.angle_d = 0;
+		if (env->pos.angle_d == 0) 
+			env->pos.angle_d = 360;
 		env->pos.angle_d--;
-		calc_rad(env); //necessaire?
 	}
+	env->pos.angle_d %= 360;
+	printf("%i\n", env->pos.angle_d);
+	calc_rad(env); // necessaire?
 
-	if (key == KEY_W)
-		ft_angle_move_W(env);
-	/*if (key == KEY_A)
-		ft_angle_move_A(env);
-	if (key == KEY_S)
-		ft_angle_move_S(env);
+	if (key == KEY_W || key == KEY_S)
+	{
+		move = ft_calc(env);
+		ft_move(env, move, key);
+	}
+	if (key == KEY_A)
+	{
+		env->pos.angle_d += 90;
+		env->pos.angle_d %= 360;
+		move = ft_calc(env);
+		ft_move(env, move, key);
+	}
 	if (key == KEY_D)
-		ft_angle_move_D(env);	*/
+	{
+		env->pos.angle_d += 90;
+		env->pos.angle_d %= 360;
+		move = ft_calc(env);
+		ft_move(env, move, key);
+	}
 	return (SUCCESS);
 }
 

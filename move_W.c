@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   f_move.c                                           :+:      :+:    :+:   */
+/*   move_W.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:07:10 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 11:27:14 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 11:50:43 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,50 +41,54 @@ void	ft_angle_move_W(t_env *env)
 
 	if (env->map.player == 'N')
 	{
-		if (env->pos.angle_d != 0)
+		if (env->pos.angle_d != 0 && env->pos.y >= 0.1 )
 		{
 			env->pos.y -= (sin(env->pos.angle_d) * 0.1);
-			if (env->pos.flag_angle_right == 1)
+			if (env->pos.flag_angle_right == 1 && env->pos.x >= 0.1)
 				env->pos.x += (cos(env->pos.angle_d) * 0.1);
-			env->pos.x -= (cos(env->pos.angle_d) * 0.1);
+			else if (env->pos.x >= 0.1) 
+				env->pos.x -= (cos(env->pos.angle_d) * 0.1);
 		}
-		else
+		else if (env->pos.x != 0 && env->pos.y > 0.1)
 			env->pos.y -= 0.1;
 	}
 	if (env->map.player == 'S')
 	{
-		if (env->pos.angle_d != 0)
+		if (env->pos.angle_d != 0 && env->pos.y >= 0.1)
 		{
 			env->pos.y += (sin(env->pos.angle_d) * 0.1);
-			if (env->pos.flag_angle_right == 1)
+			if (env->pos.flag_angle_right == 1 && env->pos.x >= 0.1)
 				env->pos.x -= (cos(env->pos.angle_d) * 0.1);
-			env->pos.x += (cos(env->pos.angle_d) * 0.1);
+			else if (env->pos.x >= 0.1) 
+				env->pos.x += (cos(env->pos.angle_d) * 0.1);
 		}
-		else
+		else if (env->pos.x != 0 && env->pos.y >= 0.1 )
 			env->pos.y += 0.1;
 	}
 	if (env->map.player == 'W')
 	{
-		if (env->pos.angle_d != 0)
+		if (env->pos.angle_d != 0 && (env->pos.x >= 0.1))
 		{
 			env->pos.x -= (sin(env->pos.angle_d) * 0.1);
-			if (env->pos.flag_angle_right == 1)
+			if (env->pos.flag_angle_right == 1 && env->pos.y >= 0.1)
 				env->pos.y -= (cos(env->pos.angle_d) * 0.1);
-			env->pos.y += (cos(env->pos.angle_d) * 0.1);
+			else if (env->pos.y >= 0.1) 
+				env->pos.y += (cos(env->pos.angle_d) * 0.1);
 		}
-		else
+		else if (env->pos.x != 0 && env->pos.x >= 0.1 )
 			env->pos.x -= 0.1;
 	}
 	if (env->map.player == 'E')
 	{
-		if (env->pos.angle_d != 0)
+		if (env->pos.angle_d != 0 && (env->pos.x >= 0.1 && env->pos.y >= 0.1 ))
 		{
 			env->pos.x += (sin(env->pos.angle_d) * 0.1);
-			if (env->pos.flag_angle_right == 1)
+			if (env->pos.flag_angle_right == 1 && env->pos.y >= 0.1)
 				env->pos.y += (cos(env->pos.angle_d) * 0.1);
+			else if (env->pos.y >= 0.1) 
 			env->pos.y -= (cos(env->pos.angle_d) * 0.1);
 		}
-		else
+		else if (env->pos.x != 0 && env->pos.x >= 0.1 )
 			env->pos.x += 0.1;
 	}
 	reset_W(env);

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 20:45:02 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 20:49:31 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,18 +107,12 @@ La partie droite de l’écran est égale à 1*/
 		{
 			side_dist_x += deltaDistX; //aggrandis le rayon
 			mapX += stepX; //on change de case sur X
-			//ft_putnbr_fd(mapX, 1);
-			//ft_putchar_fd('\n', 1);
-			hit_side = 0; //orientation du mur - ici soit nord soit sud, il faut diviser selon qu'on descend ou monte pour avoir lequel
+			hit_side = 0; //orientation du mur - ici soit nord soit sud, il faut separer selon qu'on descend ou monte pour avoir lequel
 		}
 		else
 		{
 			side_dist_y += deltaDistY;
 			mapY += stepY;
-			//ft_putnbr_fd(mapY, 1);
-			//ft_putchar_fd('\n', 1);
-			//ft_putnbr_fd(stepY, 1);
-			//ft_putchar_fd('\n', 1);
 			hit_side = 1;
 		}
 		if(env->map.tab_map[mapY][mapX] == '1') // a changer si ne marche pas

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 16:24:05 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 11:22:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,13 +33,21 @@ typedef	enum	e_error
 	IMG_FAIL
 }				t_error;
 
+typedef struct s_pos
+{
+	float x;
+	float y;
+	int angle_d;
+	float angle_rad;
+	int flag_angle_right;
+}				t_pos;
+
 typedef	struct s_map
 {
 	char **tab_map;
 	t_list	*list;
 	int	nb_line;
 	char	player;
-	int		tab_pos[2];
 }				t_map;
 
 typedef struct s_img
@@ -61,6 +69,7 @@ typedef	struct s_env
 	int		height;
 	t_map	map;
 	t_img	*img;
+	t_pos 	pos;
 }				t_env;
 
 typedef struct s_data
@@ -105,5 +114,6 @@ void	ft_y_down(t_env *env);
 void	ft_y_up(t_env *env);
 void	ft_x_down(t_env *env);
 void	ft_x_up(t_env *env);
+void	ft_angle_move_W(t_env *env);
 
 #endif

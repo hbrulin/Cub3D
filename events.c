@@ -6,16 +6,23 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 17:27:09 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 11:29:58 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-//Les touches flèches du gauche et droite du clavier doivent permettre de faire une rotation de la caméra (regarder a gauche et a droite)
-// Les touches Z, Q, S et D doivent permettre de déplacer la caméra (déplacement du personnage)
 
 #include "cub3d.h"
 #include "keycode.h"
 #include <stdio.h>
+
+void	calc_rad(t_env *env)
+{
+	if (env->pos.angle_d < 0)
+	{
+		env->pos.angle_d *= -1;
+		env->pos.flag_angle_right = 1;
+	}
+	env->pos.angle_rad = env->pos.angle_d * M_PI / 180;
+}
 
 int	deal_key(int key, t_env *env)
 {
@@ -32,54 +39,21 @@ int	deal_key(int key, t_env *env)
 		exit(0);
 	}
 
-	x = env->map.tab_pos[0];
-	y = env->map.tab_pos[1];
+	x = env->pos.x;
+	y = env->pos.y;
 	if (key == KEY_LEFT)
 	{
-		if (env->map.player == 'N')
-		{
-			env->map.player = 'W';
-			//ft_putchar_fd(env->map.player, 1);
-			env->map.tab_map[y][x] = env->map.player;
-		}
-		if (env->map.player == 'S')
-		{
-			env->map.player = 'E';
-			env->map.tab_map[y][x] = env->map.player;
-		}
-		if (env->map.player == 'E')
-		{
-			env->map.player = 'S';
-			env->map.tab_map[y][x] = env->map.player;
-		}
-		if (env->map.player == 'W')
-		{
-			env->map.player = 'N';
-			env->map.tab_map[y][x] = env->map.player;
-		}
+		if (env->pos.angle_d == 360)
+			env->pos.angle_d = 0;
+		env->pos.angle_d++;
+		calc_rad(env); // necessaire?
 	}
 	if (key == KEY_RIGHT)
 	{
-		if (env->map.player == 'N')
-		{
-			env->map.player = 'E';
-			env->map.tab_map[y][x] = env->map.player;
-		}
-		if (env->map.player == 'S')
-		{
-			env->map.player = 'W';
-			env->map.tab_map[y][x] = env->map.player;
-		}
-		if (env->map.player == 'E')
-		{
-			env->map.player = 'S';
-			env->map.tab_map[y][x] = env->map.player;
-		}
-		if (env->map.player == 'W')
-		{
-			env->map.player = 'N';
-			env->map.tab_map[y][x] = env->map.player;
-		}
+		if (env->pos.angle_d == -360)
+			env->pos.angle_d = 0;
+		env->pos.angle_d--;
+		calc_rad(env); //necessaire?
 	}
 
 	int  i = 0;
@@ -91,6 +65,7 @@ int	deal_key(int key, t_env *env)
 			i++;
 		}
 		printf("\n");
+		//printf("%\nf", env->pos.angle_rad);
 	}
 
 	return (key);
@@ -107,53 +82,14 @@ int	deal_exit(t_env *env)
 
 int	key_move	(int key, t_env *env)
 {
-	static void (*f_move[4])(t_env *env) = {
-		&ft_y_down, &ft_y_up, &ft_x_down, &ft_x_up};
-
-	// j'ai change pour le qwerty
 	if (key == KEY_W)
-	{
-		if (env->map.player == 'N')
-			(*f_move[0])(env);
-		if (env->map.player == 'S')
-			(*f_move[1])(env);
-		if (env->map.player == 'W')
-			(*f_move[2])(env);
-		if (env->map.player == 'E')
-			(*f_move[3])(env);
-	}
+		ft_angle_move_W(env);
 	if (key == KEY_A)
-	{
-		if (env->map.player == 'N')
-			(*f_move[2])(env);
-		if (env->map.player == 'S')
-			(*f_move[3])(env);
-		if (env->map.player == 'W')
-			(*f_move[1])(env);
-		if (env->map.player == 'E')
-			(*f_move[0])(env);
-	}
+		ft_angle_move_A(env);
 	if (key == KEY_S)
-	{
-		if (env->map.player == 'N')
-			(*f_move[1])(env);
-		if (env->map.player == 'S')
-			(*f_move[0])(env);
-		if (env->map.player == 'W')
-			(*f_move[3])(env);
-		if (env->map.player == 'E')
-			(*f_move[2])(env);
-	}
+		ft_angle_move_S(env);
 	if (key == KEY_D)
-	{
-		if (env->map.player == 'N')
-			(*f_move[3])(env);
-		if (env->map.player == 'S')
-			(*f_move[2])(env);
-		if (env->map.player == 'W')
-			(*f_move[0])(env);
-		if (env->map.player == 'E')
-			(*f_move[1])(env);
+		ft_angle_move_D(env);	
 	}
 	return (SUCCESS);
 }

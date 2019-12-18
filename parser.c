@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 16:59:18 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 10:00:16 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,8 @@ int		ft_parser(t_env *env)
 			{
 				flag_n = 1;
 				env->map.player = env->map.tab_map[i][j];
-				env->map.tab_pos[0] = j; //x
-				env->map.tab_pos[1] = i; //y
+				env->pos.x = j; //x
+				env->pos.y = i; //y
 			}
 			j++;
 		}

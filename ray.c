@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 19:19:45 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 20:45:02 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,30 @@
 #include "keycode.h"
 #include <stdio.h>
 
+void	ft_calc_dir(t_env *env)
+{
+	env->dir.x = cos(env->pos.angle_d);
+	env->dir.y = -(sin(env->pos.angle_d));
+}
 
-void	ft_ray(t_env *env)
+void	ft_launch(t_env *env)
+{
+	int x_img = 0; //position de depart du trace sur img
+	//int y_img = 0; //position de depart du trace sur img
+
+	while (x_img <= env->img->width)
+	{
+		ft_ray(env, x_img);
+		x_img++;
+	}
+}
+
+void	ft_ray(t_env *env, int x_img)
 {
 	int planeX = 0;
 	int planeY = 1; 
 
-	int x_img = 0; //position de depart du trace sur img
+	//int x_img = 0; //position de depart du trace sur img
 	int y_img = 0; //position de depart du trace sur img
 	float ray_pos_x = env->pos.x; //position de depart du rayon sur x
 	float ray_pos_y = env->pos.y; //position de depart du rayon sur y
@@ -32,12 +49,9 @@ void	ft_ray(t_env *env)
 La partie gauche de l’écran est égale à -1
 La partie droite de l’écran est égale à 1*/
 
-	while (x_img <= env->img->width)
-	{
-		cameraX = (2 * x_img / env->img->width) - 1; //position de la colonne p/r au centre de l'ecran
-		ray_dir_x = env->dir.x + planeX * cameraX; // direction du rayon sur X
-		ray_dir_y = env->dir.y + planeY * cameraX; // direction du rayon sur Y
-	}
+	cameraX = (2 * x_img / env->img->width) - 1; //position de la colonne p/r au centre de l'ecran
+	ray_dir_x = env->dir.x + planeX * cameraX; // direction du rayon sur X
+	ray_dir_y = env->dir.y + planeY * cameraX; // direction du rayon sur Y
 
 	//sur quelle case est la camera
 	int mapX = (int)ray_pos_x; //On conv un nombre décimal en valeur entière.
@@ -93,71 +107,62 @@ La partie droite de l’écran est égale à 1*/
 		{
 			side_dist_x += deltaDistX; //aggrandis le rayon
 			mapX += stepX; //on change de case sur X
+			//ft_putnbr_fd(mapX, 1);
+			//ft_putchar_fd('\n', 1);
 			hit_side = 0; //orientation du mur - ici soit nord soit sud, il faut diviser selon qu'on descend ou monte pour avoir lequel
 		}
 		else
 		{
 			side_dist_y += deltaDistY;
 			mapY += stepY;
+			//ft_putnbr_fd(mapY, 1);
+			//ft_putchar_fd('\n', 1);
+			//ft_putnbr_fd(stepY, 1);
+			//ft_putchar_fd('\n', 1);
 			hit_side = 1;
 		}
-		if(env->map.tab_map[mapY][mapX] == 1)
+		if(env->map.tab_map[mapY][mapX] == '1') // a changer si ne marche pas
 			hit = 1;
 	}
 
-	int wall_dist; //distane corrigee du +1 ajoute plus haut
+	float wall_dist; //distane corrigee du +1 ajoute plus haut
 
 	//si mur touché sur axe x
 	if (hit_side == 0)
-		wall_dist = abs((mapX - ray_pos_x + (1 - stepX) / 2) / ray_dir_x);
+		wall_dist = fabs((mapX - ray_pos_x + (1 - stepX) / 2) / ray_dir_x);
 	else
-		wall_dist = abs((mapY - ray_pos_y + (1 - stepY) / 2) / ray_dir_y);
+		wall_dist = fabs((mapY - ray_pos_y + (1 - stepY) / 2) / ray_dir_y);
 	
 	//calcul hauteur colonne a tracer
-	int hauteur = abs(env->img->height / wall_dist);
+	float hauteur = fabs(env->img->height / wall_dist);
+	//ft_putnbr_fd(hauteur, 1);
+	//ft_putchar_fd('\n', 1);
 
-	int draw_start = - (hauteur / 2 + env->img->height / 2);
+	int draw_start = (-hauteur / 2 + env->img->height / 2);
 	int draw_end = (hauteur / 2 + env->img->height / 2);
 
 	if (draw_start < 0)
 		draw_start = 0;
 	if (draw_end >= env->img->height)
 		draw_end = env->img->height - 1;
+	//ft_putnbr_fd(draw_start, 1);
+	//ft_putchar_fd('\n', 1);
+	//ft_putnbr_fd(draw_end, 1);
+	//ft_putchar_fd('\n', 1);
 
+	unsigned int color = mlx_get_color_value (env->mlx_ptr, 0xFFFFFF);
+	unsigned int color2 = mlx_get_color_value (env->mlx_ptr, 0x7F7474);
 
 	//tracer
-	int d = draw_start;
-	while (d < draw_end)
+	y_img = draw_start;
+	//ft_putnbr_fd(y_img, 1);
+	//ft_putchar_fd('\n', 1);
+	while (y_img < draw_end)
 	{
 		if (hit_side == 1)
-			ft_put_pixel(env->img, 0x00A0ACAA, x_img, d);
-		d++;
+			ft_put_pixel(env->img, color, x_img, y_img);
+		else
+			ft_put_pixel(env->img, color2, x_img, y_img);
+		y_img++;
 	}
 }
-
-
-/* 	int FOV = 60;
-	int wall_height = 64; //quelle est l'unite ici? 
-	int player_height = wall_height / 2;
-	int planeX = 320; //faut-il que ce soit la resolution del'ecran?
-	int planeY = 200;
-	int plane[planeY][planeX];
-	float dist_to_plane = 160 / tan(env->pos.angle_d); //from layer to projection plane
-	float angle_ray = FOV / planeX;     //angle btw rays - wall = 320 colonnes
-
-	//The ray on the extreme left of the FOV will be projected onto column 0 of the projection plane, 
-	//and the right most ray will be projected onto column 319 of the projection plane.
-
-	//int new_angle = env->pos.angle_d - FOV / 2;
-
-	int i = 0;
-	while (plane[i]) //pour chqaue colonne
-	{
-		//trace ray until hits wall
-		//record distance si mur atteint : pythagore
-		dist_to_column += angle_ray; // - FOV / 2
-		i++;
-	}
-
-	int projected_column_height = (wall_height/dist_to_column) * dist_to_plane;
-*/

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 15:25:33 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 20:32:21 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int main(int argc, char **argv)
  		return (error);
  	if((error = fill_floor_ceiling(&env, &data))!= SUCCESS)
  		return (error);
+	ft_calc_dir(&env);
+	ft_launch(&env);
 	
  
  	/*int  i = 0;

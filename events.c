@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 17:19:05 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 19:21:23 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,16 @@ int	key_move	(int key, t_env *env)
 {
 
 	if (key == KEY_LEFT)
+	{
 		env->pos.angle_d++;
+		ft_ray(env);
+	}
 	if (key == KEY_RIGHT)
 	{
 		if (env->pos.angle_d == 0) 
 			env->pos.angle_d = 360;
 		env->pos.angle_d--;
+		ft_ray(env);
 	}
 	env->pos.angle_d %= 360;
 	printf("%i\n", env->pos.angle_d);
@@ -75,6 +79,7 @@ int	key_move	(int key, t_env *env)
 	{
 		ft_calc_dir(env);
 		ft_move(env, key);
+		ft_ray(env);
 	}
 	if (key == KEY_A)
 	{
@@ -82,6 +87,7 @@ int	key_move	(int key, t_env *env)
 		env->pos.angle_d %= 360;
 		ft_calc_dir(env);
 		ft_move(env, key);
+		ft_ray(env);
 	}
 	if (key == KEY_D)
 	{
@@ -89,6 +95,7 @@ int	key_move	(int key, t_env *env)
 		env->pos.angle_d %= 360;
 		ft_calc_dir(env);
 		ft_move(env, key);
+		ft_ray(env);
 	}
 	 //attention, A FREE PLUS TARD PEUT ETRE
 	return (SUCCESS);
@@ -96,6 +103,7 @@ int	key_move	(int key, t_env *env)
 
 void	events(t_env *env)
 {
+	ft_ray(env);
 	mlx_key_hook (env->win_ptr, deal_key, env);
 	mlx_hook(env->win_ptr, 17, StructureNotifyMask, deal_exit, env);
 	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, key_move, env);

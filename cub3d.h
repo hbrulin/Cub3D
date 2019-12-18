@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 17:21:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 19:21:39 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,6 @@ void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
 void	events(t_env *env);
 void	ft_calc_dir(t_env *env);
 void	ft_move(t_env *env, int key);
+void	ft_ray(t_env *env);
 
 #endif

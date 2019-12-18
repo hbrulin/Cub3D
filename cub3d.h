@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 15:42:05 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 17:21:17 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef	struct s_env
 	t_map	map;
 	t_img	*img;
 	t_pos 	pos;
+	t_pos	dir;
 }				t_env;
 
 typedef struct s_data
@@ -110,7 +111,7 @@ int		fill_floor_ceiling(t_env *env, t_data *data);
 void	fill(t_env *env, unsigned int color_floor, unsigned int color_ceiling);
 void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
 void	events(t_env *env);
-t_pos	*ft_calc(t_env *env);
-void	ft_move(t_env *env, t_pos *move, int key);
+void	ft_calc_dir(t_env *env);
+void	ft_move(t_env *env, int key);
 
 #endif

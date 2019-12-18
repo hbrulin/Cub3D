@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 15:42:32 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/18 17:19:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	deal_exit(t_env *env)
 
 int	key_move	(int key, t_env *env)
 {
-	t_pos	*move;
 
 	if (key == KEY_LEFT)
 		env->pos.angle_d++;
@@ -74,23 +73,24 @@ int	key_move	(int key, t_env *env)
 
 	if (key == KEY_W || key == KEY_S)
 	{
-		move = ft_calc(env);
-		ft_move(env, move, key);
+		ft_calc_dir(env);
+		ft_move(env, key);
 	}
 	if (key == KEY_A)
 	{
 		env->pos.angle_d += 90;
 		env->pos.angle_d %= 360;
-		move = ft_calc(env);
-		ft_move(env, move, key);
+		ft_calc_dir(env);
+		ft_move(env, key);
 	}
 	if (key == KEY_D)
 	{
 		env->pos.angle_d += 90;
 		env->pos.angle_d %= 360;
-		move = ft_calc(env);
-		ft_move(env, move, key);
+		ft_calc_dir(env);
+		ft_move(env, key);
 	}
+	 //attention, A FREE PLUS TARD PEUT ETRE
 	return (SUCCESS);
 }
 

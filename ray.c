@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 20:49:31 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 15:16:20 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_launch(t_env *env)
 		ft_ray(env, x_img);
 		x_img++;
 	}
+	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
 }
 
 void	ft_ray(t_env *env, int x_img)

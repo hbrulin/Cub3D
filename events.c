@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 20:50:50 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 15:17:10 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 
 void	calc_rad(t_env *env)
 {
-	if (env->pos.angle_d < 0)
-		env->pos.angle_d *= -1;
 	env->pos.angle_rad = env->pos.angle_d * M_PI / 180;
 }
 
@@ -62,6 +60,7 @@ int	key_move	(int key, t_env *env)
 	if (key == KEY_LEFT)
 	{
 		env->pos.angle_d++;
+		ft_calc_dir(env);
 		ft_launch(env);
 	}
 	if (key == KEY_RIGHT)
@@ -69,6 +68,7 @@ int	key_move	(int key, t_env *env)
 		if (env->pos.angle_d == 0) 
 			env->pos.angle_d = 360;
 		env->pos.angle_d--;
+		ft_calc_dir(env);
 		ft_launch(env);
 	}
 	env->pos.angle_d %= 360;

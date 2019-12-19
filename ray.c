@@ -6,19 +6,13 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/19 15:16:20 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 18:03:23 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "keycode.h"
 #include <stdio.h>
-
-void	ft_calc_dir(t_env *env)
-{
-	env->dir.x = cos(env->pos.angle_d);
-	env->dir.y = -(sin(env->pos.angle_d));
-}
 
 void	ft_launch(t_env *env)
 {
@@ -35,36 +29,34 @@ void	ft_launch(t_env *env)
 
 void	ft_ray(t_env *env, int x_img)
 {
-	int planeX = 0;
-	int planeY = 1; 
 
 	//int x_img = 0; //position de depart du trace sur img
 	int y_img = 0; //position de depart du trace sur img
-	float ray_pos_x = env->pos.x; //position de depart du rayon sur x
-	float ray_pos_y = env->pos.y; //position de depart du rayon sur y
+	double ray_pos_x = env->pos.x; //position de depart du rayon sur x
+	double ray_pos_y = env->pos.y; //position de depart du rayon sur y
 	int cameraX;
-	float ray_dir_x;
-	float ray_dir_y;
+	double ray_dir_x;
+	double ray_dir_y;
 
 /*Le centre de l’écran de projection sur X est égal à 0
 La partie gauche de l’écran est égale à -1
 La partie droite de l’écran est égale à 1*/
 
 	cameraX = (2 * x_img / env->img->width) - 1; //position de la colonne p/r au centre de l'ecran
-	ray_dir_x = env->dir.x + planeX * cameraX; // direction du rayon sur X
-	ray_dir_y = env->dir.y + planeY * cameraX; // direction du rayon sur Y
+	ray_dir_x = env->dir.x + env->plane.x * cameraX; // direction du rayon sur X
+	ray_dir_y = env->dir.y + env->plane.y * cameraX; // direction du rayon sur Y
 
 	//sur quelle case est la camera
 	int mapX = (int)ray_pos_x; //On conv un nombre décimal en valeur entière.
 	int mapY = (int)ray_pos_y;
 
 	//distance que le rayon parcourt entre sa position de départ et le mur.
-	float side_dist_x;
-	float side_dist_y;
+	double side_dist_x;
+	double side_dist_y;
 
 	//les distances que le rayon doit parcourir sur chaque axe pour aller au prochain point d’intersection.
-	float deltaDistX = sqrt(1+(ray_dir_y * ray_dir_y)/(ray_dir_x * ray_dir_x));
-	float deltaDistY = sqrt(1+(ray_dir_x * ray_dir_x)/(ray_dir_y * ray_dir_y));
+	double deltaDistX = sqrt(1+(ray_dir_y * ray_dir_y)/(ray_dir_x * ray_dir_x));
+	double deltaDistY = sqrt(1+(ray_dir_x * ray_dir_x)/(ray_dir_y * ray_dir_y));
 
 	// direction du rayon : negative (-1) ou positive (1), sur chaque axe.
 	int stepX;
@@ -79,7 +71,7 @@ La partie droite de l’écran est égale à 1*/
 	//Autrement dit le prochain pas du rayon dans la map se fera vers la gauche.
 
 
-	//calcule le vecteur de direction et la longueur entre deux segments
+	//calcule le vecteur de direction et la longueur du rayon
 	if (ray_dir_x < 0)
 	{
 		stepX = - 1; //vecteur de direction
@@ -116,11 +108,11 @@ La partie droite de l’écran est égale à 1*/
 			mapY += stepY;
 			hit_side = 1;
 		}
-		if(env->map.tab_map[mapY][mapX] == '1') // a changer si ne marche pas
+		if(env->map.tab_map[mapY][mapX] == '1') 
 			hit = 1;
 	}
 
-	float wall_dist; //distane corrigee du +1 ajoute plus haut
+	double wall_dist; //distane corrigee du +1 ajoute plus haut
 
 	//si mur touché sur axe x
 	if (hit_side == 0)
@@ -129,11 +121,11 @@ La partie droite de l’écran est égale à 1*/
 		wall_dist = fabs((mapY - ray_pos_y + (1 - stepY) / 2) / ray_dir_y);
 	
 	//calcul hauteur colonne a tracer
-	float hauteur = fabs(env->img->height / wall_dist);
+	int hauteur = fabs(env->img->height / wall_dist);
 	//ft_putnbr_fd(hauteur, 1);
 	//ft_putchar_fd('\n', 1);
 
-	int draw_start = (-hauteur / 2 + env->img->height / 2);
+	int draw_start = (-1 * hauteur / 2 + env->img->height / 2);
 	int draw_end = (hauteur / 2 + env->img->height / 2);
 
 	if (draw_start < 0)
@@ -145,7 +137,7 @@ La partie droite de l’écran est égale à 1*/
 	//ft_putnbr_fd(draw_end, 1);
 	//ft_putchar_fd('\n', 1);
 
-	unsigned int color = mlx_get_color_value (env->mlx_ptr, 0xFFFFFF);
+	unsigned int color = mlx_get_color_value (env->mlx_ptr, 0xB62929);
 	unsigned int color2 = mlx_get_color_value (env->mlx_ptr, 0x7F7474);
 
 	//tracer

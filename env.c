@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 19:46:29 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 17:42:02 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ void	init_angle(t_env *env)
 		env->pos.angle_d = 0;
 	else if (env->map.player == 'W')
 		env->pos.angle_d = 180;
+
+	env->plane.x = 0;
+	env->plane.y = 0.66; 
 }
 
 int	init_env(t_env *env, t_data *data)

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 20:26:18 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 17:21:43 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef	enum	e_error
 
 typedef struct s_pos
 {
-	float x;
-	float y;
+	double x;
+	double y;
 	unsigned int angle_d;
 	float angle_rad;
 	//int flag_angle_right;
@@ -71,6 +71,7 @@ typedef	struct s_env
 	t_img	*img;
 	t_pos 	pos;
 	t_pos	dir;
+	t_pos	plane;
 }				t_env;
 
 typedef struct s_data

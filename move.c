@@ -6,13 +6,19 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:07:10 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 19:48:00 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 17:19:24 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "keycode.h"
 #include <stdio.h>
+
+void	ft_calc_dir(t_env *env)
+{
+	env->dir.x = cos(env->pos.angle_d);
+	env->dir.y = -(sin(env->pos.angle_d));
+}
 
 void	ft_move(t_env *env, int key)
 {
@@ -22,7 +28,7 @@ void	ft_move(t_env *env, int key)
 		env->pos.x -= env->dir.x * 0.1;
 		env->pos.y -= env->dir.y * 0.1;
 	}
-	else
+	else 
 	{
 		env->pos.x += env->dir.x * 0.1;
 		env->pos.y += env->dir.y * 0.1;	

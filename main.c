@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 20:47:21 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 16:39:07 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int main(int argc, char **argv)
  	t_env env;
 	t_data data;
  	int		error;
-	
  	if (argc == 1)
  		return (NO_MAP);
  	//if general

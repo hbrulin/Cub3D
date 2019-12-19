@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/19 15:17:10 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 18:09:59 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,9 @@ int	key_move	(int key, t_env *env)
 	}
 	if (key == KEY_D)
 	{
-		env->pos.angle_d += 90;
-		env->pos.angle_d %= 360;
+		env->pos.angle_d -= 90;
+		if (env->pos.angle_d == 0) 
+			env->pos.angle_d = 360;
 		ft_calc_dir(env);
 		ft_move(env, key);
 		ft_launch(env);
@@ -106,7 +107,6 @@ void	events(t_env *env)
 	mlx_key_hook (env->win_ptr, deal_key, env);
 	mlx_hook(env->win_ptr, 17, StructureNotifyMask, deal_exit, env);
 	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, key_move, env);
-	//faire pareil avec mlx hook pour pouvoir rester appuye et que ca avance
 
 	mlx_loop(env->mlx_ptr);
 }

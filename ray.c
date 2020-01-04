@@ -6,13 +6,12 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/19 18:03:23 by hbrulin          ###   ########.fr       */
+/*   Updated: 2019/12/19 18:29:58 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "keycode.h"
-#include <stdio.h>
 
 void	ft_launch(t_env *env)
 {

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/19 18:09:59 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/04 13:43:01 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	deal_key(int key, t_env *env)
 //pour la croix et force quit
 int	deal_exit(t_env *env)
 {
-	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
 	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
+	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
 	exit(0);
 	// + il faut bien tout free et destroy etc....
 }
@@ -82,20 +82,32 @@ int	key_move	(int key, t_env *env)
 		ft_move(env, key);
 		ft_launch(env);
 	}
-	if (key == KEY_A)
-	{
-		env->pos.angle_d += 90;
-		env->pos.angle_d %= 360;
-		ft_calc_dir(env);
-		ft_move(env, key);
-		ft_launch(env);
-	}
 	if (key == KEY_D)
 	{
 		env->pos.angle_d -= 90;
 		if (env->pos.angle_d == 0) 
 			env->pos.angle_d = 360;
+		double oldDirX = env->dir.x;
+      	env->dir.x = env->dir.x * cos(-0.1) - env->dir.y * sin(-0.1);
+      	env->dir.y = oldDirX * sin(-0.1) + env->dir.y * cos(-0.1);
+      	double oldPlaneX = env->plane.x;
+      	env->plane.x = env->plane.x * cos(-0.1) - env->plane.y * sin(-0.1);
+      	env->plane.y = oldPlaneX * sin(-0.1) + env->plane.y * cos(-0.1);
 		ft_calc_dir(env);
+		ft_move(env, key);
+		ft_launch(env);
+	}
+	if (key == KEY_A)
+	{
+		env->pos.angle_d += 90;
+		env->pos.angle_d %= 360;
+		double oldDirX = env->dir.x;
+      	env->dir.x = env->dir.x * cos(0.1) - env->dir.y * sin(0.1);
+      	env->dir.y = oldDirX * sin(0.1) + env->dir.y * cos(0.1);
+      	double oldPlaneX = env->plane.x;
+      	env->plane.x = env->plane.x * cos(0.1) - env->plane.y * sin(0.1);
+      	env->plane.y = oldPlaneX * sin(0.1) + env->plane.y * cos(0.1);
+		//ft_calc_dir(env);
 		ft_move(env, key);
 		ft_launch(env);
 	}

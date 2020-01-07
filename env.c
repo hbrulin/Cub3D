@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 16:32:56 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 16:58:11 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,10 @@ void	ft_init(t_env *env)
 	env->plane.x = 0;
 	env->plane.y = -0.80;
 	env->speed = 0.1;
+	env->up = 0;
+	env->down = 0;
+	env->left = 0;
+	env->right = 0;
 
 //peut etre init differemment selon la position de base du player
 

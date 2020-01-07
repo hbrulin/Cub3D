@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 17:26:27 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 19:50:11 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,9 @@ static void	ft_disp_col(t_env *env, int x)
 	t_color color_ceiling;
 	get_color(env, &color_floor, &color_ceiling);
 	y = 0;
-	while (y < env->wstart) // ou est-ce initialise???
+	while (y < env->wstart)
 		ft_put_pixel(env->img, color_ceiling.all, x, y++);
-	while (y >= env->wstart && y <= env->wend) // ou est-ce initialise???
+	while (y >= env->wstart && y <= env->wend)
 		ft_put_pixel(env->img, env->color, x, y++);
 	while (y < env->height)
 		ft_put_pixel(env->img, color_floor.all, x, y++);

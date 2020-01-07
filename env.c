@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 17:06:50 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 18:58:43 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_init(t_env *env)
 {
 	env->pos.x += 0.5;
 	env->pos.y += 0.5;
-	//a initialiser differemment selon qu'on part de l'est ou de l'ouest
+	//a initialiser differemment selon qu'on part de l'est ou de l'ouest...
 	env->dir.x = 1;
 	env->dir.y = 0;
 	env->plane.x = 0;
@@ -28,10 +28,7 @@ void	ft_init(t_env *env)
 	env->left = 0;
 	env->right = 0;
 
-	//voir apres pour texture
-	//env->sky.im = mlx_xpm_file_to_image(e->mlx, SKY, &win_x, &win_y);
-	//env->sky.imc = mlx_get_data_addr(e->sky.im, &e->sky.bpp, &e->sky.imlen,
-			//&e->sky.endi)
+	//init xpm
 }
 
 

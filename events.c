@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 16:04:42 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 18:58:35 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,14 @@ int		ft_key_release(int key, t_env *env)
 	return (0);
 }
 
-int		ft_core(t_env *env)
+int		ft_run(t_env *env)
 {
 	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL); //ou juste mlx new img??
 	ft_move(env);
 	ft_disp_screen(env);
-	//mlx_put_image_to_window(e->mlx, e->win, e->sky.im, 0, 0); XPM
+	//mlx_put_image_to_window xpm
 	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
 	return (0);
 }
@@ -103,6 +103,6 @@ void	events(t_env *env)
 	mlx_hook(env->win_ptr, 17, StructureNotifyMask, deal_exit, env);
 	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, ft_key_hit, env);
 	mlx_hook(env->win_ptr, KEYRELEASE, KEYRELEASEMASK, ft_key_release, env);
-	mlx_loop_hook(env->mlx_ptr, ft_core, env);
+	mlx_loop_hook(env->mlx_ptr, ft_run, env);
 	mlx_loop(env->mlx_ptr);
 }

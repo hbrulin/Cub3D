@@ -6,27 +6,12 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 16:58:11 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 17:06:50 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
-
-/*void	init_angle(t_env *env)
-{
-	if (env->map.player == 'N')
-		env->pos.angle_d = 90;
-	else if (env->map.player == 'S')
-		env->pos.angle_d = 270;
-	else if (env->map.player == 'E')
-		env->pos.angle_d = 0;
-	else if (env->map.player == 'W')
-		env->pos.angle_d = 180;
-
-	env->plane.x = 0;
-	env->plane.y = 1; 
-}*/
 
 void	ft_init(t_env *env)
 {
@@ -42,9 +27,6 @@ void	ft_init(t_env *env)
 	env->down = 0;
 	env->left = 0;
 	env->right = 0;
-
-//peut etre init differemment selon la position de base du player
-
 
 	//voir apres pour texture
 	//env->sky.im = mlx_xpm_file_to_image(e->mlx, SKY, &win_x, &win_y);

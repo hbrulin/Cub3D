@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 15:52:16 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 19:43:48 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling)
 	color_floor->rgb.r = ft_atoi(tab[0]);
 	color_floor->rgb.g = ft_atoi(tab[1]);
 	color_floor->rgb.b = ft_atoi(tab[2]);
+	color_floor->rgb.a = 0x00;
 	ft_tabdel((void **)tab); //attention possible leak ici avec mon split, verifier mon tabdel
 
 	//verifier aussi que rgb < 255
@@ -43,6 +44,7 @@ int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling)
 	color_ceiling->rgb.r = ft_atoi(tab[0]);
 	color_ceiling->rgb.g = ft_atoi(tab[1]);
 	color_ceiling->rgb.b = ft_atoi(tab[2]);
+	color_ceiling->rgb.a = 0x00;
 	ft_tabdel((void **)tab); //attention possible leak ici avec mon split, verifier mon tabdel
 	
 	//verifier aussi que rgb < 255

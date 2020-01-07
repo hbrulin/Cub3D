@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 18:58:35 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 18:59:53 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,7 @@ int	ft_key_hit	(int key, t_env *env)
 	if (key == KEY_LEFT || key == KEY_A)
 		env->left = 1;
 	if (key == KEY_RIGHT || key == KEY_D)
-		env->right = 1;
-	/*if ((keycode == MINUS && e->speed > 0.02)
-			|| (keycode == PLUS && e->speed < 0.3))
-		e->speed += (keycode == PLUS ? 0.01 : -0.01);
-	if (keycode == ZERO || keycode == NUM_ZERO)
-		ft_init(e);*/
+		env->right = 1; 
 	return (SUCCESS);
 }
 

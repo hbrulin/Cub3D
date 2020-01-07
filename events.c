@@ -6,18 +6,13 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 18:59:53 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 19:00:30 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "keycode.h"
 #include <stdio.h>
-
-/*void	calc_rad(t_env *env)
-{
-	env->pos.angle_rad = env->pos.angle_d * M_PI / 180;
-}*/
 
 int	deal_key(int key, t_env *env)
 {
@@ -29,18 +24,6 @@ int	deal_key(int key, t_env *env)
 		mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
 		exit(0);
 	}
-
-	/*int  i = 0;
-	if (key == KEY_SPACEBAR)
-	{
-		while (env->map.tab_map[i])
-		{
-			printf("%s\n", env->map.tab_map[i]);
-			i++;
-		}
-		printf("\n");
-		//printf("%\nf", env->pos.angle_rad);
-	}*/
 	return (key);
 }
 

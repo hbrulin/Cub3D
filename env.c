@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 18:58:43 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 19:01:21 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,16 +51,12 @@ int	init_env(t_env *env)
 		ft_putstr("Wrong resolution");
 		return (WRONG_INPUT);
 	}
-	//init_angle(env);
 	env->mlx_ptr =  mlx_init();
 	env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D"); //idem
 
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL);
-	//fill_floor_ceiling(&env, &data);
 	ft_init(env);
-
 	return (SUCCESS);
 
-	//ou faut-il free les pointeurs/destroy window? en cas d'event
 }

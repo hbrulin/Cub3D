@@ -6,22 +6,22 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 14:03:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 15:52:16 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 
-int	get_color(t_data *data, t_color *color_floor, t_color *color_ceiling)
+int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling)
 {
 	int i;
 	char **tab;
 
 	i = 0;
-	while (!ft_isdigit(data->F[i]))
+	while (!ft_isdigit(env->data.F[i]))
 		i++;
-	if(!(tab = ft_split(data->F + i, ',')))
+	if(!(tab = ft_split(env->data.F + i, ',')))
 		return (MALLOC_FAIL);
 	color_floor->rgb.r = ft_atoi(tab[0]);
 	color_floor->rgb.g = ft_atoi(tab[1]);
@@ -36,9 +36,9 @@ int	get_color(t_data *data, t_color *color_floor, t_color *color_ceiling)
 	}
 
 	i = 0;
-	while (!ft_isdigit(data->C[i]))
+	while (!ft_isdigit(env->data.C[i]))
 		i++;
-	if(!(tab = ft_split(data->C + i, ',')))
+	if(!(tab = ft_split(env->data.C + i, ',')))
 		return (MALLOC_FAIL);
 	color_ceiling->rgb.r = ft_atoi(tab[0]);
 	color_ceiling->rgb.g = ft_atoi(tab[1]);

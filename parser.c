@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/18 10:00:16 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 14:59:30 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		ft_parser(t_env *env)
 	return (SUCCESS);
 }
 
-int		ft_read(t_env *env, t_data *data, int fd)
+int		ft_read(t_env *env, int fd)
 {
 	int 	ret;
 	char *line;
@@ -104,21 +104,21 @@ int		ft_read(t_env *env, t_data *data, int fd)
 	while ((ret = get_next_line(fd, &line)) > 0) //gnl a securiser malloc, peut return MALLOC FAIL -> revoir GNL + cette ligne
 	{
 		if (line[0] == 'R')
-			data->R = ft_strdup(line);
+			env->data.R = ft_strdup(line);
 		if (line[0] == 'N' && line[1] == 'O')
-			data->NO = ft_strdup(line);
+			env->data.NO = ft_strdup(line);
 		if (line[0] == 'S' && line[1] == 'O')
-			data->SO = ft_strdup(line);
+			env->data.SO = ft_strdup(line);
 		if (line[0] == 'W' && line[1] == 'E')
-			data->WE = ft_strdup(line);
+			env->data.WE = ft_strdup(line);
 		if (line[0] == 'E' && line[1] == 'A')
-			data->EA = ft_strdup(line);
+			env->data.EA = ft_strdup(line);
 		if (line[0] == 'S' && line[1] == ' ')
-			data->S = ft_strdup(line);
+			env->data.S = ft_strdup(line);
 		if (line[0] == 'F' && line[1] == ' ')
-			data->F = ft_strdup(line);
+			env->data.F = ft_strdup(line);
 		if (line[0] == 'C' && line[1] == ' ')
-			data->C = ft_strdup(line);
+			env->data.C = ft_strdup(line);
 		else if (ft_isdigit(line[0]))
 		{
 			tmp = malloc(sizeof(t_list));
@@ -129,7 +129,7 @@ int		ft_read(t_env *env, t_data *data, int fd)
 		free(line);
 	}
 	free(line);
-	if (!data->R || !data->NO || !data->SO || !data->WE || !data->EA || !data->S || !data->F || !data->C || !env->map.list)
+	if (!env->data.R || !env->data.NO || !env->data.SO || !env->data.WE || !env->data.EA || !env->data.S || !env->data.F || !env->data.C || !env->map.list)
 	{
 		ft_putstr("Missing element");
 		return (WRONG_MAP);
@@ -137,7 +137,7 @@ int		ft_read(t_env *env, t_data *data, int fd)
 	return (SUCCESS);
 }
 
-int		get_map(t_env *env, t_data *data, char *file)
+int		get_map(t_env *env, char *file)
 {
 	int fd;
 	t_list	*tmp;
@@ -145,7 +145,7 @@ int		get_map(t_env *env, t_data *data, char *file)
 	int error;
 
 	fd = open(file, O_RDONLY);
-	if((error = ft_read(env, data, fd)) != SUCCESS)
+	if((error = ft_read(env, fd)) != SUCCESS)
 		return(error);
 	close(fd);
 	if (!(env->map.tab_map = (char**)malloc(sizeof(char *) * ft_lstsize(env->map.list) + 1)))

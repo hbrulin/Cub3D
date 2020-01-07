@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/04 13:43:01 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/07 16:04:42 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include "keycode.h"
 #include <stdio.h>
 
-void	calc_rad(t_env *env)
+/*void	calc_rad(t_env *env)
 {
 	env->pos.angle_rad = env->pos.angle_d * M_PI / 180;
-}
+}*/
 
 int	deal_key(int key, t_env *env)
 {
@@ -30,7 +30,7 @@ int	deal_key(int key, t_env *env)
 		exit(0);
 	}
 
-	int  i = 0;
+	/*int  i = 0;
 	if (key == KEY_SPACEBAR)
 	{
 		while (env->map.tab_map[i])
@@ -40,8 +40,7 @@ int	deal_key(int key, t_env *env)
 		}
 		printf("\n");
 		//printf("%\nf", env->pos.angle_rad);
-	}
-
+	}*/
 	return (key);
 }
 
@@ -54,71 +53,56 @@ int	deal_exit(t_env *env)
 	// + il faut bien tout free et destroy etc....
 }
 
-int	key_move	(int key, t_env *env)
+int	ft_key_hit	(int key, t_env *env)
 {
-
-	if (key == KEY_LEFT)
-	{
-		env->pos.angle_d++;
-		ft_calc_dir(env);
-		ft_launch(env);
-	}
-	if (key == KEY_RIGHT)
-	{
-		if (env->pos.angle_d == 0) 
-			env->pos.angle_d = 360;
-		env->pos.angle_d--;
-		ft_calc_dir(env);
-		ft_launch(env);
-	}
-	env->pos.angle_d %= 360;
-	printf("%i\n", env->pos.angle_d);
-	calc_rad(env); // necessaire?
-
-	//gestion cumul touches?
-	if (key == KEY_W || key == KEY_S)
-	{
-		ft_calc_dir(env);
-		ft_move(env, key);
-		ft_launch(env);
-	}
-	if (key == KEY_D)
-	{
-		env->pos.angle_d -= 90;
-		if (env->pos.angle_d == 0) 
-			env->pos.angle_d = 360;
-		double oldDirX = env->dir.x;
-      	env->dir.x = env->dir.x * cos(-0.1) - env->dir.y * sin(-0.1);
-      	env->dir.y = oldDirX * sin(-0.1) + env->dir.y * cos(-0.1);
-      	double oldPlaneX = env->plane.x;
-      	env->plane.x = env->plane.x * cos(-0.1) - env->plane.y * sin(-0.1);
-      	env->plane.y = oldPlaneX * sin(-0.1) + env->plane.y * cos(-0.1);
-		ft_calc_dir(env);
-		ft_move(env, key);
-		ft_launch(env);
-	}
-	if (key == KEY_A)
-	{
-		env->pos.angle_d += 90;
-		env->pos.angle_d %= 360;
-		double oldDirX = env->dir.x;
-      	env->dir.x = env->dir.x * cos(0.1) - env->dir.y * sin(0.1);
-      	env->dir.y = oldDirX * sin(0.1) + env->dir.y * cos(0.1);
-      	double oldPlaneX = env->plane.x;
-      	env->plane.x = env->plane.x * cos(0.1) - env->plane.y * sin(0.1);
-      	env->plane.y = oldPlaneX * sin(0.1) + env->plane.y * cos(0.1);
-		//ft_calc_dir(env);
-		ft_move(env, key);
-		ft_launch(env);
-	}
+	if (key == KEY_UP || key == KEY_W)
+		env->up = 1;
+	if (key == KEY_DOWN || key == KEY_S)
+		env->down = 1;
+	if (key == KEY_LEFT || key == KEY_A)
+		env->left = 1;
+	if (key == KEY_RIGHT || key == KEY_D)
+		env->right = 1;
+	/*if ((keycode == MINUS && e->speed > 0.02)
+			|| (keycode == PLUS && e->speed < 0.3))
+		e->speed += (keycode == PLUS ? 0.01 : -0.01);
+	if (keycode == ZERO || keycode == NUM_ZERO)
+		ft_init(e);*/
 	return (SUCCESS);
 }
+
+int		ft_key_release(int key, t_env *env)
+{
+	if (key == KEY_UP || key == KEY_W)
+		env->up = 0;
+	if (key == KEY_DOWN || key == KEY_S)
+		env->down = 0;
+	if (key== KEY_LEFT || key == KEY_A)
+		env->left = 0;
+	if (key == KEY_RIGHT || key == KEY_D)
+		env->right = 0;
+	return (0);
+}
+
+int		ft_core(t_env *env)
+{
+	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
+	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
+		return (IMG_FAIL); //ou juste mlx new img??
+	ft_move(env);
+	ft_disp_screen(env);
+	//mlx_put_image_to_window(e->mlx, e->win, e->sky.im, 0, 0); XPM
+	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
+	return (0);
+}
+
 
 void	events(t_env *env)
 {
 	mlx_key_hook (env->win_ptr, deal_key, env);
 	mlx_hook(env->win_ptr, 17, StructureNotifyMask, deal_exit, env);
-	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, key_move, env);
-
+	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, ft_key_hit, env);
+	mlx_hook(env->win_ptr, KEYRELEASE, KEYRELEASEMASK, ft_key_release, env);
+	mlx_loop_hook(env->mlx_ptr, ft_core, env);
 	mlx_loop(env->mlx_ptr);
 }

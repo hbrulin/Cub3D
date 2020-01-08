@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 18:31:53 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 18:38:39 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void		ft_disp_screen(t_env *env)
 
 void	pixel_tex(t_tex *tex, t_env *env)
 {
-		env->color = tex->tex_data[tex->width * env->tex_y + env->tex_x]; //voir si on change par height
+		env->color = tex->tex_data[tex->width * env->tex_y + env->tex_x];
 }
 
 void	add_sprite(t_env *env)
@@ -98,8 +98,6 @@ void	add_sprite(t_env *env)
 	}
 
 }
-
-
 
 void	pix_color(t_env *env)
 {
@@ -146,4 +144,6 @@ t_tex	*ft_new_tex(t_env *env, char *file)
 	//ici je caste en int pour que ca puisse stocker la couleur
     tex->tex_data = (int *)mlx_get_data_addr(tex->tex_ptr, &tex->bpp, &tex->size_line, &tex->endian);
 	return (tex);
+
+	//ne pas oublier de destroy les img apres
 }

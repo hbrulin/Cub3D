@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:48:28 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 17:39:33 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ int	ft_init(t_env *env)
 	env->tex_y = 0;
 	env->step_tex = 0;
 	env->tex_pos = 0;
+
+	//suppr si pas necessaire
+	env->sp.spcamx = 0;
+	env->sp.spcamy = 0;
+	env->sp.transx = 0;
+	env->sp.transy = 0;
+	env->sp.spriteScreenX = 0;
+	env->sp.spriteHeight = 0;
+	env->sp.drawStartY = 0;
+	env->sp.drawEndY = 0;
+	env->sp.spriteWidth = 0;
+	env->sp.drawStartX = 0;
+	env->sp.drawEndX = 0;
+
+
 
 	//init xpm
 	if((env->tex1 = ft_new_tex(env, env->data.NO)) == NULL)

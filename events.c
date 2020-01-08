@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 19:00:30 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 17:08:31 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ int		ft_run(t_env *env)
 		return (IMG_FAIL); //ou juste mlx new img??
 	ft_move(env);
 	ft_disp_screen(env);
-	//mlx_put_image_to_window xpm
 	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
 	return (0);
 }

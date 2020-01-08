@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:47:55 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 17:29:06 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ int		ft_parser(t_env *env)
 				env->map.player = env->map.tab_map[i][j];
 				env->pos.x = j; //x
 				env->pos.y = i; //y
+			}
+			//coordonees sprite, faut il return une erreur si 0 sprite
+			if (env->map.tab_map[i][j] == '2')
+			{
+				env->sp.pos_x = j;
+				env->sp.pos_y = i;
 			}
 			j++;
 		}

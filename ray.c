@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:09:45 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 17:44:02 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	ft_size_ray(t_env *env)
 	if (env->wend >= env->height)
 		env->wend = env->height - 1;
 
-///
+///textures
 
 	double wallx;
 	if (env->wall == 0)

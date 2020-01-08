@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:38:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 17:02:06 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,24 @@ typedef	struct s_tex
 	int	height;
 }				t_tex;
 
+typedef struct	s_sprite
+{
+	double sp_dist;
+	double pos_x;
+	double pos_y;
+	double spcamx;
+	double spcamy;
+	double transx;
+	double transy;
+	int spriteScreenX;
+	int spriteHeight;
+	int	drawStartY;
+	int drawEndY;
+	int spriteWidth;
+	int drawStartX;
+	int drawEndX;
+}				t_sprite;
+
 typedef	struct s_env
 {
 	void *mlx_ptr;
@@ -104,6 +122,7 @@ typedef	struct s_env
 	t_pos	rdisd;
 	t_pos	rdist;
 	t_data	data;
+	t_sprite	sp;
 	double	speed;
 	int up;
 	int down;
@@ -167,5 +186,7 @@ void	ft_hit_ray(t_env *env);
 void	ft_size_ray(t_env *env);
 t_tex	*ft_new_tex(t_env *env, char *file);
 void	pix_color(t_env *env);
+void	add_sprite(t_env *env);
+void	ft_sprite_calc(t_env *env);
 
 #endif

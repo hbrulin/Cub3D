@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:16:43 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 18:08:07 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,17 +34,8 @@ static void	ft_disp_col(t_env *env, int x)
 	{
 		env->tex_y = (int)env->tex_pos & (64 - 1);
 		env->tex_pos += env->step_tex;
-		/*while (env->tex_x <= 64)
-		{
-			while (env->tex_y <= 64)
-			{*/
-				pix_color(env); //definit env->color
-				ft_put_pixel(env->img, env->color, x, y);  //juste cette ligne en v avec couleurs sans tex
-				//printf("%i\n", env->color);
-				env->tex_y++;
-		/*	}
-			env->tex_x++;
-		}*/
+		pix_color(env); //definit env->color
+		ft_put_pixel(env->img, env->color, x, y);  //juste cette ligne en v avec couleurs sans tex
 		y++;
 	}
 	while (y < env->height)
@@ -63,12 +54,14 @@ void		ft_disp_screen(t_env *env)
 		ft_direction_ray(env);
 		ft_hit_ray(env);
 		ft_size_ray(env);
+		ft_sprite_calc(env);
 		/*
 		if (env->wall == 0)
 			env->color = (env->step.x < 0 ? COLOR_NORTH : COLOR_SOUTH);
 		else
 			env->color = (env->step.y > 0 ? COLOR_EAST : COLOR_WEST);*/
 		ft_disp_col(env, x++);
+		add_sprite(env);
 	}
 }
 
@@ -76,6 +69,34 @@ void	pixel_tex(t_tex *tex, t_env *env)
 {
 		env->color = tex->tex_data[tex->width * env->tex_y + env->tex_x]; //voir si on change par height
 }
+
+void	add_sprite(t_env *env)
+{
+	int stripe = env->sp.drawStartX;
+	int texX = 0;
+	int y = env->sp.drawStartY;
+	int d = 0;
+	int texY = 0;
+	while(stripe < env->sp.drawEndX)
+	{
+		texX = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth) / 256;
+		if (env->sp.transy > 0 && stripe > 0 && stripe < env->width)
+		{
+			while (y < env->sp.drawEndY)
+			{
+				d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
+				texY = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
+				env->color = env->sprite->tex_data[env->sprite->width * texY + texX];
+				ft_put_pixel(env->img, env->color, stripe, y);
+				//printf("%i", env->color);
+				y++;
+			}
+		}
+		stripe++;
+	}
+
+}
+
 
 
 void	pix_color(t_env *env)

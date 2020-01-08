@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:06:54 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 14:38:17 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ typedef	struct s_env
 	t_tex *tex2;
 	t_tex *tex3;
 	t_tex *tex4;
+	t_tex *sprite;
 	int tex_x;
 	int tex_y;
 	double step_tex;

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:07:03 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 14:38:07 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ int	ft_init(t_env *env)
 	if((env->tex3 = ft_new_tex(env, env->data.EA)) == NULL)
 		return (IMG_FAIL);
 	if((env->tex4 = ft_new_tex(env, env->data.WE)) == NULL)
+		return (IMG_FAIL);
+	if((env->sprite = ft_new_tex(env, env->data.S)) == NULL)
 		return (IMG_FAIL);
 	return (1);
 }

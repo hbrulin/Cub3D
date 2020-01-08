@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:21:45 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 14:47:55 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,7 @@ int		ft_read(t_env *env, int fd)
 	while (env->data.S[i] != '.')
 		i++;
 	env->data.S = ft_strdup(env->data.S + i);
+	//ft_putstr(env->data.S);
 	return (SUCCESS);
 }
 

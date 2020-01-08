@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 12:56:39 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 12:58:16 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y)
 {
 	if (p_y >= img->height || p_x >= img->width || p_x < 0 || p_y < 0)
 		return ;
-	//verifier avant que le pixel n'est pas en dehors de l'img 
 	img->img_data[p_y * img->width + p_x] = color;
-	//ft_putchar_fd('K', 1);
 }
 
 static void	ft_disp_col(t_env *env, int x)
@@ -38,7 +36,7 @@ static void	ft_disp_col(t_env *env, int x)
 		{
 			while (env->tex_y <= 64)
 			{
-				choose_tex(env); //definit env->color
+				pix_color(env); //definit env->color
 				ft_put_pixel(env->img, env->color, x, y);  //juste cette ligne en v avec couleurs sans tex
 				printf("%i\n", env->color);
 				env->tex_y++;
@@ -78,7 +76,7 @@ void	pixel_tex(t_tex *tex, t_env *env)
 }
 
 
-void	choose_tex(t_env *env)
+void	pix_color(t_env *env)
 {
 	//int tex_num = 0;
 	if (env->wall == 0)

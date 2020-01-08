@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 11:47:24 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 12:58:26 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ typedef struct s_pos
 {
 	double x;
 	double y;
-	//unsigned int angle_d;
-	//float angle_rad;
-	//int flag_angle_right;
 }				t_pos;
 
 typedef	struct s_map
@@ -166,6 +163,6 @@ void	ft_direction_ray(t_env *env);
 void	ft_hit_ray(t_env *env);
 void	ft_size_ray(t_env *env);
 t_tex	*ft_new_tex(t_env *env, char *file);
-void	choose_tex(t_env *env);
+void	pix_color(t_env *env);
 
 #endif

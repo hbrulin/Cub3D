@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 18:08:07 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 18:31:53 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,22 @@ void	add_sprite(t_env *env)
 {
 	int stripe = env->sp.drawStartX;
 	int texX = 0;
-	int y = env->sp.drawStartY;
+	int y = 0;
 	int d = 0;
 	int texY = 0;
 	while(stripe < env->sp.drawEndX)
 	{
-		texX = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth) / 256;
+		texX = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth / 256);
 		if (env->sp.transy > 0 && stripe > 0 && stripe < env->width)
 		{
+			y= env->sp.drawStartY;
 			while (y < env->sp.drawEndY)
 			{
 				d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
 				texY = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
 				env->color = env->sprite->tex_data[env->sprite->width * texY + texX];
-				ft_put_pixel(env->img, env->color, stripe, y);
+				if(env->color != 9961608) //pour retirer le rose
+					ft_put_pixel(env->img, env->color, stripe, y);
 				//printf("%i", env->color);
 				y++;
 			}

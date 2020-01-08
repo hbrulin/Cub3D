@@ -6,14 +6,14 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 19:21:06 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 12:11:16 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
 
-void	ft_init(t_env *env)
+int	ft_init(t_env *env)
 {
 	env->pos.x += 0.5;
 	env->pos.y += 0.5;
@@ -27,8 +27,19 @@ void	ft_init(t_env *env)
 	env->down = 0;
 	env->left = 0;
 	env->right = 0;
+	env->tex_x = 0;
+	env->tex_y = 0;
 
 	//init xpm
+	if((env->tex1 = ft_new_tex(env, env->data.NO)) == NULL)
+		return (IMG_FAIL);
+	if((env->tex2 = ft_new_tex(env, env->data.SO)) == NULL)
+		return (IMG_FAIL);
+	if((env->tex3 = ft_new_tex(env, env->data.EA)) == NULL)
+		return (IMG_FAIL);
+	if((env->tex4 = ft_new_tex(env, env->data.WE)) == NULL)
+		return (IMG_FAIL);
+	return (1);
 }
 
 

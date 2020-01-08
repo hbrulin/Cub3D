@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 14:59:30 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 12:26:21 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,6 +134,28 @@ int		ft_read(t_env *env, int fd)
 		ft_putstr("Missing element");
 		return (WRONG_MAP);
 	}
+
+	//fix path, leaks ici
+	int i = 0;
+	while (env->data.NO[i] != '.')
+		i++;
+	env->data.NO = ft_strdup(env->data.NO + i);
+	i = 0;
+	while (env->data.SO[i] != '.')
+		i++;
+	env->data.SO = ft_strdup(env->data.SO + i);
+	i = 0;
+	while (env->data.WE[i] != '.')
+		i++;
+	env->data.WE = ft_strdup(env->data.WE + i);
+	i = 0;
+	while (env->data.EA[i] != '.')
+		i++;
+	env->data.EA = ft_strdup(env->data.EA + i);
+	i = 0;
+	while (env->data.S[i] != '.')
+		i++;
+	env->data.S = ft_strdup(env->data.S + i);
 	return (SUCCESS);
 }
 

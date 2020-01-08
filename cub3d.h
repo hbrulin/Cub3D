@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 16:15:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 11:47:24 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,17 @@ typedef struct s_data
 	char *C;
 }			t_data;
 
+typedef	struct s_tex
+{
+	void	*tex_ptr;
+	int	*tex_data;
+	int	bpp;
+	int	size_line;
+	int	endian;
+	int	width;
+	int	height;
+}				t_tex;
+
 typedef	struct s_env
 {
 	void *mlx_ptr;
@@ -110,6 +121,13 @@ typedef	struct s_env
 	double rh;
 	int rmap_x;
 	int rmap_y;
+	t_tex *tex1;
+	t_tex *tex2;
+	t_tex *tex3;
+	t_tex *tex4;
+	int tex_x;
+	int tex_y;
+
 }				t_env;
 
 typedef struct	s_rgb
@@ -147,5 +165,7 @@ void	ft_init_ray(t_env *env, int x);
 void	ft_direction_ray(t_env *env);
 void	ft_hit_ray(t_env *env);
 void	ft_size_ray(t_env *env);
+t_tex	*ft_new_tex(t_env *env, char *file);
+void	choose_tex(t_env *env);
 
 #endif

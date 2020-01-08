@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 12:58:26 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 14:06:54 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,6 +124,8 @@ typedef	struct s_env
 	t_tex *tex4;
 	int tex_x;
 	int tex_y;
+	double step_tex;
+	double tex_pos;
 
 }				t_env;
 

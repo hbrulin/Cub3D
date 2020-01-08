@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 12:58:16 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 14:12:57 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,19 @@ static void	ft_disp_col(t_env *env, int x)
 		ft_put_pixel(env->img, color_ceiling.all, x, y++);
 	while (y >= env->wstart && y <= env->wend)
 	{
-		while (env->tex_x <= 64)
+		env->tex_y = (int)env->tex_pos & (64 - 1);
+		env->tex_pos += env->step_tex;
+		/*while (env->tex_x <= 64)
 		{
 			while (env->tex_y <= 64)
-			{
+			{*/
 				pix_color(env); //definit env->color
 				ft_put_pixel(env->img, env->color, x, y);  //juste cette ligne en v avec couleurs sans tex
-				printf("%i\n", env->color);
+				//printf("%i\n", env->color);
 				env->tex_y++;
-			}
+		/*	}
 			env->tex_x++;
-		}
+		}*/
 		y++;
 	}
 	while (y < env->height)
@@ -61,7 +63,7 @@ void		ft_disp_screen(t_env *env)
 		ft_direction_ray(env);
 		ft_hit_ray(env);
 		ft_size_ray(env);
-		/*changer avec textures, changer en flags pour determiner quel xpm on lit
+		/*
 		if (env->wall == 0)
 			env->color = (env->step.x < 0 ? COLOR_NORTH : COLOR_SOUTH);
 		else
@@ -72,7 +74,7 @@ void		ft_disp_screen(t_env *env)
 
 void	pixel_tex(t_tex *tex, t_env *env)
 {
-		env->color = tex->tex_data[tex->width * env->tex_y + env->tex_x]; //voir si on change par width
+		env->color = tex->tex_data[tex->height * env->tex_y + env->tex_x]; //voir si on change par height
 }
 
 

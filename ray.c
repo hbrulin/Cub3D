@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 19:49:09 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 14:09:45 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,20 @@ void	ft_size_ray(t_env *env)
 	env->wend = env->rh / 2 + env->height / 2;
 	if (env->wend >= env->height)
 		env->wend = env->height - 1;
+
+///
+
+	double wallx;
+	if (env->wall == 0)
+		wallx = env->rpos.y + dist * env->rdir.y;
+	else
+		wallx = env->rpos.x + dist * env->rdir.x;
+	wallx -= (int)wallx;
+	env->tex_x = (int)(wallx * 64);
+	if (env->wall == 0 && env->rdir.x > 0)
+		env->tex_x = 64 - env->tex_x - 1;
+	else if (env->wall == 1 && env->rdir.x < 0)
+		env->tex_x = 64 - env->tex_x - 1;
+	env->step_tex = 1.0 * 64 / env->rh;
+	env->tex_pos = (env->wstart -env->height / 2 + env->rh / 2) * env->step_tex;
 }

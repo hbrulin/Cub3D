@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 12:26:21 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 14:21:45 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,18 +140,22 @@ int		ft_read(t_env *env, int fd)
 	while (env->data.NO[i] != '.')
 		i++;
 	env->data.NO = ft_strdup(env->data.NO + i);
+	//ft_putstr(env->data.NO);
 	i = 0;
 	while (env->data.SO[i] != '.')
 		i++;
 	env->data.SO = ft_strdup(env->data.SO + i);
+	//ft_putstr(env->data.SO);
 	i = 0;
 	while (env->data.WE[i] != '.')
 		i++;
 	env->data.WE = ft_strdup(env->data.WE + i);
+	//ft_putstr(env->data.WE);
 	i = 0;
 	while (env->data.EA[i] != '.')
 		i++;
 	env->data.EA = ft_strdup(env->data.EA + i);
+	//ft_putstr(env->data.EA);
 	i = 0;
 	while (env->data.S[i] != '.')
 		i++;

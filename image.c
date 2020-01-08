@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 14:12:57 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/08 14:16:43 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		ft_disp_screen(t_env *env)
 
 void	pixel_tex(t_tex *tex, t_env *env)
 {
-		env->color = tex->tex_data[tex->height * env->tex_y + env->tex_x]; //voir si on change par height
+		env->color = tex->tex_data[tex->width * env->tex_y + env->tex_x]; //voir si on change par height
 }
 
 

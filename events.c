@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 17:08:31 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/09 13:50:46 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,14 @@ int	ft_key_hit	(int key, t_env *env)
 		env->up = 1;
 	if (key == KEY_DOWN || key == KEY_S)
 		env->down = 1;
-	if (key == KEY_LEFT || key == KEY_A)
+	if (key == KEY_LEFT)
 		env->left = 1;
-	if (key == KEY_RIGHT || key == KEY_D)
+	if (key == KEY_A)
+		env->strafl = 1;
+	if (key == KEY_RIGHT)
 		env->right = 1; 
+	if (key == KEY_D)
+		env->strafr = 1;
 	return (SUCCESS);
 }
 
@@ -55,10 +59,14 @@ int		ft_key_release(int key, t_env *env)
 		env->up = 0;
 	if (key == KEY_DOWN || key == KEY_S)
 		env->down = 0;
-	if (key== KEY_LEFT || key == KEY_A)
+	if (key == KEY_LEFT)
 		env->left = 0;
-	if (key == KEY_RIGHT || key == KEY_D)
-		env->right = 0;
+	if (key == KEY_A)
+		env->strafl = 0;
+	if (key == KEY_RIGHT)
+		env->right = 0; 
+	if (key == KEY_D)
+		env->strafr = 0;
 	return (0);
 }
 

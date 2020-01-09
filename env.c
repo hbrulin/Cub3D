@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/09 13:35:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/09 13:49:03 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	ft_init(t_env *env)
 		env->plane.x = 0.80;
 		env->plane.y = 0;
 	}
-	//ok
 	if (env->map.player == 'E')
 	{
 		env->dir.x = 1;
@@ -53,6 +52,8 @@ int	ft_init(t_env *env)
 	env->down = 0;
 	env->left = 0;
 	env->right = 0;
+	env->strafl = 0;
+	env->strafr = 0;
 	env->tex_x = 0;
 	env->tex_y = 0;
 	env->step_tex = 0;

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:07:10 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 17:14:02 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/09 14:03:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,25 @@ void	ft_rotate(t_env *env, int advance)
 void	ft_move(t_env *env)
 {
 	if (env->up == 1)
-	{	//ORDRE
+	{	
 		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x + env->dir.x * env->speed)] != '1')
 			env->pos.x += env->dir.x * env->speed;
 		if (env->map.tab_map[(int)(env->pos.y + env->dir.y * env->speed)][(int)(env->pos.x)] != '1')
 			env->pos.y += env->dir.y * env->speed;
+	}
+	if (env->strafr == 1)
+	{
+		if (env->map.tab_map[(int)(env->pos.y - env->dir.x * env->speed)][(int)(env->pos.x)] != '1')
+			env->pos.y += -env->dir.x * env->speed;
+		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x + env->dir.y * env->speed)] != '1')
+			env->pos.x += env->dir.y * env->speed;
+	}
+	if (env->strafl == 1)
+	{
+		if (env->map.tab_map[(int)(env->pos.y + env->dir.x * env->speed)][(int)(env->pos.x)] != '1')
+			env->pos.y -= -env->dir.x * env->speed;
+		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x - env->dir.y * env->speed)] != '1')
+			env->pos.x -= env->dir.y * env->speed;
 	}
 	if (env->left == 1)
 		ft_rotate(env, 1);
@@ -46,7 +60,6 @@ void	ft_move(t_env *env)
 		ft_rotate(env, -1);
 	if (env->down == 1)
 	{
-		//ORDRE DE CA
 		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x - env->dir.x * env->speed)] != '1')
 			env->pos.x -= env->dir.x * env->speed;
 		if (env->map.tab_map[(int)(env->pos.y - env->dir.y * env->speed)][(int)(env->pos.x)] != '1')

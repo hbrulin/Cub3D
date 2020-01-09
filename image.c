@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 18:38:39 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/09 12:12:20 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ void	add_sprite(t_env *env)
 	int texY = 0;
 	while(stripe < env->sp.drawEndX)
 	{
-		texX = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth / 256);
+		texX = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth) / 256;
+		y= env->sp.drawStartY;
 		if (env->sp.transy > 0 && stripe > 0 && stripe < env->width)
 		{
-			y= env->sp.drawStartY;
 			while (y < env->sp.drawEndY)
 			{
 				d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;

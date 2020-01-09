@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 18:02:28 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/09 12:09:30 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_sprite_calc(t_env *env)
 {
 	//env->sp.sp_dist = (env->rpos.x - env->sp.pos_x) * (env->rpos.x - env->sp.pos_x) + (env->rpos.y - env->sp.pos_y);
 
-	env->sp.spcamx = env->sp.pos_x - env->pos.x; //ou rpos.x
+	env->sp.spcamx = env->sp.pos_x - env->pos.x ; //ou rpos.x
 	env->sp.spcamy = env->sp.pos_y - env->pos.y; //ou rpos.y
 
  	double inv = 1.0 / (env->plane.x * env->dir.y - env->dir.x * env->plane.y); //required for correct matrix multiplication

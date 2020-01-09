@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/08 17:39:33 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/09 13:35:17 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,39 @@
 
 int	ft_init(t_env *env)
 {
+	if (env->map.player == 'N')
+	{
+		env->dir.x = 0;
+		env->dir.y = -1;
+		env->plane.x = -0.80;
+		env->plane.y = 0;
+	}
+	if (env->map.player == 'S')
+	{
+		env->dir.x = 0;
+		env->dir.y = 1;
+		env->plane.x = 0.80;
+		env->plane.y = 0;
+	}
+	//ok
+	if (env->map.player == 'E')
+	{
+		env->dir.x = 1;
+		env->dir.y = 0;
+		env->plane.x = 0;
+		env->plane.y = -0.80;
+	}
+	if (env->map.player == 'W')
+	{
+		env->dir.x = -1;
+		env->dir.y = 0;
+		env->plane.x = 0;
+		env->plane.y = 0.80;
+	}
+
+
 	env->pos.x += 0.5;
 	env->pos.y += 0.5;
-	//a initialiser differemment selon qu'on part de l'est ou de l'ouest...
-	env->dir.x = 1;
-	env->dir.y = 0;
-	env->plane.x = 0;
-	env->plane.y = -0.80;
 	env->speed = 0.1;
 	env->up = 0;
 	env->down = 0;

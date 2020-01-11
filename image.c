@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 17:45:30 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 17:49:48 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,6 @@ void	add_sprite(t_env *env)
 
 void	pix_color(t_env *env)
 {
-	//int tex_num = 0;
 	if (env->wall == 0)
 	{
 		if(env->step.x < 0)

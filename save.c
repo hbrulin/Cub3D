@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 14:58:30 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 15:04:04 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int	write_colors(t_env *env, int fd, int height, int width)
 		j = 0;
 		while (j < (int)env->width)
 		{
-			abc[0] = (240 & (env->img->img_data[(height - i) *
+			abc[0] = ((env->img->img_data[(height - i) *
 			width + j]) >> 16);
-			abc[1] = (240 & (env->img->img_data[(height - i) *
+			abc[1] = ((env->img->img_data[(height - i) *
 			width + j]) >> 8);
-			abc[2] = (240 & env->img->img_data[(height - i) *
+			abc[2] = (env->img->img_data[(height - i) *
 			width + j]);
 			write(fd, abc + 2, 1);
 			write(fd, abc + 1, 1);

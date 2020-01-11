@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 16:36:41 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:52:35 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,11 @@ int	init_env(t_env *env)
 	env->height = ft_atoi(tab[1]);
 	ft_tabdel((void **)tab); //attention possible leak ici avec mon split, verifier mon tabdel
 	if (!env->width || !env->height) //autre chose a verifier quand a la resolution? 
-	//Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran, la taille de fenêtre doit être celle de l’écran.
 		return (INVALID_ARG);
+	if (env->width > MAX_WIDTH)
+		env->width = MAX_WIDTH;
+	if (env->height > MAX_HEIGHT)
+		env->height = MAX_HEIGHT;
 	if(!(env->mlx_ptr =  mlx_init()))
 		return(MLX_FAIL);
 	if(!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D")))

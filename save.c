@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 14:53:19 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 14:58:30 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,15 +73,13 @@ unsigned char *create_file_header(t_env *env, int pad)
 	static unsigned char	file_header[14] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-	//pad = (4 - ((int)env->width * 3) % 4) % 4;
-	//3 BYTES PER PIXEL
+	//3 BYTES PER PIXEL car compression 24
 	file_size = 54 + (3 * ((int)env->width + pad) * (int)env->height);
 
 	file_header[0] = (unsigned char)('B');
 	file_header[1] = (unsigned char)('M'); //A
 	set_in_char(file_header + 2, file_size);
 	set_in_char(file_header + 10, 54);
-	//file_header[10] = (unsigned char)FILE_HEADER_SIZE + IMG_HEADER_SIZE;
 	return(file_header);
 }
 
@@ -91,12 +89,11 @@ unsigned char *create_img_header(int height, int width)
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-	//img_header[0] = (unsigned char)(40);
 	set_in_char(img_header, 40);
 	set_in_char(img_header + 4, width);
 	set_in_char(img_header + 8, height);
 	img_header[12] = (unsigned char)(1);
-	set_in_char(img_header + 14, 24); //est ce la bonne valeur?
+	set_in_char(img_header + 14, 24); // l'image est codée en 24 bits, chaque pixel est codé par un entier 24 bits (RVB), ordre little-endian, c'est-à-dire que les trois octets codent successivement les niveaux de bleu, vert et rouge.
 	return(img_header);
 }
 
@@ -109,11 +106,11 @@ void	ft_save(t_env *env)
 	int fd;
 	height = env->height - 1; // -1 ???
 	width = env->width;
-	int pad = (4 - ((int)env->width * 3) % 4) % 4;
+	int pad = (4 - ((int)env->width * 3) % 4) % 4; // car il faut nb de byte multiple de 4
 
 	file_header = create_file_header(env, pad);
 	img_header = create_img_header(height, width);
-	fd = open(SCREEN_PATH, O_RDWR | O_CREAT | O_APPEND); //securiser
+	fd = open(SCREEN_PATH, O_RDWR | O_CREAT | O_APPEND); //securiser + ATTENTION JE N'AI PAS LES DROITS SUR LE FICHIER BMP
 	write(fd, file_header, FILE_HEADER_SIZE);
 	write(fd, img_header, IMG_HEADER_SIZE);
 	write_colors(env, fd, height, width);

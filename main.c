@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 16:33:52 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:53:17 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int ft_error(int error)
 		ft_putstr("Error\n Mlx failure");
 	if (error == MLX_FAIL)
 		ft_putstr("Error\n Writing in bmp has failed");
-	return (EXIT);
+	return (error);
 }
 
 

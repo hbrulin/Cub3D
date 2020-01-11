@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 16:52:30 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:53:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,7 @@ typedef	enum	e_error
 	IMG_FAIL,
 	OPEN_ERR,
 	MLX_FAIL,
-	WRITE_FAIL,
-	EXIT
+	WRITE_FAIL
 }				t_error;
 
 typedef struct s_pos

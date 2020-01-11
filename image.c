@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 16:38:40 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 17:17:04 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		ft_disp_screen(t_env *env)
 		ft_direction_ray(env);
 		ft_hit_ray(env);
 		ft_size_ray(env);
-		ft_sprite_calc(env);
+		//ft_sprite_calc(env);
 		/*
 		if (env->wall == 0)
 			env->color = (env->step.x < 0 ? COLOR_NORTH : COLOR_SOUTH);
@@ -65,8 +65,10 @@ int		ft_disp_screen(t_env *env)
 			env->color = (env->step.y > 0 ? COLOR_EAST : COLOR_WEST);*/
 		if ((error = ft_disp_col(env, x++)))
 			return (error);
-		add_sprite(env);
+		//add_sprite(env);
 	}
+	ft_sprite_calc(env);
+	add_sprite(env);
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 16:54:45 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 17:40:24 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,8 @@ typedef	struct s_env
 	double step_tex;
 	double tex_pos;
 	int flag_save;
+	double *zbuffer;
+	double dist;
 
 }				t_env;
 

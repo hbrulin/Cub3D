@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 17:17:04 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 17:45:30 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int		ft_disp_screen(t_env *env)
 		ft_direction_ray(env);
 		ft_hit_ray(env);
 		ft_size_ray(env);
-		//ft_sprite_calc(env);
+
 		/*
 		if (env->wall == 0)
 			env->color = (env->step.x < 0 ? COLOR_NORTH : COLOR_SOUTH);
@@ -65,7 +65,7 @@ int		ft_disp_screen(t_env *env)
 			env->color = (env->step.y > 0 ? COLOR_EAST : COLOR_WEST);*/
 		if ((error = ft_disp_col(env, x++)))
 			return (error);
-		//add_sprite(env);
+		env->zbuffer[x] = env->dist;
 	}
 	ft_sprite_calc(env);
 	add_sprite(env);
@@ -88,7 +88,7 @@ void	add_sprite(t_env *env)
 	{
 		texX = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth) / 256;
 		y= env->sp.drawStartY;
-		if (env->sp.transy > 0 && stripe > 0 && stripe < env->width)
+		if (env->sp.transy > 0 && stripe > 0 && stripe < env->width && env->sp.transy < env->zbuffer[stripe])
 		{
 			while (y < env->sp.drawEndY)
 			{

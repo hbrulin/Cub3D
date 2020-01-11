@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/09 14:33:11 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 17:41:12 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,15 +74,15 @@ void	ft_hit_ray(t_env *env)
 
 void	ft_size_ray(t_env *env)
 {
-	double dist;
+	//double dist;
 
 	if (env->wall == 0)
-		dist = fabs((env->rmap_x - env->rpos.x
+		env->dist = fabs((env->rmap_x - env->rpos.x
 					+ (1 - env->step.x) / 2) / env->rdir.x);
 	else
-		dist = fabs((env->rmap_y - env->rpos.y
+		env->dist = fabs((env->rmap_y - env->rpos.y
 					+ (1 - env->step.y) / 2) / env->rdir.y);
-	env->rh = abs((int)(env->height / dist));
+	env->rh = abs((int)(env->height / env->dist));
 	env->wstart = (-1 * (env->rh)) / 2 + env->height / 2;
 	if (env->wstart < 0)
 		env->wstart = 0;
@@ -94,9 +94,9 @@ void	ft_size_ray(t_env *env)
 
 	double wallx;
 	if (env->wall == 0)
-		wallx = env->rpos.y + dist * env->rdir.y;
+		wallx = env->rpos.y + env->dist * env->rdir.y;
 	else
-		wallx = env->rpos.x + dist * env->rdir.x;
+		wallx = env->rpos.x + env->dist * env->rdir.x;
 	wallx -= (int)wallx;
 	env->tex_x = (int)(wallx * 64);
 	if (env->wall == 0 && env->rdir.x > 0)

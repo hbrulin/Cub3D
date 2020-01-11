@@ -6,7 +6,7 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2020/01/11 12:43:34 by hbrulin          ###   ########.fr        #
+#    Updated: 2020/01/11 15:11:54 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,9 @@ re :
 	@make fclean
 	@make opti
 
-.PHONY: all, clean, fclean, re
+bmp :
+	chmod 755 screen.bmp
+
+.PHONY: all, clean, fclean, re, opti, make_mlx, make_ft, bmp
 
 -include $(DPD)

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 13:06:46 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 14:13:41 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,18 @@ void	write_colors(t_env *env, int height, int width, int fd)
 	}
 }
 
+static void set_in_char(unsigned char *start, int value)
+{
+	start[0] = (unsigned char)(value);
+	start[1] = (unsigned char)(value >> 8);
+	start[2] = (unsigned char)(value >> 16);
+	start[3] = (unsigned char)(value >> 24);
+}
+
 unsigned char *create_file_header(t_env *env)
 {
+	int pad;
+	int file_size;
 	static unsigned char	file_header[] = {
 		0, 0,
 		0, 0, 0, 0,
@@ -41,17 +51,12 @@ unsigned char *create_file_header(t_env *env)
 		0, 0, 0, 0,
 	};
 
-	//que fairte du champ reserve?
-	int file_size = FILE_HEADER_SIZE + IMG_HEADER_SIZE + env->img->bpp * (env->width * env->height); //bonne formule?
+	pad = (4 - ((int)env->width * 3) % 4) % 4;
+	file_size = 54 + (3 * ((int)env->width + pad) * (int)env->height);
 
 	file_header[0] = (unsigned char)('B');
 	file_header[1] = (unsigned char)('M'); //A
-	file_header[2] = (unsigned char)file_size;
-	//car sur 4 bits
-	file_header[3] = (unsigned char)(file_size >> 8);
-	file_header[4] = (unsigned char)(file_size >> 16);
-	file_header[5] = (unsigned char)(file_size >> 24);
-	//offset
+	set_in_char(file_header + 2, file_size);
 	file_header[10] = (unsigned char)FILE_HEADER_SIZE + IMG_HEADER_SIZE;
 	return(file_header);
 }
@@ -64,16 +69,10 @@ unsigned char *create_img_header(int height, int width)
 	};
 
 	img_header[0] = (unsigned char)(IMG_HEADER_SIZE);
-	img_header[4] = (unsigned char)(width);
-	img_header[5] = (unsigned char)(width >> 8);
-	img_header[6] = (unsigned char)(width >> 16);
-	img_header[7] = (unsigned char)(width >> 24);
-	img_header[8] = (unsigned char)(height);
-	img_header[9] = (unsigned char)(height >> 8);
-	img_header[10] = (unsigned char)(height >> 16);
-	img_header[11] = (unsigned char)(height >> 24);
-	img_header[12] = (unsigned char)1;
-	img_header[14] = (unsigned char)0; //est ce la bonne valeur?
+	set_in_char(img_header + 4, width);
+	set_in_char(img_header + 8, height);
+	img_header[12] = (unsigned char)(1);
+	img_header[14] = (unsigned char)(24); //est ce la bonne valeur?
 	return(img_header);
 }
 
@@ -89,7 +88,7 @@ void	ft_save(t_env *env)
 
 	file_header = create_file_header(env);
 	img_header = create_img_header(height, width);
-	fd = open(SCREEN_PATH, O_WRONLY);
+	fd = open(SCREEN_PATH, O_WRONLY | O_CREAT | O_APPEND | O_RDONLY);
 	write(fd, file_header, FILE_HEADER_SIZE);
 	write(fd, img_header, IMG_HEADER_SIZE);
 	write_colors(env, height, width, fd);

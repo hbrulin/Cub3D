@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 15:33:16 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:15:26 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,17 @@ int	write_colors(t_env *env, int fd, int height, int width)
 			rgb[0] = ((env->img->img_data[(height - i) * width + j]) >> 16);
 			rgb[1] = ((env->img->img_data[(height - i) * width + j]) >> 8);
 			rgb[2] = (env->img->img_data[(height - i) * width + j]);
-			write(fd, rgb + 2, 1);
-			write(fd, rgb + 1, 1);
-			write(fd, rgb, 1);
+			if((write(fd, rgb + 2, 1)) < 0)
+				return (WRITE_FAIL);
+			if ((write(fd, rgb + 1, 1)) < 0)
+				return (WRITE_FAIL);
+			if ((write(fd, rgb, 1)) < 0)
+				return (WRITE_FAIL);
 			j++;
 		}
 		i++;
 	}
-	return (1);
-
+	return (SUCCESS);
 }
 
 static void set_in_char(unsigned char *start, int value)
@@ -77,22 +79,28 @@ unsigned char *create_img_header(int height, int width)
 	return(img_header);
 }
 
-void	ft_save(t_env *env)
+int	ft_save(t_env *env)
 {
 	int height;
 	int width;
 	unsigned char *file_header;
 	unsigned char *img_header;
 	int fd;
+	int error;
 	height = env->height - 1; // -1 ???
 	width = env->width;
 	int pad = (4 - ((int)env->width * 3) % 4) % 4; // car il faut nb de byte multiple de 4
 
 	file_header = create_file_header(env, pad);
 	img_header = create_img_header(height, width);
-	fd = open(SCREEN_PATH, O_RDWR | O_CREAT | O_APPEND); //securiser + ATTENTION JE N'AI PAS LES DROITS SUR LE FICHIER BMP
-	write(fd, file_header, FILE_HEADER_SIZE);
-	write(fd, img_header, IMG_HEADER_SIZE);
-	write_colors(env, fd, height, width);
+	if ((error = fd = open(SCREEN_PATH, O_RDWR | O_CREAT | O_APPEND)) < 0)
+		return (OPEN_ERR);
+	if((write(fd, file_header, FILE_HEADER_SIZE)) < 0)
+		return (WRITE_FAIL);
+	if((write(fd, img_header, IMG_HEADER_SIZE)) < 0)
+		return (WRITE_FAIL);
+	if ((error = write_colors(env, fd, height, width)) != SUCCESS)
+		return (error);
 	close(fd);
+	return (SUCCESS);
 }

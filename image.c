@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 12:40:48 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:38:40 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,15 @@ void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y)
 	img->img_data[p_y * img->width + p_x] = color;
 }
 
-static void	ft_disp_col(t_env *env, int x)
+static int	ft_disp_col(t_env *env, int x)
 {
 	int	y;
+	int error;
 
 	t_color color_floor;
 	t_color color_ceiling;
-	get_color(env, &color_floor, &color_ceiling);
+	if ((error = get_color(env, &color_floor, &color_ceiling)) != SUCCESS)
+		return(error);
 	y = 0;
 	while (y < env->wstart)
 		ft_put_pixel(env->img, color_ceiling.all, x, y++);
@@ -40,12 +42,13 @@ static void	ft_disp_col(t_env *env, int x)
 	}
 	while (y < env->height)
 		ft_put_pixel(env->img, color_floor.all, x, y++);
-	//printf("floor is %i\n", color_floor.all);
+	return (SUCCESS);
 }
 
-void		ft_disp_screen(t_env *env)
+int		ft_disp_screen(t_env *env)
 {
 	int	x;
+	int error;
 
 	x = 0;
 	while (x < env->width)
@@ -60,9 +63,11 @@ void		ft_disp_screen(t_env *env)
 			env->color = (env->step.x < 0 ? COLOR_NORTH : COLOR_SOUTH);
 		else
 			env->color = (env->step.y > 0 ? COLOR_EAST : COLOR_WEST);*/
-		ft_disp_col(env, x++);
+		if ((error = ft_disp_col(env, x++)))
+			return (error);
 		add_sprite(env);
 	}
+	return (SUCCESS);
 }
 
 void	pixel_tex(t_tex *tex, t_env *env)
@@ -88,7 +93,7 @@ void	add_sprite(t_env *env)
 				d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
 				texY = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
 				env->color = env->sprite->tex_data[env->sprite->width * texY + texX];
-				if(env->color != 9961608) //pour retirer le rose
+				if(env->color != PINK) //pour retirer le rose
 					ft_put_pixel(env->img, env->color, stripe, y);
 				//printf("%i", env->color);
 				y++;
@@ -118,16 +123,17 @@ void	pix_color(t_env *env)
 	}
 }
 
-
 t_img	*ft_new_image(t_env *env, int width, int height)
 {
 	t_img *img; 
 	//faut-il free en plus de destroy img?
 	if (!(img = malloc(sizeof(t_img))))
 		return (NULL);
-	img->img_ptr = mlx_new_image (env->mlx_ptr, width, height);
+	if(!(img->img_ptr = mlx_new_image (env->mlx_ptr, width, height)))
+		return (NULL);
 	//ici je caste en int pour que ca puisse stocker la couleur
-    img->img_data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp, &img->size_line, &img->endian);
+	if(!(img->img_data = (int *)mlx_get_data_addr(img->img_ptr, &img->bpp, &img->size_line, &img->endian)))
+		return (NULL);
 	img->width = width;
 	img->height = height;
 	return (img);
@@ -135,15 +141,13 @@ t_img	*ft_new_image(t_env *env, int width, int height)
 
 t_tex	*ft_new_tex(t_env *env, char *file)
 {
-	//printf("%s\n", file);
 	t_tex *tex;
 	if (!(tex = malloc(sizeof(t_tex))))
 		return (NULL);
-	tex->tex_ptr = mlx_xpm_file_to_image(env->mlx_ptr, file, &tex->width, &tex->height);
-	//printf("%p\n", tex->tex_ptr);
+	if(!(tex->tex_ptr = mlx_xpm_file_to_image(env->mlx_ptr, file, &tex->width, &tex->height)))
+		return (NULL);
 	//ici je caste en int pour que ca puisse stocker la couleur
-    tex->tex_data = (int *)mlx_get_data_addr(tex->tex_ptr, &tex->bpp, &tex->size_line, &tex->endian);
+	if(!(tex->tex_data = (int *)mlx_get_data_addr(tex->tex_ptr, &tex->bpp, &tex->size_line, &tex->endian)))
+		return (NULL);
 	return (tex);
-
-	//ne pas oublier de destroy les img apres
 }

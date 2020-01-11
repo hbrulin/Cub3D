@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 15:31:15 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:29:33 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,20 @@
 # define	BYTES_PER_PIX	3
 # define COMPRESSION	24
 
+#define PINK 9961608
+
 
 typedef	enum	e_error
 {
 	SUCCESS,
-	NO_MAP,
+	INVALID_ARG,
 	WRONG_MAP,
-	WRONG_INPUT,
 	MALLOC_FAIL,
-	IMG_FAIL
+	IMG_FAIL,
+	OPEN_ERR,
+	MLX_FAIL,
+	WRITE_FAIL,
+	EXIT
 }				t_error;
 
 typedef struct s_pos
@@ -181,15 +186,14 @@ int				ft_parser(t_env *env);
 int				init_env(t_env *env);
 int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling);
 t_img	*ft_new_image(t_env *env, int width, int height);
-int		fill_floor_ceiling(t_env *env);
 void	fill(t_env *env, unsigned int color_floor, unsigned int color_ceiling);
 void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
-void	events(t_env *env);
+int		events(t_env *env);
 void	ft_calc_dir(t_env *env);
 void	ft_move(t_env *env);
 void	ft_ray(t_env *env, int x_img);
 void	ft_launch(t_env *env);
-void		ft_disp_screen(t_env *env);
+int		ft_disp_screen(t_env *env);
 void	ft_init_ray(t_env *env, int x);
 void	ft_direction_ray(t_env *env);
 void	ft_hit_ray(t_env *env);
@@ -198,6 +202,6 @@ t_tex	*ft_new_tex(t_env *env, char *file);
 void	pix_color(t_env *env);
 void	add_sprite(t_env *env);
 void	ft_sprite_calc(t_env *env);
-void	ft_save(t_env *env);
+int		ft_save(t_env *env);
 
 #endif

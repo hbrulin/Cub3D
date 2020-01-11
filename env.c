@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 13:01:21 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:36:41 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	ft_init(t_env *env)
 		return (IMG_FAIL);
 	if((env->sprite = ft_new_tex(env, env->data.S)) == NULL)
 		return (IMG_FAIL);
-	return (1);
+	return (SUCCESS);
 }
 
 
@@ -94,6 +94,7 @@ int	init_env(t_env *env)
 {
 	int i;
 	char **tab;
+	int error;
 
 	i = 0;
 	while (!ft_isdigit(env->data.R[i]))
@@ -105,16 +106,15 @@ int	init_env(t_env *env)
 	ft_tabdel((void **)tab); //attention possible leak ici avec mon split, verifier mon tabdel
 	if (!env->width || !env->height) //autre chose a verifier quand a la resolution? 
 	//Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran, la taille de fenêtre doit être celle de l’écran.
-	{
-		ft_putstr("Wrong resolution");
-		return (WRONG_INPUT);
-	}
-	env->mlx_ptr =  mlx_init();
-	env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D"); //idem
-
+		return (INVALID_ARG);
+	if(!(env->mlx_ptr =  mlx_init()))
+		return(MLX_FAIL);
+	if(!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D")))
+		return (MLX_FAIL);
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL);
-	ft_init(env);
+	if ((error = ft_init(env)) != SUCCESS)
+		return(error);
 	return (SUCCESS);
 
 }

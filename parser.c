@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/09 14:31:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:42:38 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,27 +25,23 @@ int		ft_parser(t_env *env)
 	int k;
 	int k_total;
 	int flag_n;
+	int flag_sp;
 
 	j = 0;
+	flag_sp = 0;
 	k_total = ft_strlen(env->map.tab_map[0]) + ft_strlen(env->map.tab_map[env->map.nb_line - 1]);
 
 	while (env->map.tab_map[0][j])
 	{
 		if (env->map.tab_map[0][j] != '1' && env->map.tab_map[0][j] != ' ')
-		{
-			ft_putstr("The map is not closed\n");
 			return (WRONG_MAP);
-		}
 		j++;
 	}
 	j = 0;
 	while (env->map.tab_map[env->map.nb_line - 1][j])
 	{
 		if (env->map.tab_map[env->map.nb_line - 1][j] != '1' && env->map.tab_map[env->map.nb_line - 1][j] != ' ')
-		{
-			ft_putstr("The map is not closed\n");
 			return (WRONG_MAP);
-		}
 		j++;
 	}
 
@@ -60,15 +56,9 @@ int		ft_parser(t_env *env)
 		while (env->map.tab_map[i][j])
 		{
 			if (!(env->map.tab_map[i][j] == '1' || env->map.tab_map[i][j] == '0' || env->map.tab_map[i][j] == '2' || env->map.tab_map[i][j] == 'N' || env->map.tab_map[i][j] == 'S' || env->map.tab_map[i][j] == 'E' || env->map.tab_map[i][j] == 'W' || env->map.tab_map[i][j] == ' '))
-			{
-				ft_putstr("The map contains undefined characters\n");
 				return (WRONG_MAP);
-			}
 			if (flag_n == 1 && (env->map.tab_map[i][j] == 'N' || env->map.tab_map[i][j] == 'S' || env->map.tab_map[i][j] == 'E' || env->map.tab_map[i][j] == 'W'))
-			{
-				ft_putstr("Player pops more than once\n");
 				return (WRONG_MAP);
-			}
 			if (flag_n == 0 && (env->map.tab_map[i][j] == 'N' || env->map.tab_map[i][j] == 'S' || env->map.tab_map[i][j] == 'E' || env->map.tab_map[i][j] == 'W'))
 			{
 				flag_n = 1;
@@ -81,23 +71,18 @@ int		ft_parser(t_env *env)
 			{
 				env->sp.pos_x = j;
 				env->sp.pos_y = i;
+				flag_sp = 1;
 			}
 			if (env->map.tab_map[i][j] == ' ')
 				env->map.tab_map[i][j] = '0';
 			j++;
 		}
 		if (env->map.tab_map[i][0] != '1' || env->map.tab_map[i][k - 1] != '1')
-		{
-			ft_putstr("The map is not closed\n");
 			return (WRONG_MAP);
-		}
 		i++;
 	}
-	if ((k_total % (env->map.nb_line + 1) != 0) || flag_n == 0)
-	{
-		ft_putstr("The map is uneven\n");
+	if ((k_total % (env->map.nb_line + 1) != 0) || flag_n == 0 || flag_sp == 0)
 		return (WRONG_MAP);
-	}
 	return (SUCCESS);
 }
 
@@ -108,8 +93,9 @@ int		ft_read(t_env *env, int fd)
 	t_list	*tmp;
 
 	env->map.list = NULL;
-	env->map.tab_map = NULL; //necessaire??
-	while ((ret = get_next_line(fd, &line)) > 0) //gnl a securiser malloc, peut return MALLOC FAIL -> revoir GNL + cette ligne
+	env->map.tab_map = NULL; 
+	//comment securiser ca pour que ce soit a la norme??
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (line[0] == 'R')
 			env->data.R = ft_strdup(line);
@@ -129,8 +115,10 @@ int		ft_read(t_env *env, int fd)
 			env->data.C = ft_strdup(line);
 		else if (ft_isdigit(line[0]))
 		{
-			tmp = malloc(sizeof(t_list));
-			tmp->content = ft_strdup(line);
+			if(!(tmp = malloc(sizeof(t_list))))
+				return (MALLOC_FAIL);
+			if(!(tmp->content = ft_strdup(line)))
+				return (MALLOC_FAIL);
 			tmp->next = 0;
 			ft_lstadd_back(&env->map.list, tmp);
 		}
@@ -138,37 +126,34 @@ int		ft_read(t_env *env, int fd)
 	}
 	free(line);
 	if (!env->data.R || !env->data.NO || !env->data.SO || !env->data.WE || !env->data.EA || !env->data.S || !env->data.F || !env->data.C || !env->map.list)
-	{
-		ft_putstr("Missing element");
-		return (WRONG_MAP);
-	}
+		return (INVALID_ARG);
 
 	//fix path, leaks ici
 	int i = 0;
 	while (env->data.NO[i] != '.')
 		i++;
-	env->data.NO = ft_strdup(env->data.NO + i);
-	//ft_putstr(env->data.NO);
+	if(!(env->data.NO = ft_strdup(env->data.NO + i)))
+		return (MALLOC_FAIL);
 	i = 0;
 	while (env->data.SO[i] != '.')
 		i++;
-	env->data.SO = ft_strdup(env->data.SO + i);
-	//ft_putstr(env->data.SO);
+	if(!(env->data.SO = ft_strdup(env->data.SO + i)))
+		return (MALLOC_FAIL);
 	i = 0;
 	while (env->data.WE[i] != '.')
 		i++;
-	env->data.WE = ft_strdup(env->data.WE + i);
-	//ft_putstr(env->data.WE);
+	if(!(env->data.WE = ft_strdup(env->data.WE + i)))
+		return (MALLOC_FAIL);
 	i = 0;
 	while (env->data.EA[i] != '.')
 		i++;
-	env->data.EA = ft_strdup(env->data.EA + i);
-	//ft_putstr(env->data.EA);
+	if(!(env->data.EA = ft_strdup(env->data.EA + i)))
+		return (MALLOC_FAIL);
 	i = 0;
 	while (env->data.S[i] != '.')
 		i++;
-	env->data.S = ft_strdup(env->data.S + i);
-	//ft_putstr(env->data.S);
+	if(!(env->data.S = ft_strdup(env->data.S + i)))
+		return (MALLOC_FAIL);
 	return (SUCCESS);
 }
 
@@ -179,7 +164,8 @@ int		get_map(t_env *env, char *file)
 	int i;
 	int error;
 
-	fd = open(file, O_RDONLY);
+	if ((fd = open(file, O_RDONLY)) < 0)
+		return (OPEN_ERR);
 	if((error = ft_read(env, fd)) != SUCCESS)
 		return(error);
 	close(fd);

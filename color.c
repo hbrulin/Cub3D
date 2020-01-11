@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/07 19:43:48 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 16:33:33 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling)
 
 	//verifier aussi que rgb < 255
 	if ((!color_floor->rgb.r && color_floor->rgb.r != 0) || (!color_floor->rgb.g && color_floor->rgb.g != 0) || (!color_floor->rgb.b && color_floor->rgb.b != 0)) //autre chose a verifier quand a mauvais input (genre si pas de virgule entre les valeurs dans le doc map)
-	{
-		ft_putstr("Wrong floor color");
-		return (WRONG_INPUT);
-	}
+		return (INVALID_ARG);
 
 	i = 0;
 	while (!ft_isdigit(env->data.C[i]))
@@ -49,9 +46,6 @@ int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling)
 	
 	//verifier aussi que rgb < 255
 	if ((!color_ceiling->rgb.r && color_ceiling->rgb.r != 0) || (!color_ceiling->rgb.g && color_ceiling->rgb.b != 0) || (!color_ceiling->rgb.b && color_ceiling->rgb.b != 0))//autre chose a verifier quand a mauvais input (genre si pas de virgule entre les valeurs dans le doc map)
-	{
-		ft_putstr("Wrong ceiling color");
-		return (WRONG_INPUT);
-	}
+		return (INVALID_ARG);
 	return (SUCCESS);
 }

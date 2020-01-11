@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/09 13:48:31 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 13:01:07 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,16 @@
 # include <fcntl.h>
 #include <string.h>
 
-//changer par textures
+/*
 # define COLOR_NORTH 0x116CC7
 # define COLOR_SOUTH 0xDD985C
 # define COLOR_EAST 0xA91101
-# define COLOR_WEST 0xEFD242
+# define COLOR_WEST 0xEFD242*/
+
+# define SCREEN_PATH	"screen.bmp"
+# define FILE_HEADER_SIZE	14
+# define IMG_HEADER_SIZE	40
+
 
 typedef	enum	e_error
 {
@@ -148,6 +153,7 @@ typedef	struct s_env
 	int tex_y;
 	double step_tex;
 	double tex_pos;
+	int flag_save;
 
 }				t_env;
 
@@ -190,5 +196,6 @@ t_tex	*ft_new_tex(t_env *env, char *file);
 void	pix_color(t_env *env);
 void	add_sprite(t_env *env);
 void	ft_sprite_calc(t_env *env);
+void	ft_save(t_env *env);
 
 #endif

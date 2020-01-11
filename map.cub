@@ -1,8 +1,8 @@
 R 600 500
 NO ./textures/Spearreswalls/4.xpm
-SO ./textures/Spearreswalls/182.xpm
-WE ./textures/Spearreswalls/25.xpm
-EA ./textures/Spearreswalls/35.xpm
+SO ./textures/Spearreswalls/5.xpm
+WE ./textures/Spearreswalls/6.xpm
+EA ./textures/Spearreswalls/7.xpm
 S ./textures/Spearressprites/18.xpm
 F 29,191,192
 C 75,69,148

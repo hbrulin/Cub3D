@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/09 13:50:46 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 13:01:35 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,8 @@ int		ft_key_release(int key, t_env *env)
 
 int		ft_run(t_env *env)
 {
+	if (env->flag_save == 1)
+		ft_save(env);
 	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL); //ou juste mlx new img??

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 17:22:01 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 18:01:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int		ft_parser(t_env *env)
 			{
 				env->sp.pos_x = j + 0.5;
 				env->sp.pos_y = i + 0.5;
-				flag_sp = 1;
+				flag_sp++;
 			}
 			if (env->map.tab_map[i][j] == ' ')
 				env->map.tab_map[i][j] = '0';
@@ -81,7 +81,7 @@ int		ft_parser(t_env *env)
 			return (WRONG_MAP);
 		i++;
 	}
-	if ((k_total % (env->map.nb_line + 1) != 0) || flag_n == 0 || flag_sp == 0)
+	if ((k_total % (env->map.nb_line + 1) != 0) || flag_n == 0 || flag_sp != 1)
 		return (WRONG_MAP);
 	return (SUCCESS);
 }

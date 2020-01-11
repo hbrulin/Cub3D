@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 17:40:24 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 18:51:26 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@
 # define	BYTES_PER_PIX	3
 # define COMPRESSION	24
 
-# define MAX_WIDTH	1920
-#define MAX_HEIGHT 1080
+# define MAX_WIDTH	2560
+#define MAX_HEIGHT 1440
 
 #define PINK 9961608
 

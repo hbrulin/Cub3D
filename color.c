@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 16:33:33 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 18:11:54 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling)
 	color_ceiling->rgb.a = 0x00;
 	ft_tabdel((void **)tab); //attention possible leak ici avec mon split, verifier mon tabdel
 	
-	//verifier aussi que rgb < 255
+	//verifier aussi que rgb valide
 	if ((!color_ceiling->rgb.r && color_ceiling->rgb.r != 0) || (!color_ceiling->rgb.g && color_ceiling->rgb.b != 0) || (!color_ceiling->rgb.b && color_ceiling->rgb.b != 0))//autre chose a verifier quand a mauvais input (genre si pas de virgule entre les valeurs dans le doc map)
 		return (INVALID_ARG);
 	return (SUCCESS);

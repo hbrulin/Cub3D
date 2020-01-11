@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 17:43:44 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 18:04:55 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,9 @@ int	ft_init(t_env *env)
 	env->sp.drawStartX = 0;
 	env->sp.drawEndX = 0;
 
-	//a free a la sortie
 	if (!(env->zbuffer = malloc(sizeof(double) * env->width)))
 		return (MALLOC_FAIL);
 
-	//init xpm
 	if((env->tex1 = ft_new_tex(env, env->data.NO)) == NULL)
 		return (IMG_FAIL);
 	if((env->tex2 = ft_new_tex(env, env->data.SO)) == NULL)

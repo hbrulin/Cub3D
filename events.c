@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 16:15:40 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 18:12:08 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,18 @@
 
 int	deal_key(int key, t_env *env)
 {
-	//ft_putnbr_fd(key, 1);
-
 	if (key == KEY_ESCAPE)
 	{
+		free(env->zbuffer);
+		ft_tabdel((void *)env->map.tab_map);
+		free(env->data.R);
+		free(env->data.NO);
+		free(env->data.SO);
+		free(env->data.WE);
+		free(env->data.EA);
+		free(env->data.S);
+		free(env->data.F);
+		free(env->data.C);
 		mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
 		mlx_destroy_image(env->mlx_ptr, env->tex1->tex_ptr);
 		mlx_destroy_image(env->mlx_ptr, env->tex2->tex_ptr);
@@ -35,6 +43,16 @@ int	deal_key(int key, t_env *env)
 //pour la croix et force quit
 int	deal_exit(t_env *env)
 {
+	free(env->zbuffer);
+	ft_tabdel((void *)env->map.tab_map);
+	free(env->data.R);
+	free(env->data.NO);
+	free(env->data.SO);
+	free(env->data.WE);
+	free(env->data.EA);
+	free(env->data.S);
+	free(env->data.F);
+	free(env->data.C);
 	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
 	mlx_destroy_image(env->mlx_ptr, env->tex1->tex_ptr);
 	mlx_destroy_image(env->mlx_ptr, env->tex2->tex_ptr);

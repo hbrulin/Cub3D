@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 13:01:07 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/11 15:31:15 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define SCREEN_PATH	"screen.bmp"
 # define FILE_HEADER_SIZE	14
 # define IMG_HEADER_SIZE	40
+# define	BYTES_PER_PIX	3
+# define COMPRESSION	24
 
 
 typedef	enum	e_error

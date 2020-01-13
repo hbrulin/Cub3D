@@ -6,12 +6,13 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 18:51:16 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/13 18:27:34 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
+# define BEST_RATIO			1.7777777778
 
 int	ft_init(t_env *env)
 {

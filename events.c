@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 18:12:08 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/13 18:12:03 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ int		ft_run(t_env *env)
 			return(error);
 		env->flag_save = 2;
 	}
-	return (0);
+	return (SUCCESS);
 }
 
 

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/11 18:51:26 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/13 17:02:46 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,8 +146,8 @@ typedef	struct s_env
 	int strafr;
 	int wall;
 	unsigned int color;
-	int wstart;
-	int wend; 
+	float wstart;
+	float wend; 
 	double camera;
 	int hit;
 	double rh;

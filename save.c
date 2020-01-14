@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 18:33:49 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 19:03:34 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	ft_save(t_env *env)
 
 	file_header = create_file_header(env, pad);
 	img_header = create_img_header(height, width);
-	if ((fd = open(SCREEN_PATH, O_WRONLY | O_CREAT)) < 0) //REGLER CA
+	if ((fd = open(SCREEN_PATH, O_WRONLY | O_CREAT, 0644)) < 0)
 		return (OPEN_ERR);
 	if((write(fd, file_header, FILE_HEADER_SIZE)) < 0)
 	{	

@@ -1,25 +1,23 @@
-Process:         Cub3D [12614]
+Process:         Cub3D [17124]
 Path:            /Volumes/VOLUME/*/Cub3D
-Load Address:    0x100000000
+Load Address:    0x107621000
 Identifier:      Cub3D
 Version:         ???
 Code Type:       X86-64
-Parent Process:  debugserver [12615]
+Parent Process:  zsh [7454]
 
-Date/Time:       2020-01-14 17:50:14.022 +0100
-Launch Time:     2020-01-14 17:49:26.520 +0100
+Date/Time:       2020-01-14 18:51:13.036 +0100
+Launch Time:     2020-01-14 18:51:09.135 +0100
 OS Version:      Mac OS X 10.14.5 (18F132)
 Report Version:  7
 Analysis Tool:   /Applications/Xcode.app/Contents/Developer/usr/bin/leaks
 Analysis Tool Version:  Xcode 10.3 (10G8)
 
-Physical footprint:         892K
-Physical footprint (peak):  892K
+Physical footprint:         39.7M
+Physical footprint (peak):  39.7M
 ----
 
 leaks Report Version: 4.0
-Process 12614: 708 nodes malloced for 103 KB
-Process 12614: 1 leak for 16 total leaked bytes.
-
-    1 (16 bytes) ROOT LEAK: 0x100202f40 [16]
+Process 17124: 24745 nodes malloced for 11782 KB
+Process 17124: 0 leaks for 0 total leaked bytes.
 

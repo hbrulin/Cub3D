@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 09:37:35 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 09:46:06 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,15 @@ int	deal_exit(t_env *env)
 	mlx_destroy_image(env->mlx_ptr, env->tex3->tex_ptr);
 	mlx_destroy_image(env->mlx_ptr, env->tex4->tex_ptr);
 	mlx_destroy_image(env->mlx_ptr, env->sprite->tex_ptr);
-	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
 	free(env->img);
 	free(env->tex1);
 	free(env->tex2);
 	free(env->tex3);
 	free(env->tex4);
 	free(env->sprite);
+	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
 	exit(0);
+	free(env->mlx_ptr);
 }
 
 int	ft_key_hit	(int key, t_env *env)

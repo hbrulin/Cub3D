@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 16:50:49 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:28:07 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,15 +95,15 @@ int		ft_read(t_env *env, int fd)
 		if (line[0] == 'R')
 			env->data.R = ft_strdup(line);
 		if (line[0] == 'N' && line[1] == 'O')
-			env->data.NO = ft_strdup(line);
+			env->data.n = ft_strdup(line);
 		if (line[0] == 'S' && line[1] == 'O')
-			env->data.SO = ft_strdup(line);
+			env->data.s = ft_strdup(line);
 		if (line[0] == 'W' && line[1] == 'E')
-			env->data.WE = ft_strdup(line);
+			env->data.w = ft_strdup(line);
 		if (line[0] == 'E' && line[1] == 'A')
-			env->data.EA = ft_strdup(line);
+			env->data.e = ft_strdup(line);
 		if (line[0] == 'S' && line[1] == ' ')
-			env->data.S = ft_strdup(line);
+			env->data.sp = ft_strdup(line);
 		if (line[0] == 'F' && line[1] == ' ')
 			env->data.F = ft_strdup(line);
 		if (line[0] == 'C' && line[1] == ' ')
@@ -120,35 +120,50 @@ int		ft_read(t_env *env, int fd)
 		free(line);
 	}
 	free(line);
-	if (!env->data.R || !env->data.NO || !env->data.SO || !env->data.WE || !env->data.EA || !env->data.S || !env->data.F || !env->data.C || !env->map.list)
+	if (!env->data.R || !env->data.n || !env->data.s || !env->data.w || !env->data.e || !env->data.sp || !env->data.F || !env->data.C || !env->map.list)
 		return (INVALID_ARG);
 
-	//fix path, leaks ici
+	//path fix
 	int i = 0;
-	while (env->data.NO[i] != '.')
+	while (env->data.n[i] != '.')
 		i++;
-	if(!(env->data.NO = ft_strdup(env->data.NO + i)))
+	if(!(env->data.NO = ft_strdup(env->data.n + i)))
 		return (MALLOC_FAIL);
+	free(env->data.n);
+	env->data.n = NULL;
+
 	i = 0;
-	while (env->data.SO[i] != '.')
+	while (env->data.s[i] != '.')
 		i++;
-	if(!(env->data.SO = ft_strdup(env->data.SO + i)))
+	if(!(env->data.SO = ft_strdup(env->data.s + i)))
 		return (MALLOC_FAIL);
+	free(env->data.s);
+	env->data.s = NULL;
+
 	i = 0;
-	while (env->data.WE[i] != '.')
+	while (env->data.w[i] != '.')
 		i++;
-	if(!(env->data.WE = ft_strdup(env->data.WE + i)))
+	if(!(env->data.WE = ft_strdup(env->data.w + i)))
 		return (MALLOC_FAIL);
+	free(env->data.w);
+	env->data.w = NULL;
+
 	i = 0;
-	while (env->data.EA[i] != '.')
+	while (env->data.e[i] != '.')
 		i++;
-	if(!(env->data.EA = ft_strdup(env->data.EA + i)))
+	if(!(env->data.EA = ft_strdup(env->data.e + i)))
 		return (MALLOC_FAIL);
+	free(env->data.e);
+	env->data.e = NULL;
+
 	i = 0;
-	while (env->data.S[i] != '.')
+	while (env->data.sp[i] != '.')
 		i++;
-	if(!(env->data.S = ft_strdup(env->data.S + i)))
+	if(!(env->data.SP = ft_strdup(env->data.sp + i)))
 		return (MALLOC_FAIL);
+	free(env->data.sp);
+	env->data.sp = NULL;
+	
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 17:01:37 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:39:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,41 +30,47 @@ int	deal_exit(t_env *env)
 		free(env->data.WE);
 	if (env->data.EA)
 		free(env->data.EA);
-	if (env->data.S)
-		free(env->data.S);
 	if (env->data.F)
 		free(env->data.F);
 	if (env->data.C)
 		free(env->data.C);
+	if (env->data.SP)
+		free(env->data.SP);
 	if (env->img)
 	{
 		mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
 		free(env->img);
+		env->img = NULL;
 	}
 	if (env->tex1)
 	{
 		mlx_destroy_image(env->mlx_ptr, env->tex1->tex_ptr);
 		free(env->tex1);
+		env->tex1 = NULL;
 	}
 	if (env->tex2)
 	{
 		mlx_destroy_image(env->mlx_ptr, env->tex2->tex_ptr);
 		free(env->tex2);
+		env->tex2 = NULL;
 	}
 	if (env->tex3)
 	{
 		mlx_destroy_image(env->mlx_ptr, env->tex3->tex_ptr);
 		free(env->tex3);
+		env->tex3 = NULL;
 	}
 	if (env->tex4)
 	{
 		mlx_destroy_image(env->mlx_ptr, env->tex4->tex_ptr);
 		free(env->tex4);
+		env->tex4 = NULL;
 	}
 	if (env->sprite)
 	{
 		mlx_destroy_image(env->mlx_ptr, env->sprite->tex_ptr);
 		free(env->sprite);
+		env->sprite = NULL;
 	}
 	if (env->win_ptr)
 		mlx_destroy_window(env->mlx_ptr, env->win_ptr);

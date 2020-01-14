@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 17:01:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:20:37 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,18 @@ typedef struct s_data
 {
 	char *R;
 	char *NO;
+	char *n;
 	char *SO;
+	char *s;
 	char *WE;
+	char *w;
 	char *EA;
-	char *S;
+	char *e;
+	char *SP;
+	char *sp;
 	char *F;
 	char *C;
+
 }			t_data;
 
 typedef	struct s_tex

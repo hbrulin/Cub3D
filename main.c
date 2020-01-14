@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 16:55:19 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:42:02 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int ft_error(int error, t_env *env)
 	deal_exit(env);
 	return (error);
 }
-
-
 
 int main(int argc, char **argv)
 {

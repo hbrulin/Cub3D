@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 09:33:15 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 09:37:35 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ int		ft_run(t_env *env)
 {
 	int error;
 	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
+	free(env->img);
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL);
 	ft_move(env);

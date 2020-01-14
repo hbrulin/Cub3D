@@ -6,17 +6,12 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/13 18:10:57 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 16:50:49 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <stdio.h>
-
-/*
-◦ Mis à part la description de la map, chaque type d’élément peut être séparée par une ou plusieurs lignes vides.
-◦ La description de la carte sera toujours en dernier dans le fichier, le reste des éléments peut être dans n’importe quel ordre.
-◦ Les informations de chaque élément peuvent être séparées par un ou plusieurs espace(s).*/
 
 int		ft_parser(t_env *env)
 {
@@ -94,7 +89,7 @@ int		ft_read(t_env *env, int fd)
 
 	env->map.list = NULL;
 	env->map.tab_map = NULL; 
-	//comment securiser ca pour que ce soit a la norme??
+	//comment securiser ca pour que ce soit a la norme?? faire une ft if isalpha
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
 		if (line[0] == 'R')

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/13 17:36:46 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:01:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,5 +207,6 @@ void	pix_color(t_env *env);
 void	add_sprite(t_env *env);
 void	ft_sprite_calc(t_env *env);
 int		ft_save(t_env *env);
+int	deal_exit(t_env *env);
 
 #endif

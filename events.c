@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 09:46:06 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 17:01:37 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,61 @@
 
 int	deal_exit(t_env *env)
 {
-	free(env->zbuffer);
-	ft_tabdel((void *)env->map.tab_map);
-	free(env->data.R);
-	free(env->data.NO);
-	free(env->data.SO);
-	free(env->data.WE);
-	free(env->data.EA);
-	free(env->data.S);
-	free(env->data.F);
-	free(env->data.C);
-	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
-	mlx_destroy_image(env->mlx_ptr, env->tex1->tex_ptr);
-	mlx_destroy_image(env->mlx_ptr, env->tex2->tex_ptr);
-	mlx_destroy_image(env->mlx_ptr, env->tex3->tex_ptr);
-	mlx_destroy_image(env->mlx_ptr, env->tex4->tex_ptr);
-	mlx_destroy_image(env->mlx_ptr, env->sprite->tex_ptr);
-	free(env->img);
-	free(env->tex1);
-	free(env->tex2);
-	free(env->tex3);
-	free(env->tex4);
-	free(env->sprite);
-	mlx_destroy_window(env->mlx_ptr, env->win_ptr);
+	if (env->zbuffer)
+		free(env->zbuffer);
+	if(env->map.tab_map)
+		ft_tabdel((void *)env->map.tab_map);
+	if (env->data.R)
+		free(env->data.R);
+	if (env->data.NO)
+		free(env->data.NO);
+	if (env->data.SO)
+		free(env->data.SO);
+	if (env->data.WE)
+		free(env->data.WE);
+	if (env->data.EA)
+		free(env->data.EA);
+	if (env->data.S)
+		free(env->data.S);
+	if (env->data.F)
+		free(env->data.F);
+	if (env->data.C)
+		free(env->data.C);
+	if (env->img)
+	{
+		mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
+		free(env->img);
+	}
+	if (env->tex1)
+	{
+		mlx_destroy_image(env->mlx_ptr, env->tex1->tex_ptr);
+		free(env->tex1);
+	}
+	if (env->tex2)
+	{
+		mlx_destroy_image(env->mlx_ptr, env->tex2->tex_ptr);
+		free(env->tex2);
+	}
+	if (env->tex3)
+	{
+		mlx_destroy_image(env->mlx_ptr, env->tex3->tex_ptr);
+		free(env->tex3);
+	}
+	if (env->tex4)
+	{
+		mlx_destroy_image(env->mlx_ptr, env->tex4->tex_ptr);
+		free(env->tex4);
+	}
+	if (env->sprite)
+	{
+		mlx_destroy_image(env->mlx_ptr, env->sprite->tex_ptr);
+		free(env->sprite);
+	}
+	if (env->win_ptr)
+		mlx_destroy_window(env->mlx_ptr, env->win_ptr);
+	if (env->mlx_ptr)
+		free(env->mlx_ptr);
 	exit(0);
-	free(env->mlx_ptr);
 }
 
 int	ft_key_hit	(int key, t_env *env)
@@ -84,6 +114,7 @@ int		ft_run(t_env *env)
 	int error;
 	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
 	free(env->img);
+	env->img= NULL;
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL);
 	ft_move(env);

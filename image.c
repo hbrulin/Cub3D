@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 15:13:49 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:25:33 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,45 +67,15 @@ int		ft_disp_screen(t_env *env)
 			return (error);
 		env->zbuffer[x] = env->dist;
 	}
-	ft_sprite_calc(env);
-	add_sprite(env);
+	//ft_sprite_calc(env);
+	//add_sprite(env);
+	init_sprite(env);
 	return (SUCCESS);
 }
 
 void	pixel_tex(t_tex *tex, t_env *env)
 {
 		env->color = tex->tex_data[tex->width * env->tex_y + env->tex_x];
-}
-
-void	add_sprite(t_env *env)
-{
-	int stripe = env->sp.drawStartX;
-	int texX = 0;
-	int y = 0;
-	int d = 0;
-	int texY = 0;
-	while(stripe < env->sp.drawEndX)
-	{
-		texX = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth) / 256;
-		y= env->sp.drawStartY;
-		if (env->sp.transy > 0 && stripe > 0 && stripe < env->width && env->sp.transy < env->zbuffer[stripe])
-		{
-			while (y < env->sp.drawEndY)
-			{
-				d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
-				texY = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
-				env->color = env->sprite->tex_data[env->sprite->width * texY + texX];
-				//if ((env->sprite->tex_data[texY % 64 * env->sprite->size_line + texX % 64 * env->sprite->bpp / 8]) != 0)
-				//{
-					if(env->color != PINK)
-						ft_put_pixel(env->img, env->color, stripe, y);
-				//}
-				y++;
-			}
-		}
-		stripe++;
-	}
-
 }
 
 void	pix_color(t_env *env)

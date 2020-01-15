@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 15:35:15 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:24:21 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int		ft_parser(t_env *env)
 	int flag_n;
 
 	j = 0;
+	env->nb_sprite = 0;
 	k_total = ft_strlen(env->map.tab_map[0]) + ft_strlen(env->map.tab_map[env->map.nb_line - 1]);
 
 	while (env->map.tab_map[0][j])
@@ -62,8 +63,9 @@ int		ft_parser(t_env *env)
 			//coordonees sprite, faut il return une erreur si 0 sprite, ou si plusieurs
 			if (env->map.tab_map[i][j] == '2')
 			{
-				env->sp.pos_x = j + 0.5;
-				env->sp.pos_y = i + 0.5;
+				env->nb_sprite++;
+				//env->sp.pos_x = j + 0.5;
+				//env->sp.pos_y = i + 0.5;
 			}
 			j++;
 		}
@@ -73,6 +75,7 @@ int		ft_parser(t_env *env)
 	}
 	if ((k_total % (env->map.nb_line + 1) != 0) || flag_n == 0)
 		return (WRONG_MAP);
+	env->map.nb_char = k;
 	return (SUCCESS);
 }
 

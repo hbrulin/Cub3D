@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 13:53:58 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:26:49 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef	struct s_map
 	char **tab_map;
 	t_list	*list;
 	int	nb_line;
+	int nb_char;
 	char	player;
 }				t_map;
 
@@ -109,21 +110,26 @@ typedef	struct s_tex
 
 typedef struct	s_sprite
 {
-	double sp_dist;
 	double pos_x;
 	double pos_y;
+}				t_sprite;
+
+typedef struct	s_spdata
+{
+	double sp_dist;
 	double spcamx;
 	double spcamy;
 	double transx;
 	double transy;
 	int spriteScreenX;
-	double spriteHeight;
+	int spriteHeight;
 	int	drawStartY;
 	int drawEndY;
-	double spriteWidth;
+	int spriteWidth;
 	int drawStartX;
 	int drawEndX;
-}				t_sprite;
+}				t_spdata;
+
 
 typedef	struct s_env
 {
@@ -142,7 +148,8 @@ typedef	struct s_env
 	t_pos	rdisd;
 	t_pos	rdist;
 	t_data	data;
-	t_sprite	sp;
+	t_spdata	sp;
+	t_sprite	*tab_sprite;
 	double	speed;
 	int up;
 	int down;
@@ -171,6 +178,9 @@ typedef	struct s_env
 	int flag_save;
 	double *zbuffer;
 	double dist;
+	int nb_sprite;
+	int *sp_order;
+	double *sp_distance;
 
 }				t_env;
 
@@ -211,9 +221,12 @@ void	ft_size_ray(t_env *env);
 t_tex	*ft_new_tex(t_env *env, char *file);
 void	pix_color(t_env *env);
 void	add_sprite(t_env *env);
-void	ft_sprite_calc(t_env *env);
+void	ft_sprite_calc(t_env *env, int i);
 int		ft_save(t_env *env);
-int	deal_exit(t_env *env);
+int		deal_exit(t_env *env);
 char	*ft_strdup_no_space(const char *s);
+void	init_sprite(t_env *env);
+void	add_sprite(t_env *env);
+void	ft_sprite_calc(t_env *env, int i);
 
 #endif

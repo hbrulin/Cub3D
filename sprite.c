@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 18:21:27 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 18:23:12 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ void	ft_sort(int *order, double *dist, int num)
 			if (dist[i] < dist[i + 1])
 			{
 				temp2 = dist[i + 1];
-				dist[i + 1] = (dist[i] < 0 ? fabs(dist[i]) : dist[i]); //anciennement + 2
-				dist[i] = (temp2 < 0 ? fabs(temp2) : temp2); //idem
+				dist[i + 1] = dist[i];//(dist[i] < 0 ? fabs(dist[i]) + 2 : dist[i]);
+				dist[i] = temp2;//(temp2 < 0 ? fabs(temp2) + 2 : temp2);
 				temp = order[i + 1];
 				order[i + 1] = order[i];
 				order[i] = temp;

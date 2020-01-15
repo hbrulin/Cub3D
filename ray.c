@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/13 18:47:49 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 11:42:15 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_hit_ray(t_env *env)
 			env->rmap_y += env->step.y;
 			env->wall = 1;
 		}
-		if (env->map.tab_map[env->rmap_y][env->rmap_x] != '0' && env->map.tab_map[env->rmap_y][env->rmap_x] != '2' && env->map.tab_map[env->rmap_y][env->rmap_x] != 'E' && env->map.tab_map[env->rmap_y][env->rmap_x] != 'N' && env->map.tab_map[env->rmap_y][env->rmap_x] != 'S' && env->map.tab_map[env->rmap_y][env->rmap_x] != 'W')
+		if (env->map.tab_map[env->rmap_y][env->rmap_x] != '0' && env->map.tab_map[env->rmap_y][env->rmap_x] != '2' && env->map.tab_map[env->rmap_y][env->rmap_x] != 'E' && env->map.tab_map[env->rmap_y][env->rmap_x] != 'N' && env->map.tab_map[env->rmap_y][env->rmap_x] != 'S' && env->map.tab_map[env->rmap_y][env->rmap_x] != 'W' && env->map.tab_map[env->rmap_y][env->rmap_x] != ' ')
 			env->hit = 1;
 	}
 }

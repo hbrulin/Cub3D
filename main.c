@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 19:02:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:12:46 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int ft_error(int error, t_env *env)
 {
 	if (error == INVALID_ARG)
-		ft_putstr("Error\n Invalid arguments");
+		ft_putstr("Error\n Invalid argument");
 	if (error == WRONG_MAP)
 		ft_putstr("Error\n Invalid map");
 	if (error == MALLOC_FAIL)
@@ -49,6 +49,8 @@ int main(int argc, char **argv)
  		return (ft_error(error, &env));
 	if (argc == 3 && (ft_strncmp(argv[2], "-save", ft_strlen(argv[2])) == 0))
 		env.flag_save = 1;
+	else if(argc == 3)
+		return (ft_error(INVALID_ARG, &env));
  	if ((error = events(&env)) != SUCCESS)
 		return (ft_error(error, &env));
     return (SUCCESS);

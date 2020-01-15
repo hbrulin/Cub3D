@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 16:36:27 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:43:55 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,9 +132,12 @@ void	init_sprite(t_env *env)
 		return ;
 	ft_place_sprite(env);
 	ft_order_sprite(env);
-	//ft_free_sprite(env); a voir
-
-
+	if (env->tab_sprite)
+		free(env->tab_sprite);
+	if (env->sp_order)
+		free(env->sp_order);
+	if (env->sp_distance)
+		free(env->sp_distance);
 }
 
 void	ft_sprite_calc(t_env *env, int i)

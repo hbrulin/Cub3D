@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 17:39:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:44:01 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,14 @@ int	deal_exit(t_env *env)
 		free(env->data.C);
 	if (env->data.SP)
 		free(env->data.SP);
+
+	//if (env->tab_sprite)
+	//	free(env->tab_sprite);
+	//if (env->sp_order)
+	//	free(env->sp_order);
+	//if (env->sp_distance)
+	//	free(env->sp_distance);
+
 	if (env->img)
 	{
 		mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);

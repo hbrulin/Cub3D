@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 18:21:21 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 10:41:27 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 11:35:23 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static size_t	ft_nextindex(char const *s, char c, size_t index)
 	return (index);
 }
 
-char			**ft_null_s(char **tab, const char *s)
+char			**ft_null_s(char **tab)
 {
 	if (!(tab = (char**)ft_calloc(1, sizeof(char*))))
 		return (NULL);
@@ -61,21 +61,20 @@ char			**ft_null_s(char **tab, const char *s)
 
 char			**ft_split(char const *s, char c)
 {
-	size_t	size;
 	size_t	str_i;
 	size_t	tab_i;
 	char	**tab;
 
+	tab = NULL;
 	if (!s)
-		return (ft_null_s(tab, s));
-	size = ft_count(s, c);
-	if (!(tab = (char**)ft_calloc(size + 1, sizeof(char*))))
+		return (ft_null_s(tab));
+	if (!(tab = (char**)ft_calloc(ft_count(s, c) + 1, sizeof(char*))))
 		return (NULL);
 	tab_i = 0;
 	str_i = 0;
 	while (s[str_i] == c && s[str_i])
 		str_i++;
-	while (tab_i < size)
+	while (tab_i < ft_count(s, c))
 	{
 		if (!(tab[tab_i] = ft_substr(s, str_i, ft_size(s + str_i, c))))
 		{

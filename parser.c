@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 13:40:32 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 14:16:59 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		ft_parser(t_env *env)
 		j = 1;
 		while (env->map.tab_map[i][j])
 		{
-			if (!(env->map.tab_map[i][j] == '1' || env->map.tab_map[i][j] == '0' || env->map.tab_map[i][j] == '2' || env->map.tab_map[i][j] == 'N' || env->map.tab_map[i][j] == 'S' || env->map.tab_map[i][j] == 'E' || env->map.tab_map[i][j] == 'W' || env->map.tab_map[i][j] == ' '))
+			if (!(env->map.tab_map[i][j] == '1' || env->map.tab_map[i][j] == '0' || env->map.tab_map[i][j] == '2' || env->map.tab_map[i][j] == 'N' || env->map.tab_map[i][j] == 'S' || env->map.tab_map[i][j] == 'E' || env->map.tab_map[i][j] == 'W'))
 				return (WRONG_MAP);
 			if (flag_n == 1 && (env->map.tab_map[i][j] == 'N' || env->map.tab_map[i][j] == 'S' || env->map.tab_map[i][j] == 'E' || env->map.tab_map[i][j] == 'W'))
 				return (WRONG_MAP);
@@ -58,8 +58,8 @@ int		ft_parser(t_env *env)
 			{
 				flag_n = 1;
 				env->map.player = env->map.tab_map[i][j];
-				env->pos.x = j; //x
-				env->pos.y = i; //y
+				env->pos.x = j; 
+				env->pos.y = i;
 			}
 			//coordonees sprite, faut il return une erreur si 0 sprite, ou si plusieurs
 			if (env->map.tab_map[i][j] == '2')
@@ -106,11 +106,11 @@ int		ft_read(t_env *env, int fd)
 			env->data.F = ft_strdup(line);
 		if (line[0] == 'C' && line[1] == ' ')
 			env->data.C = ft_strdup(line);
-		else if (ft_isdigit(line[0]))
+		else if (ft_isdigit(line[0])) //quid si espaces avant?
 		{
 			if(!(tmp = malloc(sizeof(t_list))))
 				return (MALLOC_FAIL);
-			if(!(tmp->content = ft_strdup(line)))
+			if(!(tmp->content = ft_strdup_no_space(line)))
 				return (MALLOC_FAIL);
 			tmp->next = 0;
 			ft_lstadd_back(&env->map.list, tmp);

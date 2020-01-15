@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 19:31:40 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 15:13:49 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,8 +95,11 @@ void	add_sprite(t_env *env)
 				d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
 				texY = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
 				env->color = env->sprite->tex_data[env->sprite->width * texY + texX];
-				if(env->color != PINK)
-					ft_put_pixel(env->img, env->color, stripe, y);
+				//if ((env->sprite->tex_data[texY % 64 * env->sprite->size_line + texX % 64 * env->sprite->bpp / 8]) != 0)
+				//{
+					if(env->color != PINK)
+						ft_put_pixel(env->img, env->color, stripe, y);
+				//}
 				y++;
 			}
 		}

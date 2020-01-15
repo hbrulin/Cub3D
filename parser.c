@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 14:16:59 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 15:35:15 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ int		ft_parser(t_env *env)
 	int k;
 	int k_total;
 	int flag_n;
-	int flag_sp;
 
 	j = 0;
-	flag_sp = 0;
 	k_total = ft_strlen(env->map.tab_map[0]) + ft_strlen(env->map.tab_map[env->map.nb_line - 1]);
 
 	while (env->map.tab_map[0][j])
@@ -66,7 +64,6 @@ int		ft_parser(t_env *env)
 			{
 				env->sp.pos_x = j + 0.5;
 				env->sp.pos_y = i + 0.5;
-				flag_sp++;
 			}
 			j++;
 		}
@@ -74,7 +71,7 @@ int		ft_parser(t_env *env)
 			return (WRONG_MAP);
 		i++;
 	}
-	if ((k_total % (env->map.nb_line + 1) != 0) || flag_n == 0 || flag_sp != 1)
+	if ((k_total % (env->map.nb_line + 1) != 0) || flag_n == 0)
 		return (WRONG_MAP);
 	return (SUCCESS);
 }
@@ -106,7 +103,7 @@ int		ft_read(t_env *env, int fd)
 			env->data.F = ft_strdup(line);
 		if (line[0] == 'C' && line[1] == ' ')
 			env->data.C = ft_strdup(line);
-		else if (ft_isdigit(line[0])) //quid si espaces avant?
+		else if (ft_isdigit(line[0])) 
 		{
 			if(!(tmp = malloc(sizeof(t_list))))
 				return (MALLOC_FAIL);

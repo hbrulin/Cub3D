@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 19:36:56 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 15:33:57 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 //lancer cette fonction dand display
 void	ft_sprite_calc(t_env *env)
 {
-	env->sp.spcamx = env->sp.pos_x - env->pos.x ; 
-	env->sp.spcamy = env->sp.pos_y - env->pos.y; 
+	env->sp.spcamx = env->sp.pos_x - env->pos.x; 
+	env->sp.spcamy = env->sp.pos_y - env->pos.y;; 
 
  	double inv = 1.0 / (env->plane.x * env->dir.y - env->dir.x * env->plane.y); //required for correct matrix multiplication
 

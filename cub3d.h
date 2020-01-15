@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 17:20:37 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/14 19:34:23 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,10 @@ typedef struct	s_sprite
 	double transx;
 	double transy;
 	int spriteScreenX;
-	int spriteHeight;
+	double spriteHeight;
 	int	drawStartY;
 	int drawEndY;
-	int spriteWidth;
+	double spriteWidth;
 	int drawStartX;
 	int drawEndX;
 }				t_sprite;

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 18:45:35 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:02:17 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int ft_error(int error, t_env *env)
 		ft_putstr("Error\n Mlx failure");
 	if (error == MLX_FAIL)
 		ft_putstr("Error\n Writing in bmp has failed");
+	if (error == WRONG_TEX)
+		ft_putstr("Error\n Wrong path for texture");
 	deal_exit(env);
 	return (error);
 }

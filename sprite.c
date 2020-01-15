@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 18:23:12 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 18:34:46 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	add_sprite(t_env *env)
 					d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
 					texY = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
 					env->color = env->sprite->tex_data[env->sprite->width * texY + texX];
-					if(env->color != PINK) //ici potentielle condition manquante pour fix pb sprites qui bougent
+					if(env->color != PINK) 
 						ft_put_pixel(env->img, env->color, stripe, y);
 					y++;
 				}
@@ -54,19 +54,19 @@ void	ft_sort(int *order, double *dist, int num)
 	int		i;
 	int		temp;
 	double	temp2;
-	int		s;
+	//int		s;
 
-	s = -1;
+	//s = -1;
 	i = 0;
-	while (++s < num * 4)
-	{
+	//while (++s < num * 4)
+	//{
 		while (i < num - 1)
 		{
 			if (dist[i] < dist[i + 1])
 			{
 				temp2 = dist[i + 1];
-				dist[i + 1] = dist[i];//(dist[i] < 0 ? fabs(dist[i]) + 2 : dist[i]);
-				dist[i] = temp2;//(temp2 < 0 ? fabs(temp2) + 2 : temp2);
+				dist[i + 1] = dist[i];
+				dist[i] = temp2;
 				temp = order[i + 1];
 				order[i + 1] = order[i];
 				order[i] = temp;
@@ -75,7 +75,7 @@ void	ft_sort(int *order, double *dist, int num)
 			else
 				i++;
 		}
-	}
+	//}
 }
 
 void		ft_order_sprite(t_env *env)

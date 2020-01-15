@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 18:34:46 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 18:47:39 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,24 @@ void	ft_sort(int *order, double *dist, int num)
 	int		i;
 	int		temp;
 	double	temp2;
-	//int		s;
 
-	//s = -1;
 	i = 0;
-	//while (++s < num * 4)
-	//{
-		while (i < num - 1)
+
+	while (i < num - 1)
+	{
+		if (dist[i] < dist[i + 1])
 		{
-			if (dist[i] < dist[i + 1])
-			{
-				temp2 = dist[i + 1];
-				dist[i + 1] = dist[i];
-				dist[i] = temp2;
-				temp = order[i + 1];
-				order[i + 1] = order[i];
-				order[i] = temp;
-				i = 0;
-			}
-			else
-				i++;
+			temp2 = dist[i + 1];
+			dist[i + 1] = dist[i];
+			dist[i] = temp2;
+			temp = order[i + 1];
+			order[i + 1] = order[i];
+			order[i] = temp;
+			i = 0;
 		}
-	//}
+		else
+			i++;
+	}
 }
 
 void		ft_order_sprite(t_env *env)
@@ -142,8 +138,8 @@ void	init_sprite(t_env *env)
 
 void	ft_sprite_calc(t_env *env, int i)
 {
-	env->sp.spcamx = env->tab_sprite[i].pos_x - env->pos.x; 
-	env->sp.spcamy = env->tab_sprite[i].pos_y - env->pos.y;; 
+	env->sp.spcamx = env->tab_sprite[env->sp_order[i]].pos_x - env->pos.x; 
+	env->sp.spcamy = env->tab_sprite[env->sp_order[i]].pos_y - env->pos.y;; 
 
  	double inv = 1.0 / (env->plane.x * env->dir.y - env->dir.x * env->plane.y); //required for correct matrix multiplication
 

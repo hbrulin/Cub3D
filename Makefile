@@ -6,7 +6,7 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2020/01/15 16:40:47 by hbrulin          ###   ########.fr        #
+#    Updated: 2020/01/15 17:49:15 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,7 @@ make_mlx:
 	@make -C $(MLXDIR)
 
 $(NAME): $(OBJ) make_ft make_mlx
-	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME) -g
+	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME) -g -fsanitize=address
 	@echo "$(NAME) created"
 
 $(BUILD_DIR)/%.o: %.c Makefile

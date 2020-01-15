@@ -1,4 +1,4 @@
-R 6000 6000
+R 600 500
 NO ./textures/Spearreswalls/4.xpm
 SO ./textures/Spearreswalls/182.xpm
 WE ./textures/Spearreswalls/25.xpm

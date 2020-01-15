@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 16:44:01 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 17:52:16 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,6 @@ int	deal_exit(t_env *env)
 		free(env->data.C);
 	if (env->data.SP)
 		free(env->data.SP);
-
-	//if (env->tab_sprite)
-	//	free(env->tab_sprite);
-	//if (env->sp_order)
-	//	free(env->sp_order);
-	//if (env->sp_distance)
-	//	free(env->sp_distance);
 
 	if (env->img)
 	{
@@ -133,13 +126,14 @@ int		ft_run(t_env *env)
 		return (IMG_FAIL);
 	ft_move(env);
 	ft_disp_screen(env);
-	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
 	if (env->flag_save == 1)
 	{
 		if ((error = ft_save(env)) != SUCCESS)
 			return(error);
-		env->flag_save = 2;
+		//env->flag_save = 2;
+		deal_exit(env);
 	}
+	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
 	return (SUCCESS);
 }
 
@@ -147,6 +141,8 @@ int		ft_run(t_env *env)
 int		events(t_env *env)
 {
 	int error;
+	if(!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D")))
+		return (MLX_FAIL);
 	mlx_hook(env->win_ptr, 17, StructureNotifyMask, deal_exit, env);
 	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, ft_key_hit, env);
 	mlx_hook(env->win_ptr, KEYRELEASE, KEYRELEASEMASK, ft_key_release, env);

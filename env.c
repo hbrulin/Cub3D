@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 19:27:47 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 17:47:58 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ int	init_env(t_env *env)
 		env->height = MAX_HEIGHT;
 	if(!(env->mlx_ptr =  mlx_init()))
 		return(MLX_FAIL);
-	if(!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D")))
-		return (MLX_FAIL);
+	//if(!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D")))
+	//	return (MLX_FAIL);
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL);
 	if ((error = ft_init(env)) != SUCCESS)

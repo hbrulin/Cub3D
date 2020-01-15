@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 18:02:02 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:18:12 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ int		ft_read(t_env *env, int fd)
 	}
 	free(line);
 	if (!env->data.R || !env->data.n || !env->data.s || !env->data.w || !env->data.e || !env->data.sp || !env->data.F || !env->data.C || !env->map.list)
-		return (INVALID_ARG);
+		return (WRONG_INPUT);
 
 	//path fix
 	int i = 0;

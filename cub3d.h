@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 19:01:41 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:15:45 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef	enum	e_error
 	SUCCESS,
 	INVALID_ARG,
 	WRONG_MAP,
+	WRONG_INPUT,
 	MALLOC_FAIL,
 	IMG_FAIL,
 	OPEN_ERR,

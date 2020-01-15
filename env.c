@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 19:06:02 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:24:57 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,11 +76,6 @@ int	ft_init(t_env *env)
 	if (!(env->zbuffer = malloc(sizeof(double) * env->width)))
 		return (MALLOC_FAIL);
 
-	env->tex1 = NULL;
-	env->tex2 = NULL;
-	env->tex3 = NULL;
-	env->tex4 = NULL;
-	env->sprite = NULL;
 	if((env->tex1 = ft_new_tex(env, env->data.NO)) == NULL)
 		return (WRONG_TEX);
 	if((env->tex2 = ft_new_tex(env, env->data.SO)) == NULL)
@@ -119,7 +114,6 @@ int	init_env(t_env *env)
 		return(MLX_FAIL);
 	//if(!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D")))
 	//	return (MLX_FAIL);
-	env->img = NULL;
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL);
 	if ((error = ft_init(env)) != SUCCESS)

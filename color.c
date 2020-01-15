@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/13 18:06:44 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 19:18:43 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling)
 
 	//c'est quoi cette condition
 	if ((!color_floor->rgb.r && color_floor->rgb.r != 0) || (!color_floor->rgb.g && color_floor->rgb.g != 0) || (!color_floor->rgb.b && color_floor->rgb.b != 0)) //autre chose a verifier quand a mauvais input (genre si pas de virgule entre les valeurs dans le doc map)
-		return (INVALID_ARG);
+		return (WRONG_INPUT);
 	if (color_floor->rgb.r > 255 || color_floor->rgb.r < 0 || color_floor->rgb.g > 255 || color_floor->rgb.g < 0 || color_floor->rgb.b > 255 || color_floor->rgb.b < 0 )
-		return (INVALID_ARG);
+		return (WRONG_INPUT);
 
 	i = 0;
 	while (!ft_isdigit(env->data.C[i]))
@@ -48,9 +48,9 @@ int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling)
 	
 	//c'est quoi cette condition??
 	if ((!color_ceiling->rgb.r && color_ceiling->rgb.r != 0) || (!color_ceiling->rgb.g && color_ceiling->rgb.g != 0) || (!color_ceiling->rgb.b && color_ceiling->rgb.b != 0))
-		return (INVALID_ARG);
+		return (WRONG_INPUT);
 	if (color_ceiling->rgb.r > 255 || color_ceiling->rgb.r < 0 || color_ceiling->rgb.g > 255 || color_ceiling->rgb.g < 0 || color_ceiling->rgb.b > 255 || color_ceiling->rgb.b < 0 )
-		return (INVALID_ARG);
+		return (WRONG_INPUT);
 	
 	return (SUCCESS);
 }

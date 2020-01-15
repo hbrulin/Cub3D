@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 16:43:55 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:46:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	add_sprite(t_env *env)
 					d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
 					texY = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
 					env->color = env->sprite->tex_data[env->sprite->width * texY + texX];
-					if(env->color != PINK)
+					if(env->color != PINK) //ici potentielle condition manquante pour fix pb sprites qui bougent
 						ft_put_pixel(env->img, env->color, stripe, y);
 					y++;
 				}

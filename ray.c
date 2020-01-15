@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 13:44:48 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/15 16:51:14 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	ft_init_ray(t_env *env, int x)
 {
-	env->camera = 2 * x / (double)(env->height) - 1;
+	env->camera = 2 * x / (double)(env->width) - 1;
 	env->rpos.x = env->pos.x;
 	env->rpos.y = env->pos.y;
 	env->rdir.x = env->dir.x + env->plane.x * env->camera;

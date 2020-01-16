@@ -6,15 +6,16 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 12:59:31 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:14:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include <stdio.h> //remove
 
 void	init_var(t_env *env)
 {
+	env->mlx_ptr = NULL;
+	env->win_ptr = NULL;
 	env->img = NULL;
 	env->tab_sprite = NULL;
 	env->tex1 = NULL;
@@ -25,10 +26,20 @@ void	init_var(t_env *env)
 	env->zbuffer = NULL;
 	env->sp_order = NULL;
 	env->sp_distance = NULL;
-	env->map.tab_map = NULL; //ajout a verif
-	env->map.list = NULL; // ajout a verif
-
-	//+data 
+	env->map.tab_map = NULL; 
+	env->map.list = NULL;
+	env->flag_save = 0;
+	env->speed = 0.1;
+	env->move.up = 0;
+	env->move.down = 0;
+	env->move.left = 0;
+	env->move.right = 0;
+	env->move.strafl = 0;
+	env->move.strafr = 0;
+	
+	
+	
+	//+data set NULL??
 }
 
 int ft_error(int error, t_env *env)
@@ -62,7 +73,6 @@ int main(int argc, char **argv)
  	t_env env;
  	int		error;
 	init_var(&env);
-	env.flag_save = 0;
  	if (argc != 2 && argc != 3)
  		return (ft_error(INVALID_ARG, &env));
 	if (argc == 3 && (ft_strncmp(argv[2], "-save", ft_strlen(argv[2])) == 0))

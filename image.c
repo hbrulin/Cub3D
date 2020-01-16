@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 12:23:00 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 13:02:49 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y)
 static int	ft_disp_col(t_env *env, int x)
 {
 	int	y;
-	//int error;
 
 	y = 0;
 	while (y < env->wstart)

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/14 19:03:34 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 13:02:42 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	ft_save(t_env *env)
 	unsigned char *img_header;
 	int fd;
 	int error;
-	height = env->height - 1; // -1 ???
+	height = env->height; //-1?
 	width = env->width;
 	int pad = (4 - ((int)env->width * 3) % 4) % 4; // car il faut nb de byte multiple de 4
 

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 19:12:10 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:16:19 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,17 +83,17 @@ int	deal_exit(t_env *env)
 int	ft_key_hit	(int key, t_env *env)
 {
 	if (key == KEY_UP || key == KEY_W)
-		env->up = 1;
+		env->move.up = 1;
 	if (key == KEY_DOWN || key == KEY_S)
-		env->down = 1;
+		env->move.down = 1;
 	if (key == KEY_LEFT)
-		env->left = 1;
+		env->move.left = 1;
 	if (key == KEY_A)
-		env->strafl = 1;
+		env->move.strafl = 1;
 	if (key == KEY_RIGHT)
-		env->right = 1; 
+		env->move.right = 1; 
 	if (key == KEY_D)
-		env->strafr = 1;
+		env->move.strafr = 1;
 	if (key == KEY_ESCAPE)
 		deal_exit(env);
 	return (SUCCESS);
@@ -102,17 +102,17 @@ int	ft_key_hit	(int key, t_env *env)
 int		ft_key_release(int key, t_env *env)
 {
 	if (key == KEY_UP || key == KEY_W)
-		env->up = 0;
+		env->move.up = 0;
 	if (key == KEY_DOWN || key == KEY_S)
-		env->down = 0;
+		env->move.down = 0;
 	if (key == KEY_LEFT)
-		env->left = 0;
+		env->move.left = 0;
 	if (key == KEY_A)
-		env->strafl = 0;
+		env->move.strafl = 0;
 	if (key == KEY_RIGHT)
-		env->right = 0; 
+		env->move.right = 0; 
 	if (key == KEY_D)
-		env->strafr = 0;
+		env->move.strafr = 0;
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 12:23:43 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:12:52 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,42 +21,34 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-#include <string.h>
+# include <string.h>
 
-/*
-# define COLOR_NORTH 0x116CC7
-# define COLOR_SOUTH 0xDD985C
-# define COLOR_EAST 0xA91101
-# define COLOR_WEST 0xEFD242*/
-
-# define SCREEN_PATH	"screen.bmp"
+# define SCREEN_PATH		"screen.bmp"
 # define FILE_HEADER_SIZE	14
 # define IMG_HEADER_SIZE	40
-# define	BYTES_PER_PIX	3
-# define COMPRESSION	24
-
-# define MAX_WIDTH	2560
-#define MAX_HEIGHT 1440
-
-#define PINK 9961608
+# define BYTES_PER_PIX		3
+# define COMPRESSION		2
+# define MAX_WIDTH			2560
+# define MAX_HEIGHT 		1440
+# define PINK 				9961608
 
 
-typedef struct	s_rgb
+typedef struct				s_rgb
 {
-		unsigned char	b;
-		unsigned char	g;
-		unsigned char	r;
-		unsigned char	a;
-}				t_rgb;
+	unsigned char			b;
+	unsigned char			g;
+	unsigned char			r;
+	unsigned char			a;
+}							t_rgb;
 
-typedef union	u_color
+typedef union				u_color
 {
-		unsigned int	all;
-		char			tab[4];
-		t_rgb			rgb;
-}				t_color;
+	unsigned int			all;
+	char					tab[4];
+	t_rgb					rgb;
+}							t_color;
 
-typedef	enum	e_error
+typedef	enum				e_error
 {
 	SUCCESS,
 	INVALID_ARG,
@@ -68,112 +60,121 @@ typedef	enum	e_error
 	MLX_FAIL,
 	WRITE_FAIL,
 	WRONG_TEX
-}				t_error;
+}							t_error;
 
-typedef struct s_pos
+typedef struct				s_pos
 {
-	double x;
-	double y;
-}				t_pos;
+	double					x;
+	double					y;
+}							t_pos;
 
-typedef	struct s_map
+typedef	struct				s_map
 {
-	char **tab_map;
-	t_list	*list;
-	int	nb_line;
-	int nb_char;
-	char	player;
-}				t_map;
+	char					**tab_map;
+	t_list					*list;
+	int						nb_line;
+	int						nb_char;
+	char					player;
+}							t_map;
 
-typedef struct s_img
+typedef struct				s_img
 {
-	void	*img_ptr;
-	int		*img_data;
-	int		bpp;
-	int		size_line;
-	int		endian;
-	int		width;
-	int		height;
-}				t_img;
+	void					*img_ptr;
+	int						*img_data;
+	int						bpp;
+	int						size_line;
+	int						endian;
+	int						width;
+	int						height;
+}							t_img;
 
-typedef struct s_data
+typedef struct				s_data
 {
-	char *R;
-	char *NO;
-	char *n;
-	char *SO;
-	char *s;
-	char *WE;
-	char *w;
-	char *EA;
-	char *e;
-	char *SP;
-	char *sp;
-	char *F;
-	char *C;
+	char					*R;
+	char					*NO;
+	char					*n;
+	char					*SO;
+	char					*s;
+	char					*WE;
+	char					*w;
+	char					*EA;
+	char					*e;
+	char					*SP;
+	char					*sp;
+	char					*F;
+	char					*C;
+}							t_data;
 
-}			t_data;
-
-typedef	struct s_tex
+typedef	struct				s_tex
 {
-	void	*tex_ptr;
-	int	*tex_data;
-	int	bpp;
-	int	size_line;
-	int	endian;
-	int	width;
-	int	height;
-}				t_tex;
+	void					*tex_ptr;
+	int						*tex_data;
+	int						bpp;
+	int						size_line;
+	int						endian;
+	int						width;
+	int						height;
+}							t_tex;
 
-typedef struct	s_sprite
+typedef struct				s_sprite
 {
-	double pos_x;
-	double pos_y;
-}				t_sprite;
+	double					pos_x;
+	double					pos_y;
+}							t_sprite;
 
-typedef struct	s_spdata
+typedef struct				s_spdata
 {
-	double sp_dist;
-	double spcamx;
-	double spcamy;
-	double transx;
-	double transy;
-	int spriteScreenX;
-	int spriteHeight;
-	int	drawStartY;
-	int drawEndY;
-	int spriteWidth;
-	int drawStartX;
-	int drawEndX;
-}				t_spdata;
+	double					sp_dist;
+	double					spcamx;
+	double					spcamy;
+	double					transx;
+	double					transy;
+	int						spriteScreenX;
+	int						spriteHeight;
+	int						drawStartY;
+	int						drawEndY;
+	int						spriteWidth;
+	int						drawStartX;
+	int						drawEndX;
+}							t_spdata;
 
-
-typedef	struct s_env
+typedef struct				s_move
 {
-	void *mlx_ptr;
-	void *win_ptr;
-	int		width;
-	int		height;
-	t_map	map;
-	t_img	*img;
-	t_pos 	pos;
-	t_pos	dir;
-	t_pos	plane;
-	t_pos	step;
-	t_pos	rpos;
-	t_pos	rdir;
-	t_pos	rdisd;
-	t_pos	rdist;
-	t_data	data;
-	t_spdata	sp;
-	t_sprite	*tab_sprite;
-	double	speed;
-	int up;
-	int down;
-	int left;
-	int right;
-	int strafl;
-	int strafr;
+	int						up;
+	int						down;
+	int						left;
+	int						right;
+	int						strafl;
+	int						strafr;
+}							t_move;
+
+
+typedef	struct				s_env
+{
+	void					*mlx_ptr;
+	void					*win_ptr;
+	int						width;
+	int						height;
+	t_map					map;
+	t_img					*img;
+	t_pos					pos;
+	t_pos					dir;
+	t_pos					plane;
+	t_pos					step;
+	t_pos					rpos;
+	t_pos					rdir;
+	t_pos					rdisd;
+	t_pos					rdist;
+	t_data					data;
+	t_move					move;
+	t_spdata				sp;
+	t_sprite				*tab_sprite;
+	t_tex					*tex1;
+	t_tex					*tex2;
+	t_tex					*tex3;
+	t_tex					*tex4;
+	t_tex					*sprite;
+	double					speed;
 	int wall;
 	unsigned int color;
 	int wstart;
@@ -183,11 +184,6 @@ typedef	struct s_env
 	double rh;
 	int rmap_x;
 	int rmap_y;
-	t_tex *tex1;
-	t_tex *tex2;
-	t_tex *tex3;
-	t_tex *tex4;
-	t_tex *sprite;
 	int tex_x;
 	int tex_y;
 	double step_tex;

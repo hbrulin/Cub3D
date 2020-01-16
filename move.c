@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:07:10 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 18:00:26 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:15:35 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,32 +33,32 @@ void	ft_rotate(t_env *env, int advance)
 
 void	ft_move(t_env *env)
 {
-	if (env->up == 1)
+	if (env->move.up == 1)
 	{	
 		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x + env->dir.x * env->speed)] == '0')
 			env->pos.x += env->dir.x * env->speed;
 		if (env->map.tab_map[(int)(env->pos.y + env->dir.y * env->speed)][(int)(env->pos.x)] == '0')
 			env->pos.y += env->dir.y * env->speed;
 	}
-	if (env->strafr == 1)
+	if (env->move.strafr == 1)
 	{
 		if (env->map.tab_map[(int)(env->pos.y - env->dir.x * env->speed)][(int)(env->pos.x)] == '0')
 			env->pos.y += -env->dir.x * env->speed;
 		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x + env->dir.y * env->speed)] == '0')
 			env->pos.x += env->dir.y * env->speed;
 	}
-	if (env->strafl == 1)
+	if (env->move.strafl == 1)
 	{
 		if (env->map.tab_map[(int)(env->pos.y + env->dir.x * env->speed)][(int)(env->pos.x)] == '0')
 			env->pos.y -= -env->dir.x * env->speed;
 		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x - env->dir.y * env->speed)] == '0')
 			env->pos.x -= env->dir.y * env->speed;
 	}
-	if (env->left == 1)
+	if (env->move.left == 1)
 		ft_rotate(env, 1);
-	if (env->right == 1)
+	if (env->move.right == 1)
 		ft_rotate(env, -1);
-	if (env->down == 1)
+	if (env->move.down == 1)
 	{
 		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x - env->dir.x * env->speed)] == '0')
 			env->pos.x -= env->dir.x * env->speed;

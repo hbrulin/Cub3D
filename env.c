@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 19:24:57 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 11:55:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_init(t_env *env)
 	env->flag_save = 0;
 
 	//suppr si pas necessaire
-	env->sp.spcamx = 0;
+	/*env->sp.spcamx = 0;
 	env->sp.spcamy = 0;
 	env->sp.transx = 0;
 	env->sp.transy = 0;
@@ -71,7 +71,7 @@ int	ft_init(t_env *env)
 	env->sp.drawEndY = 0;
 	env->sp.spriteWidth = 0;
 	env->sp.drawStartX = 0;
-	env->sp.drawEndX = 0;
+	env->sp.drawEndX = 0;*/
 
 	if (!(env->zbuffer = malloc(sizeof(double) * env->width)))
 		return (MALLOC_FAIL);
@@ -101,11 +101,13 @@ int	init_env(t_env *env)
 		i++;
 	if(!(tab = ft_split(env->data.R + i, ' ')))
 		return (MALLOC_FAIL);
-	env->width = ft_atoi(tab[0]);
-	env->height = ft_atoi(tab[1]);
+	if (tab[0])
+		env->width = ft_atoi(tab[0]);
+	if (tab[1])
+		env->height = ft_atoi(tab[1]);
 	ft_tabdel((void **)tab); //attention possible leak ici avec mon split, verifier mon tabdel
 	if (!env->width || !env->height)
-		return (INVALID_ARG);
+		return (WRONG_INPUT);
 	if (env->width > MAX_WIDTH)
 		env->width = MAX_WIDTH;
 	if (env->height > MAX_HEIGHT)

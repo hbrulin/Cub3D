@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:42:38 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 16:54:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define FILE_HEADER_SIZE	14
 # define IMG_HEADER_SIZE	40
 # define BYTES_PER_PIX		3
-# define COMPRESSION		2
+# define COMPRESSION		24
 # define MAX_WIDTH			2560
 # define MAX_HEIGHT 		1440
 # define PINK				9961608

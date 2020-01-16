@@ -6,13 +6,13 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:41:59 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:42:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:15:51 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int ft_error(int error, t_env *env)
+int	ft_error(int error, t_env *env)
 {
 	if (error == INVALID_ARG)
 		ft_putstr("Error\n Invalid argument");

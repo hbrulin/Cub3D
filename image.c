@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 16:40:03 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 12:23:00 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,11 @@ void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y)
 static int	ft_disp_col(t_env *env, int x)
 {
 	int	y;
-	int error;
+	//int error;
 
-	t_color color_floor;
-	t_color color_ceiling;
-	if ((error = get_color(env, &color_floor, &color_ceiling)) != SUCCESS)
-		return(error);
 	y = 0;
 	while (y < env->wstart)
-		ft_put_pixel(env->img, color_ceiling.all, x, y++);
+		ft_put_pixel(env->img, env->color_ceiling.all, x, y++);
 	while (y >= env->wstart && y <= env->wend)
 	{
 		env->tex_y = (int)env->tex_pos & (64 - 1);
@@ -41,7 +37,7 @@ static int	ft_disp_col(t_env *env, int x)
 		y++;
 	}
 	while (y < env->height)
-		ft_put_pixel(env->img, color_floor.all, x, y++);
+		ft_put_pixel(env->img, env->color_floor.all, x, y++);
 	return (SUCCESS);
 }
 

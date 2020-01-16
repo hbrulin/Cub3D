@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 19:15:45 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 12:23:43 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,21 @@
 
 #define PINK 9961608
 
+
+typedef struct	s_rgb
+{
+		unsigned char	b;
+		unsigned char	g;
+		unsigned char	r;
+		unsigned char	a;
+}				t_rgb;
+
+typedef union	u_color
+{
+		unsigned int	all;
+		char			tab[4];
+		t_rgb			rgb;
+}				t_color;
 
 typedef	enum	e_error
 {
@@ -183,24 +198,10 @@ typedef	struct s_env
 	int nb_sprite;
 	int *sp_order;
 	double *sp_distance;
+	t_color color_floor;
+	t_color color_ceiling;
 
 }				t_env;
-
-typedef struct	s_rgb
-{
-		unsigned char	b;
-		unsigned char	g;
-		unsigned char	r;
-		unsigned char	a;
-}				t_rgb;
-
-typedef union	u_color
-{
-		unsigned int	all;
-		char			tab[4];
-		t_rgb			rgb;
-}				t_color;
-
 
 
 int				get_map(t_env *env, char *file);
@@ -230,5 +231,6 @@ char	*ft_strdup_no_space(const char *s);
 void	init_sprite(t_env *env);
 void	add_sprite(t_env *env);
 void	ft_sprite_calc(t_env *env, int i);
+size_t tab_size(char **tab);
 
 #endif

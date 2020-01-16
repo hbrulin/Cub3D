@@ -6,11 +6,20 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 13:48:09 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 14:29:53 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 12:12:02 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3D.h"
+
+size_t tab_size(char **tab)
+{
+	size_t i; 
+	i = 0;
+	while (tab[i])
+		i++;
+	return(i);
+}
 
 char	*ft_strcpy_no_space(char *dst, const char *src)
 {

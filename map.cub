@@ -1,10 +1,10 @@
-R 600 -500
+R 600 500
 NO ./textures/Spearreswalls/4.xpm
 SO ./textures/Spearreswalls/182.xpm
 WE ./textures/Spearreswalls/25.xpm
 EA ./textures/Spearreswalls/35.xpm
 S ./textures/Spearressprites/10.xpm
-F 255,160, 0
+F 255, 150, 150
 C 75, 69, 148
 
 11111111111111111111111111111 11111111111111111111111111111

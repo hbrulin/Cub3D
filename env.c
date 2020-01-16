@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 11:59:48 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 12:21:52 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,9 @@ int	init_env(t_env *env)
 	int i;
 	char **tab;
 	int error;
+
+	if ((error = get_color(env, &env->color_floor, &env->color_ceiling)) != SUCCESS)
+		return(error);
 
 	i = 0;
 	while (!ft_isdigit(env->data.R[i]))

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:37:30 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 17:22:58 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ unsigned char *create_file_header(t_env *env, int pad)
 	file_size = 54 + (BYTES_PER_PIX * ((int)env->width + pad) * (int)env->height);
 
 	file_header[0] = (unsigned char)('B');
-	file_header[1] = (unsigned char)('M'); //A
+	file_header[1] = (unsigned char)('M');
 	set_in_char(file_header + 2, file_size);
 	set_in_char(file_header + 10, FILE_HEADER_SIZE + IMG_HEADER_SIZE);
 	return(file_header);
@@ -87,7 +87,7 @@ int	ft_save(t_env *env)
 	unsigned char *img_header;
 	int fd;
 	int error;
-	height = env->height; //-1?
+	height = env->height - 1; //-1?
 	width = env->width;
 	int pad = (4 - ((int)env->width * 3) % 4) % 4; // car il faut nb de byte multiple de 4
 

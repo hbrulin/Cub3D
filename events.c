@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:16:19 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 17:20:19 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int		ft_key_release(int key, t_env *env)
 
 int		ft_run(t_env *env)
 {
-	int error;
+	//int error;
 	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
 	free(env->img);
 	env->img= NULL;
@@ -126,13 +126,6 @@ int		ft_run(t_env *env)
 		return (IMG_FAIL);
 	ft_move(env);
 	ft_disp_screen(env);
-	if (env->flag_save == 1)
-	{
-		if ((error = ft_save(env)) != SUCCESS)
-			return(error);
-		//env->flag_save = 2;
-		deal_exit(env);
-	}
 	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
 	return (SUCCESS);
 }

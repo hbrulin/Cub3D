@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 17:49:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 18:17:29 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,7 @@ typedef	enum				e_error
 	OPEN_ERR,
 	MLX_FAIL,
 	WRITE_FAIL,
-	WRONG_TEX,
-	SAVE
+	WRONG_TEX
 }							t_error;
 
 typedef struct				s_pos
@@ -233,8 +232,10 @@ void			init_sprite(t_env *env);
 void			add_sprite(t_env *env);
 void			ft_sprite_calc(t_env *env, int i);
 size_t			tab_size(char **tab);
-void			init_var(t_env *env);
 int				ft_error(int error, t_env *env);
-char			*ft_realloc_no_space(char *src);
+char			*ft_realloc(char *src);
+int				init_var(t_env *env, char *s);
+int				launch_save(t_env *env);
+int				init_flag_save(t_env *env, int argc, char *s);
 
 #endif

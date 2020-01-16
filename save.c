@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 17:22:58 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 18:10:40 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,5 +111,16 @@ int	ft_save(t_env *env)
 		return (error);
 	}
 	close(fd);
+	return (SUCCESS);
+}
+
+int launch_save(t_env *env)
+{
+	int error;
+
+	ft_disp_screen(env);
+	if ((error = ft_save(env)) != SUCCESS)
+		return(error);
+	deal_exit(env);
 	return (SUCCESS);
 }

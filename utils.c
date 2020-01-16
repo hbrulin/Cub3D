@@ -6,11 +6,19 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 13:48:09 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 12:12:02 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 17:44:50 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cub3D.h"
+
+char	*ft_realloc(char *src)
+{
+	char *dst;
+	dst = ft_strdup(src);
+	free(src);
+	return(dst);
+}
 
 size_t tab_size(char **tab)
 {

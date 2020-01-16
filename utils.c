@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/15 13:48:09 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 17:44:50 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 17:57:44 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 char	*ft_realloc(char *src)
 {
 	char *dst;
-	dst = ft_strdup(src);
+	if(!(dst = ft_strdup(src)))
+		return (NULL);
 	free(src);
 	return(dst);
 }

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 18:47:39 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:28:06 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ void	add_sprite(t_env *env)
 {
 	int i;
 	int stripe;
-	int texX = 0;
+	int sp_x = 0;
 	int y = 0;
 	int d = 0;
-	int texY = 0;
+	int sp_y = 0;
 
 	i = -1;
 	while (++i < env->nb_sprite)
@@ -30,15 +30,15 @@ void	add_sprite(t_env *env)
 		stripe = env->sp.drawStartX;
 		while(stripe < env->sp.drawEndX)
 		{
-			texX = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth / 256);
+			sp_x = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth / 256);
 			y= env->sp.drawStartY;
 			if (env->sp.transy > 0 && stripe > 0 && stripe < env->width && env->sp.transy < env->zbuffer[stripe])
 			{
 				while (y < env->sp.drawEndY)
 				{
 					d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
-					texY = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
-					env->color = env->sprite->tex_data[env->sprite->width * texY + texX];
+					sp_y = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
+					env->color = env->sprite->tex_data[env->sprite->width * sp_y + sp_x];
 					if(env->color != PINK) 
 						ft_put_pixel(env->img, env->color, stripe, y);
 					y++;

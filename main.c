@@ -6,12 +6,13 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:14:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:20:28 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+//file init.c
 void	init_var(t_env *env)
 {
 	env->mlx_ptr = NULL;
@@ -37,6 +38,24 @@ void	init_var(t_env *env)
 	env->move.strafl = 0;
 	env->move.strafr = 0;
 	
+	//suppr si pas necessaire
+	env->tex_x = 0;
+	env->tex_y = 0;
+	env->step_tex = 0;
+	env->tex_pos = 0;
+
+		//necessaire si 0 sprite?
+	/*env->sp.spcamx = 0;
+	env->sp.spcamy = 0;
+	env->sp.transx = 0;
+	env->sp.transy = 0;
+	env->sp.spriteScreenX = 0;
+	env->sp.spriteHeight = 0;
+	env->sp.drawStartY = 0;
+	env->sp.drawEndY = 0;
+	env->sp.spriteWidth = 0;
+	env->sp.drawStartX = 0;
+	env->sp.drawEndX = 0;*/
 	
 	
 	//+data set NULL??

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:12:52 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:26:33 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,12 @@ typedef struct				s_pos
 	double					x;
 	double					y;
 }							t_pos;
+
+typedef struct				s_pos_i
+{
+	int						x;
+	int						y;
+}							t_pos_i;
 
 typedef	struct				s_map
 {
@@ -155,6 +161,7 @@ typedef	struct				s_env
 	void					*win_ptr;
 	int						width;
 	int						height;
+	int						flag_save;
 	t_map					map;
 	t_img					*img;
 	t_pos					pos;
@@ -165,8 +172,11 @@ typedef	struct				s_env
 	t_pos					rdir;
 	t_pos					rdisd;
 	t_pos					rdist;
+	t_pos_i					rmap;
 	t_data					data;
 	t_move					move;
+	t_color					color_floor;
+	t_color					color_ceiling;
 	t_spdata				sp;
 	t_sprite				*tab_sprite;
 	t_tex					*tex1;
@@ -175,27 +185,22 @@ typedef	struct				s_env
 	t_tex					*tex4;
 	t_tex					*sprite;
 	double					speed;
-	int wall;
-	unsigned int color;
-	int wstart;
-	int wend; 
-	double camera;
-	int hit;
+	int						wall;
+	unsigned int			color;
+	int						wstart;
+	int						wend; 
+	double					camera;
+	int						hit;
 	double rh;
-	int rmap_x;
-	int rmap_y;
 	int tex_x;
 	int tex_y;
 	double step_tex;
 	double tex_pos;
-	int flag_save;
 	double *zbuffer;
 	double dist;
 	int nb_sprite;
 	int *sp_order;
 	double *sp_distance;
-	t_color color_floor;
-	t_color color_ceiling;
 
 }				t_env;
 

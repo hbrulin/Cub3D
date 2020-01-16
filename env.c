@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 12:21:52 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 12:59:47 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ int	ft_init(t_env *env)
 	env->tex_y = 0;
 	env->step_tex = 0;
 	env->tex_pos = 0;
-	env->flag_save = 0;
 
 	//suppr si pas necessaire
 	/*env->sp.spcamx = 0;

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 11:47:51 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 12:42:03 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,19 +95,19 @@ int		ft_read(t_env *env, int fd)
 			i++;
 		if (line[i] == 'R')
 			env->data.R = ft_strdup(line + i);
-		if (line[i] == 'N' && line[1] == 'O')
+		if (line[i] == 'N' && line[i + 1] == 'O')
 			env->data.n = ft_strdup(line + i);
-		if (line[i] == 'S' && line[1] == 'O')
+		if (line[i] == 'S' && line[i + 1] == 'O')
 			env->data.s = ft_strdup(line + i);
-		if (line[i] == 'W' && line[1] == 'E')
+		if (line[i] == 'W' && line[i + 1] == 'E')
 			env->data.w = ft_strdup(line + i);
-		if (line[i] == 'E' && line[1] == 'A')
+		if (line[i] == 'E' && line[i + 1] == 'A')
 			env->data.e = ft_strdup(line + i);
-		if (line[i] == 'S' && line[1] == ' ')
+		if (line[i] == 'S' && line[i + 1] == ' ')
 			env->data.sp = ft_strdup(line + i);
-		if (line[i] == 'F' && line[1] == ' ')
+		if (line[i] == 'F' && line[i + 1] == ' ')
 			env->data.F = ft_strdup(line + i);
-		if (line[i] == 'C' && line[1] == ' ')
+		if (line[i] == 'C' && line[i + 1] == ' ')
 			env->data.C = ft_strdup(line + i);
 		else if (ft_isdigit(line[i])) 
 		{

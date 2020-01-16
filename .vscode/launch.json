@@ -10,7 +10,7 @@
 			"type": "cppdbg",
 			"request": "launch",
 			"program": "/Users/hbrulin/Documents/Cub3D/Cub3D",
-			"args": ["map.cub"],
+			"args": ["map.cub", "-save"],
 			"stopAtEntry": false,
 			"cwd": "${workspaceFolder}",
 			"environment": [],

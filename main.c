@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/15 19:34:21 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 12:59:31 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	init_var(t_env *env)
 	env->zbuffer = NULL;
 	env->sp_order = NULL;
 	env->sp_distance = NULL;
-	env->map.tab_map = NULL; //ajout a verifier
+	env->map.tab_map = NULL; //ajout a verif
 	env->map.list = NULL; // ajout a verif
 
 	//+data 
@@ -62,6 +62,7 @@ int main(int argc, char **argv)
  	t_env env;
  	int		error;
 	init_var(&env);
+	env.flag_save = 0;
  	if (argc != 2 && argc != 3)
  		return (ft_error(INVALID_ARG, &env));
 	if (argc == 3 && (ft_strncmp(argv[2], "-save", ft_strlen(argv[2])) == 0))

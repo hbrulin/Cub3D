@@ -6,7 +6,7 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2019/12/10 10:54:51 by hbrulin          ###   ########.fr        #
+#    Updated: 2020/01/16 19:34:47 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS = ft_memset.c ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memchr.c ft_memcmp.c \
 		aff_hex.c ft_putchar.c ft_putstr.c ft_strnew.c ft_strcpy.c \
 		ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c \
 		ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c ft_tabdel.c \
-		ft_uitoa.c get_next_line.c
+		ft_uitoa.c get_next_line.c ft_tab_size.c
 
 INC = libft.h
 CFLAGS = -Wall -Werror -Wextra -MMD

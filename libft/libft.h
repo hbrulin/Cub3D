@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:27:14 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/10 10:57:58 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:35:04 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,5 +79,6 @@ char				*ft_strnew(size_t size);
 void				ft_tabdel(void **tab);
 char				*ft_uitoa(unsigned int n);
 int					get_next_line(int fd, char **line);
+size_t				tab_size(char **tab);
 
 #endif

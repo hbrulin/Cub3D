@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 19:28:05 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:34:21 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,7 +232,6 @@ char			*ft_strdup_no_space(const char *s);
 void			init_sprite(t_env *env);
 void			add_sprite(t_env *env);
 void			ft_sprite_calc(t_env *env, int i);
-size_t			tab_size(char **tab);
 int				ft_error(int error, t_env *env);
 char			*ft_realloc(char *src);
 int				init_var(t_env *env, char *s);

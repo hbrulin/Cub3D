@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:18:34 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:32:13 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int		ft_parser(t_env *env)
 	int flag_n;
 
 	j = 0;
-	env->nb_sprite = 0;
 	k_total = ft_strlen(env->map.tab_map[0]) + ft_strlen(env->map.tab_map[env->map.nb_line - 1]);
 
 	while (env->map.tab_map[0][j])

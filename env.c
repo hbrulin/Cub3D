@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:18:40 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:30:38 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,25 +43,6 @@ int	ft_init(t_env *env)
 		env->plane.x = 0;
 		env->plane.y = 0.80;
 	}
-
-	//suppr si pas necessaire
-	env->tex_x = 0;
-	env->tex_y = 0;
-	env->step_tex = 0;
-	env->tex_pos = 0;
-
-	//suppr si pas necessaire
-	/*env->sp.spcamx = 0;
-	env->sp.spcamy = 0;
-	env->sp.transx = 0;
-	env->sp.transy = 0;
-	env->sp.spriteScreenX = 0;
-	env->sp.spriteHeight = 0;
-	env->sp.drawStartY = 0;
-	env->sp.drawEndY = 0;
-	env->sp.spriteWidth = 0;
-	env->sp.drawStartX = 0;
-	env->sp.drawEndX = 0;*/
 
 	if (!(env->zbuffer = malloc(sizeof(double) * env->width)))
 		return (MALLOC_FAIL);

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 13:02:49 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:30:12 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static int	ft_disp_col(t_env *env, int x)
 		ft_put_pixel(env->img, env->color_ceiling.all, x, y++);
 	while (y >= env->wstart && y <= env->wend)
 	{
-		env->tex_y = (int)env->tex_pos & (64 - 1);
+		env->tex.y = (int)env->tex_pos & (64 - 1);
 		env->tex_pos += env->step_tex;
 		pix_color(env); //definit env->color
 		ft_put_pixel(env->img, env->color, x, y);  //juste cette ligne en v avec couleurs sans tex
@@ -69,7 +69,7 @@ int		ft_disp_screen(t_env *env)
 
 void	pixel_tex(t_tex *tex, t_env *env)
 {
-		env->color = tex->tex_data[tex->width * env->tex_y + env->tex_x];
+		env->color = tex->tex_data[tex->width * env->tex.y + env->tex.x];
 }
 
 void	pix_color(t_env *env)

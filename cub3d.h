@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:26:33 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 15:42:38 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@
 # define COMPRESSION		2
 # define MAX_WIDTH			2560
 # define MAX_HEIGHT 		1440
-# define PINK 				9961608
+# define PINK				9961608
+# define RIGHTS				0644
 
 
 typedef struct				s_rgb
@@ -162,6 +163,7 @@ typedef	struct				s_env
 	int						width;
 	int						height;
 	int						flag_save;
+	int						nb_sprite;
 	t_map					map;
 	t_img					*img;
 	t_pos					pos;
@@ -173,6 +175,7 @@ typedef	struct				s_env
 	t_pos					rdisd;
 	t_pos					rdist;
 	t_pos_i					rmap;
+	t_pos_i					tex;
 	t_data					data;
 	t_move					move;
 	t_color					color_floor;
@@ -191,47 +194,45 @@ typedef	struct				s_env
 	int						wend; 
 	double					camera;
 	int						hit;
-	double rh;
-	int tex_x;
-	int tex_y;
-	double step_tex;
-	double tex_pos;
-	double *zbuffer;
-	double dist;
-	int nb_sprite;
-	int *sp_order;
-	double *sp_distance;
-
+	double					rh;
+	double					step_tex;
+	double					tex_pos;
+	double					dist;
+	double					*zbuffer;
+	int						*sp_order;
+	double					*sp_distance;
 }				t_env;
 
 
 int				get_map(t_env *env, char *file);
 int				ft_parser(t_env *env);
 int				init_env(t_env *env);
-int	get_color(t_env *env, t_color *color_floor, t_color *color_ceiling);
-t_img	*ft_new_image(t_env *env, int width, int height);
-void	fill(t_env *env, unsigned int color_floor, unsigned int color_ceiling);
-void	ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
-int		events(t_env *env);
-void	ft_calc_dir(t_env *env);
-void	ft_move(t_env *env);
-void	ft_ray(t_env *env, int x_img);
-void	ft_launch(t_env *env);
-int		ft_disp_screen(t_env *env);
-void	ft_init_ray(t_env *env, int x);
-void	ft_direction_ray(t_env *env);
-void	ft_hit_ray(t_env *env);
-void	ft_size_ray(t_env *env);
-t_tex	*ft_new_tex(t_env *env, char *file);
-void	pix_color(t_env *env);
-void	add_sprite(t_env *env);
-void	ft_sprite_calc(t_env *env, int i);
-int		ft_save(t_env *env);
-int		deal_exit(t_env *env);
-char	*ft_strdup_no_space(const char *s);
-void	init_sprite(t_env *env);
-void	add_sprite(t_env *env);
-void	ft_sprite_calc(t_env *env, int i);
-size_t tab_size(char **tab);
+int				get_color(t_env *env, t_color *color_floor, t_color *color_ceiling);
+t_img			*ft_new_image(t_env *env, int width, int height);
+void			fill(t_env *env, unsigned int color_floor, unsigned int color_ceiling);
+void			ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
+int				events(t_env *env);
+void			ft_calc_dir(t_env *env);
+void			ft_move(t_env *env);
+void			ft_ray(t_env *env, int x_img);
+void			ft_launch(t_env *env);
+int				ft_disp_screen(t_env *env);
+void			ft_init_ray(t_env *env, int x);
+void			ft_direction_ray(t_env *env);
+void			ft_hit_ray(t_env *env);
+void			ft_size_ray(t_env *env);
+t_tex			*ft_new_tex(t_env *env, char *file);
+void			pix_color(t_env *env);
+void			add_sprite(t_env *env);
+void			ft_sprite_calc(t_env *env, int i);
+int				ft_save(t_env *env);
+int				deal_exit(t_env *env);
+char			*ft_strdup_no_space(const char *s);
+void			init_sprite(t_env *env);
+void			add_sprite(t_env *env);
+void			ft_sprite_calc(t_env *env, int i);
+size_t			tab_size(char **tab);
+void			init_var(t_env *env);
+int				ft_error(int error, t_env *env);
 
 #endif

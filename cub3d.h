@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 16:54:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 17:41:40 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ typedef	enum				e_error
 	OPEN_ERR,
 	MLX_FAIL,
 	WRITE_FAIL,
-	WRONG_TEX
+	WRONG_TEX,
+	SAVE
 }							t_error;
 
 typedef struct				s_pos
@@ -201,7 +202,7 @@ typedef	struct				s_env
 	double					*zbuffer;
 	int						*sp_order;
 	double					*sp_distance;
-}				t_env;
+}							t_env;
 
 
 int				get_map(t_env *env, char *file);

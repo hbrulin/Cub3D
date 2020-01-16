@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:34:56 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 17:22:19 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 17:41:43 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int main(int argc, char **argv)
 {
- 	t_env env;
+ 	t_env	env;
  	int		error;
 	init_var(&env);
  	if (argc != 2 && argc != 3)
@@ -35,6 +35,7 @@ int main(int argc, char **argv)
 		if ((error = ft_save(&env)) != SUCCESS)
 			return(error);
 		deal_exit(&env);
+		return (SAVE);
 	}
  	if ((error = events(&env)) != SUCCESS)
 		return (ft_error(error, &env));

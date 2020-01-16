@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:30:38 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 17:33:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	init_env(t_env *env)
 		env->width = ft_atoi(tab[0]);
 	if (tab[1])
 		env->height = ft_atoi(tab[1]);
-	ft_tabdel((void **)tab); //attention possible leak ici avec mon split, verifier mon tabdel
+	ft_tabdel((void **)tab); 
 	if (!env->width || !env->height || env->width < 0 || env->height < 0)
 		return (WRONG_INPUT);
 	if (env->width > MAX_WIDTH)
@@ -88,8 +88,6 @@ int	init_env(t_env *env)
 		env->height = MAX_HEIGHT;
 	if(!(env->mlx_ptr =  mlx_init()))
 		return(MLX_FAIL);
-	//if(!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D")))
-	//	return (MLX_FAIL);
 	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL);
 	if ((error = ft_init(env)) != SUCCESS)

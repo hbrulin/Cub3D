@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 19:09:47 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:28:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ typedef	struct				s_env
 
 int				get_map(t_env *env, char *file);
 int				ft_parser(t_env *env);
+int				init_flag_save(t_env *env, int argc, char *s);
 int				init_env(t_env *env);
 int				get_color(t_color *color, char *s);
 t_img			*ft_new_image(t_env *env, int width, int height);
@@ -236,6 +237,8 @@ int				ft_error(int error, t_env *env);
 char			*ft_realloc(char *src);
 int				init_var(t_env *env, char *s);
 int				launch_save(t_env *env);
-int				init_flag_save(t_env *env, int argc, char *s);
+void			ft_free_tabs(t_env *env);
+void			ft_free_img(t_env *env);
+void			ft_free_tex(t_env *env, t_tex *tex);
 
 #endif

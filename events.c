@@ -6,73 +6,22 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 17:20:19 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 19:30:02 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "keycode.h"
-#include <stdio.h>
 
-int	deal_exit(t_env *env)
+int		deal_exit(t_env *env)
 {
-	if (env->zbuffer)
-		free(env->zbuffer);
-	if(env->map.tab_map)
-		ft_tabdel((void *)env->map.tab_map);
-	if (env->data.R)
-		free(env->data.R);
-	if (env->data.NO)
-		free(env->data.NO);
-	if (env->data.SO)
-		free(env->data.SO);
-	if (env->data.WE)
-		free(env->data.WE);
-	if (env->data.EA)
-		free(env->data.EA);
-	if (env->data.F)
-		free(env->data.F);
-	if (env->data.C)
-		free(env->data.C);
-	if (env->data.SP)
-		free(env->data.SP);
-
-	if (env->img)
-	{
-		mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
-		free(env->img);
-		env->img = NULL;
-	}
-	if (env->tex1)
-	{
-		mlx_destroy_image(env->mlx_ptr, env->tex1->tex_ptr);
-		free(env->tex1);
-		env->tex1 = NULL;
-	}
-	if (env->tex2)
-	{
-		mlx_destroy_image(env->mlx_ptr, env->tex2->tex_ptr);
-		free(env->tex2);
-		env->tex2 = NULL;
-	}
-	if (env->tex3)
-	{
-		mlx_destroy_image(env->mlx_ptr, env->tex3->tex_ptr);
-		free(env->tex3);
-		env->tex3 = NULL;
-	}
-	if (env->tex4)
-	{
-		mlx_destroy_image(env->mlx_ptr, env->tex4->tex_ptr);
-		free(env->tex4);
-		env->tex4 = NULL;
-	}
-	if (env->sprite)
-	{
-		mlx_destroy_image(env->mlx_ptr, env->sprite->tex_ptr);
-		free(env->sprite);
-		env->sprite = NULL;
-	}
+	ft_free_tabs(env);
+	ft_free_img(env);
+	ft_free_tex(env, env->tex1);
+	ft_free_tex(env, env->tex2);
+	ft_free_tex(env, env->tex3);
+	ft_free_tex(env, env->tex4);
+	ft_free_tex(env, env->sprite);
 	if (env->win_ptr)
 		mlx_destroy_window(env->mlx_ptr, env->win_ptr);
 	if (env->mlx_ptr)
@@ -80,7 +29,7 @@ int	deal_exit(t_env *env)
 	exit(0);
 }
 
-int	ft_key_hit	(int key, t_env *env)
+int		ft_key_hit(int key, t_env *env)
 {
 	if (key == KEY_UP || key == KEY_W)
 		env->move.up = 1;
@@ -91,7 +40,7 @@ int	ft_key_hit	(int key, t_env *env)
 	if (key == KEY_A)
 		env->move.strafl = 1;
 	if (key == KEY_RIGHT)
-		env->move.right = 1; 
+		env->move.right = 1;
 	if (key == KEY_D)
 		env->move.strafr = 1;
 	if (key == KEY_ESCAPE)
@@ -110,7 +59,7 @@ int		ft_key_release(int key, t_env *env)
 	if (key == KEY_A)
 		env->move.strafl = 0;
 	if (key == KEY_RIGHT)
-		env->move.right = 0; 
+		env->move.right = 0;
 	if (key == KEY_D)
 		env->move.strafr = 0;
 	return (SUCCESS);
@@ -118,29 +67,28 @@ int		ft_key_release(int key, t_env *env)
 
 int		ft_run(t_env *env)
 {
-	//int error;
-	mlx_destroy_image(env->mlx_ptr, env->img->img_ptr);
-	free(env->img);
-	env->img= NULL;
-	if((env->img = ft_new_image(env, env->width, env->height)) == NULL)
+	ft_free_img(env);
+	if ((env->img = ft_new_image(env, env->width, env->height)) == NULL)
 		return (IMG_FAIL);
 	ft_move(env);
 	ft_disp_screen(env);
-	mlx_put_image_to_window (env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0, 0);
+	mlx_put_image_to_window(env->mlx_ptr, env->win_ptr, env->img->img_ptr, 0,
+		0);
 	return (SUCCESS);
 }
-
 
 int		events(t_env *env)
 {
 	int error;
-	if(!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height, "Cub3D")))
+
+	if (!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height,
+		"Cub3D")))
 		return (MLX_FAIL);
 	mlx_hook(env->win_ptr, 17, StructureNotifyMask, deal_exit, env);
 	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, ft_key_hit, env);
 	mlx_hook(env->win_ptr, KEYRELEASE, KEYRELEASEMASK, ft_key_release, env);
-	if((error = mlx_loop_hook(env->mlx_ptr, ft_run, env)) != SUCCESS)
-		return(error);
+	if ((error = mlx_loop_hook(env->mlx_ptr, ft_run, env)) != SUCCESS)
+		return (error);
 	mlx_loop(env->mlx_ptr);
-	return(SUCCESS);
+	return (SUCCESS);
 }

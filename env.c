@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 11:55:36 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/16 11:59:48 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	init_env(t_env *env)
 	if (tab[1])
 		env->height = ft_atoi(tab[1]);
 	ft_tabdel((void **)tab); //attention possible leak ici avec mon split, verifier mon tabdel
-	if (!env->width || !env->height)
+	if (!env->width || !env->height || env->width < 0 || env->height < 0)
 		return (WRONG_INPUT);
 	if (env->width > MAX_WIDTH)
 		env->width = MAX_WIDTH;

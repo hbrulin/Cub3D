@@ -6,11 +6,20 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 17:46:39 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 17:47:21 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/17 20:03:24 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	list_map(t_env *env, char *line, size_t *i, t_list *tmp)
+{
+	if(!(tmp->content = ft_strdup_no_space(line + *i)))
+		return (MALLOC_FAIL);
+	tmp->next = 0;
+	ft_lstadd_back(&env->map.list, tmp);
+	return (SUCCESS);
+}
 
 void	ft_free_path(char *s)
 {
@@ -144,26 +153,33 @@ int		get_data(t_env *env, char *line, int i, int *flag_map)
 	return (SUCCESS);
 }
 
+int		pre_check_empty(char *line, size_t *i, int *flag_map)
+{
+	if (ft_strncmp(line, "", 1) == 0 && *flag_map != 0)
+		return (WRONG_INPUT);
+	while (line[*i] == ' ' && line[*i])
+	{
+		*i = *i + 1;
+		if (*i == ft_strlen(line) && *flag_map != 0)
+			return (WRONG_INPUT);
+	}
+	return (SUCCESS);
+}
+
 int		ft_read(t_env *env, int fd)
 {
 	int 	ret;
 	char *line;
 	t_list	*tmp;
-	size_t i;
+	static size_t i;
 	static int flag_map;
 
 	flag_map = 0;
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{	
 		i = 0;
-		if (ft_strncmp(line, "", 1) == 0 && flag_map != 0)
-			return (WRONG_INPUT);
-		while (line[i] == ' ' && line[i])
-		{
-			i++;
-			if (i == ft_strlen(line) && flag_map != 0)
-				return (WRONG_INPUT);
-		}
+		if((env->error = pre_check_empty(line, &i, &flag_map)) != SUCCESS)
+				return(env->error);
 		if (ft_isalpha(line[i]))
 		{
 			if((env->error = get_data(env, line, i, &flag_map)) != SUCCESS)
@@ -174,10 +190,8 @@ int		ft_read(t_env *env, int fd)
 			flag_map++;
 			if(!(tmp = malloc(sizeof(t_list))))
 				return (MALLOC_FAIL);
-			if(!(tmp->content = ft_strdup_no_space(line + i)))
-				return (MALLOC_FAIL);
-			tmp->next = 0;
-			ft_lstadd_back(&env->map.list, tmp);
+			if((env->error = list_map(env, line, &i, tmp)) != SUCCESS)
+				return(env->error);
 		}
 		free(line);
 	}
@@ -186,7 +200,6 @@ int		ft_read(t_env *env, int fd)
 		return(env->error);
 	if((env->error = path_fix(env)) != SUCCESS)
 		return(env->error);
-	
 	return (SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 17:57:14 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/17 16:12:16 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,32 +79,58 @@ int		ft_read(t_env *env, int fd)
 	int 	ret;
 	char *line;
 	t_list	*tmp;
-	int i;
+	size_t i;
+	int flag_map;
+
+	flag_map = 0;
 
 	//comment securiser ca pour que ce soit a la norme?? faire une ft if isalpha
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{	
 		i = 0;
+		if (ft_strncmp(line, "", 1) == 0 && flag_map != 0)
+			return (WRONG_INPUT);
 		while (line[i] == ' ' && line[i])
+		{
 			i++;
-		if (line[i] == 'R')
+			if (i == ft_strlen(line) && flag_map != 0)
+				return (WRONG_INPUT);
+		}
+		if (line[i] == 'R' && flag_map == 0 && env->data.R == NULL)
 			env->data.R = ft_strdup(line + i);
-		if (line[i] == 'N' && line[i + 1] == 'O')
+		else if (line[i] == 'R' && (flag_map != 0 || env->data.R != NULL))
+			return (WRONG_INPUT);
+		if (line[i] == 'N' && line[i + 1] == 'O' && flag_map == 0 && env->data.n == NULL)
 			env->data.n = ft_strdup(line + i);
-		if (line[i] == 'S' && line[i + 1] == 'O')
+		else if (line[i] == 'N' && line[i + 1] == 'O' && (flag_map != 0 || env->data.n != NULL))
+			return (WRONG_INPUT);
+		if (line[i] == 'S' && line[i + 1] == 'O' && env->data.s == NULL)
 			env->data.s = ft_strdup(line + i);
-		if (line[i] == 'W' && line[i + 1] == 'E')
+		else if (line[i] == 'S' && line[i + 1] == 'O' && (flag_map != 0 || env->data.s != NULL))
+			return (WRONG_INPUT);
+		if (line[i] == 'W' && line[i + 1] == 'E' && env->data.w == NULL)
 			env->data.w = ft_strdup(line + i);
-		if (line[i] == 'E' && line[i + 1] == 'A')
+		else if (line[i] == 'W' && line[i + 1] == 'E' && (flag_map != 0 || env->data.w != NULL))
+			return (WRONG_INPUT);
+		if (line[i] == 'E' && line[i + 1] == 'A' && env->data.e == NULL)
 			env->data.e = ft_strdup(line + i);
-		if (line[i] == 'S' && line[i + 1] == ' ')
+		else if (line[i] == 'E' && line[i + 1] == 'A' && (flag_map != 0 || env->data.e != NULL))
+			return (WRONG_INPUT);
+		if (line[i] == 'S' && line[i + 1] == ' ' && env->data.sp == NULL)
 			env->data.sp = ft_strdup(line + i);
-		if (line[i] == 'F' && line[i + 1] == ' ')
+		else if (line[i] == 'S' && (flag_map != 0 || env->data.sp != NULL))
+			return (WRONG_INPUT);
+		if (line[i] == 'F' && line[i + 1] == ' ' && env->data.F == NULL)
 			env->data.F = ft_strdup(line + i);
-		if (line[i] == 'C' && line[i + 1] == ' ')
+		else if (line[i] == 'F' && (flag_map != 0 || env->data.F != NULL))
+			return (WRONG_INPUT);
+		if (line[i] == 'C' && line[i + 1] == ' ' && env->data.C == NULL)
 			env->data.C = ft_strdup(line + i);
+		else if (line[i] == 'C' && (flag_map != 0 || env->data.C != NULL))
+			return (WRONG_INPUT);
 		else if (ft_isdigit(line[i])) 
 		{
+			flag_map++;
 			if(!(tmp = malloc(sizeof(t_list))))
 				return (MALLOC_FAIL);
 			if(!(tmp->content = ft_strdup_no_space(line + i)))

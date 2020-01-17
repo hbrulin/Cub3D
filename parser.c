@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 16:12:16 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/17 16:23:07 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,12 +143,14 @@ int		ft_read(t_env *env, int fd)
 	free(line);
 	if (!env->data.R || !env->data.n || !env->data.s || !env->data.w || !env->data.e || !env->data.sp || !env->data.F || !env->data.C || !env->map.list)
 		return (WRONG_INPUT);
+	if(env->data.R[1] != ' ' || env->data.n[2] != ' ' || env->data.s[2] != ' ' || env->data.w[2] != ' ' || env->data.e[2] != ' ' || env->data.sp[1] != ' ' || env->data.F[1] != ' ' || env->data.C[1] != ' ')
+		return (WRONG_INPUT);
 
 	//path fix
 	i = 0;
 	while (env->data.n[i] != '.')
 		i++;
-	if(!(env->data.NO = ft_strdup_no_space(env->data.n + i)))
+	if(!(env->data.NO = ft_strtrim(env->data.n + i, " ")))
 		return (MALLOC_FAIL);
 	free(env->data.n);
 	env->data.n = NULL;
@@ -156,7 +158,7 @@ int		ft_read(t_env *env, int fd)
 	i = 0;
 	while (env->data.s[i] != '.')
 		i++;
-	if(!(env->data.SO = ft_strdup_no_space(env->data.s + i)))
+	if(!(env->data.SO = ft_strtrim(env->data.s + i, " ")))
 		return (MALLOC_FAIL);
 	free(env->data.s);
 	env->data.s = NULL;
@@ -164,7 +166,7 @@ int		ft_read(t_env *env, int fd)
 	i = 0;
 	while (env->data.w[i] != '.')
 		i++;
-	if(!(env->data.WE = ft_strdup_no_space(env->data.w + i)))
+	if(!(env->data.WE = ft_strtrim(env->data.w + i, " ")))
 		return (MALLOC_FAIL);
 	free(env->data.w);
 	env->data.w = NULL;
@@ -172,7 +174,7 @@ int		ft_read(t_env *env, int fd)
 	i = 0;
 	while (env->data.e[i] != '.')
 		i++;
-	if(!(env->data.EA = ft_strdup_no_space(env->data.e + i)))
+	if(!(env->data.EA = ft_strtrim(env->data.e + i, " ")))
 		return (MALLOC_FAIL);
 	free(env->data.e);
 	env->data.e = NULL;
@@ -180,7 +182,7 @@ int		ft_read(t_env *env, int fd)
 	i = 0;
 	while (env->data.sp[i] != '.')
 		i++;
-	if(!(env->data.SP = ft_strdup_no_space(env->data.sp + i)))
+	if(!(env->data.SP = ft_strtrim(env->data.sp + i, " ")))
 		return (MALLOC_FAIL);
 	free(env->data.sp);
 	env->data.sp = NULL;

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:10:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 17:38:58 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/17 17:44:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,8 +173,8 @@ int get_data_two(t_env *env, char *line, int i, int *flag_map)
 	}
 	else if (line[i] == 'S' && line[i + 1] == ' ' && (flag_map != 0 || env->data.sp != NULL))
 		return (WRONG_INPUT);
-	if(get_data_three(env, line, i, flag_map) != SUCCESS)
-			return(WRONG_INPUT);
+	if((env->error = get_data_three(env, line, i, flag_map)) != SUCCESS)
+		return(env->error);
 	return (SUCCESS);
 }
 
@@ -201,8 +201,8 @@ int		get_data(t_env *env, char *line, int i, int *flag_map)
 	}
 	else if (line[i] == 'S' && line[i + 1] == 'O' && (*flag_map != 0 || env->data.s != NULL))
 		return (WRONG_INPUT);
-	if(get_data_two(env, line, i, flag_map) != SUCCESS)
-			return(WRONG_INPUT);
+	if((env->error = get_data_two(env, line, i, flag_map)) != SUCCESS)
+		return(env->error);
 	return (SUCCESS);
 }
 
@@ -213,10 +213,8 @@ int		ft_read(t_env *env, int fd)
 	t_list	*tmp;
 	size_t i;
 	static int flag_map;
-	int error;
 
 	flag_map = 0;
-
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{	
 		i = 0;
@@ -230,8 +228,8 @@ int		ft_read(t_env *env, int fd)
 		}
 		if (ft_isalpha(line[i]))
 		{
-			if((error = get_data(env, line, i, &flag_map)) != SUCCESS)
-				return(error);
+			if((env->error = get_data(env, line, i, &flag_map)) != SUCCESS)
+				return(env->error);
 		}
 		else if (ft_isdigit(line[i])) 
 		{
@@ -246,10 +244,10 @@ int		ft_read(t_env *env, int fd)
 		free(line);
 	}
 	free(line);
-	if((error = check_data(env)) != SUCCESS)
-		return(error);
-	if((error = path_fix(env)) != SUCCESS)
-		return(error);
+	if((env->error = check_data(env)) != SUCCESS)
+		return(env->error);
+	if((env->error = path_fix(env)) != SUCCESS)
+		return(env->error);
 	
 	return (SUCCESS);
 }
@@ -259,12 +257,11 @@ int		get_map(t_env *env, char *file)
 	int fd;
 	t_list	*tmp;
 	int i;
-	int error;
 
 	if ((fd = open(file, O_RDONLY)) < 0)
 		return (OPEN_ERR);
-	if((error = ft_read(env, fd)) != SUCCESS)
-		return(error);
+	if((env->error = ft_read(env, fd)) != SUCCESS)
+		return(env->error);
 	close(fd);
 	if (!(env->map.tab_map = (char**)malloc(sizeof(char *) * ft_lstsize(env->map.list) + 1)))
 			return (MALLOC_FAIL);

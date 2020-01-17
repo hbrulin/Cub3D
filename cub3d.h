@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 16:25:41 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/17 17:41:15 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ typedef	struct				s_env
 	double					*zbuffer;
 	int						*sp_order;
 	double					*sp_distance;
+	int						error;
 }							t_env;
 
 

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 20:03:57 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/17 20:16:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -205,6 +205,7 @@ typedef	struct				s_env
 
 
 int				get_map(t_env *env, char *file);
+int		get_data(t_env *env, char *line, int i, int *flag_map);
 int				ft_parser(t_env *env);
 int				init_flag_save(t_env *env, int argc, char *s);
 int				init_env(t_env *env);

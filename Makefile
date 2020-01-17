@@ -6,7 +6,7 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2020/01/17 17:47:33 by hbrulin          ###   ########.fr        #
+#    Updated: 2020/01/17 20:16:00 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,8 @@ NAME = Cub3D
 OS	= $(shell uname)
 
 SRCS = main.c parser.c env.c display.c color.c events.c move.c \
-		ray.c sprite.c save.c utils.c init.c error.c free.c read.c
+		ray.c sprite.c save.c utils.c init.c error.c free.c read.c \
+		get_data.c
 
 HEADER = cub3d.h 
 KEYCODE = keycode.h

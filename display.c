@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 11:51:20 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:53:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int			ft_disp_screen(t_env *env)
 		ft_direction_ray(env);
 		ft_hit_ray(env);
 		ft_size_ray(env);
+		ft_wall_tex(env);
 		if ((env->error = ft_disp_col(env, x++)))
 			return (env->error);
 		env->rc.zbuffer[x] = env->rc.dist;

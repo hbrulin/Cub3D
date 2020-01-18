@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 11:46:47 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:55:11 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -220,18 +220,16 @@ int				init_flag_save(t_env *env, int argc, char *s);
 int				init_env(t_env *env);
 int				get_color(t_color *color, char *s);
 t_img			*ft_new_image(t_env *env, int width, int height);
-void			fill(t_env *env, unsigned int color_floor, unsigned int color_ceiling);
 void			ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
 int				events(t_env *env);
-void			ft_calc_dir(t_env *env);
 void			ft_move(t_env *env);
-void			ft_ray(t_env *env, int x_img);
 void			ft_launch(t_env *env);
 int				ft_disp_screen(t_env *env);
 void			ft_init_ray(t_env *env, int x);
 void			ft_direction_ray(t_env *env);
 void			ft_hit_ray(t_env *env);
 void			ft_size_ray(t_env *env);
+void			ft_wall_tex(t_env *env);
 t_tex			*ft_new_tex(t_env *env, char *file);
 void			pix_color(t_env *env);
 void			add_sprite(t_env *env);

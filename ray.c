@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 11:47:51 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:56:18 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ void	ft_init_ray(t_env *env, int x)
 	env->rc.rdir.y = env->rc.dir.y + env->rc.plane.y * env->rc.camera;
 	env->rc.rmap.x = (int)env->rc.rpos.x;
 	env->rc.rmap.y = (int)env->rc.rpos.y;
-	env->rc.rdisd.x = sqrt(1 + (env->rc.rdir.y * env->rc.rdir.y) / (env->rc.rdir.x * env->rc.rdir.x));
-	env->rc.rdisd.y = sqrt(1 + (env->rc.rdir.x * env->rc.rdir.x) / (env->rc.rdir.y * env->rc.rdir.y));
+	env->rc.rdisd.x = sqrt(1 + (env->rc.rdir.y * env->rc.rdir.y) /
+		(env->rc.rdir.x * env->rc.rdir.x));
+	env->rc.rdisd.y = sqrt(1 + (env->rc.rdir.x * env->rc.rdir.x) /
+		(env->rc.rdir.y * env->rc.rdir.y));
 	env->rc.hit = 0;
 }
 
@@ -37,7 +39,8 @@ void	ft_direction_ray(t_env *env)
 	else
 	{
 		env->rc.step.x = 1;
-		env->rc.rdist.x = (env->rc.rmap.x + 1.0 - env->rc.rpos.x) * env->rc.rdisd.x;
+		env->rc.rdist.x = (env->rc.rmap.x + 1.0 - env->rc.rpos.x) *
+			env->rc.rdisd.x;
 	}
 	if (env->rc.rdir.y < 0)
 	{
@@ -47,7 +50,8 @@ void	ft_direction_ray(t_env *env)
 	else
 	{
 		env->rc.step.y = 1;
-		env->rc.rdist.y = (env->rc.rmap.y + 1.0 - env->rc.rpos.y) * env->rc.rdisd.y;
+		env->rc.rdist.y = (env->rc.rmap.y + 1.0 - env->rc.rpos.y) *
+			env->rc.rdisd.y;
 	}
 }
 
@@ -67,7 +71,12 @@ void	ft_hit_ray(t_env *env)
 			env->rc.rmap.y += env->rc.step.y;
 			env->rc.wall = 1;
 		}
-		if (env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != '0' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != '2' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'E' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'N' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'S' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'W')
+		if (env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != '0' &&
+			env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != '2' &&
+			env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'E' &&
+			env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'N' &&
+			env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'S' &&
+			env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'W')
 			env->rc.hit = 1;
 	}
 }
@@ -87,10 +96,12 @@ void	ft_size_ray(t_env *env)
 	env->rc.wend = env->rc.rh / 2 + env->height / 2;
 	if (env->rc.wend >= env->height)
 		env->rc.wend = env->height - 1;
+}
 
-///textures
-
+void	ft_wall_tex(t_env *env)
+{
 	double wallx;
+
 	if (env->rc.wall == 0)
 		wallx = env->rc.rpos.y + env->rc.dist * env->rc.rdir.y;
 	else
@@ -102,5 +113,6 @@ void	ft_size_ray(t_env *env)
 	else if (env->rc.wall == 1 && env->rc.rdir.x < 0)
 		env->rc.tex.x = 64 - env->rc.tex.x - 1;
 	env->rc.step_tex = 1.0 * 64 / env->rc.rh;
-	env->rc.tex_pos = (env->rc.wstart -env->height / 2 + env->rc.rh / 2) * env->rc.step_tex;
+	env->rc.tex_pos = (env->rc.wstart - env->height / 2 + env->rc.rh / 2) *
+		env->rc.step_tex;
 }

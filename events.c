@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 16:24:23 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 13:28:21 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:37:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int		events(t_env *env)
 	if (!(env->win_ptr = mlx_new_window(env->mlx_ptr, env->width, env->height,
 		"Cub3D")))
 		return (MLX_FAIL);
-	mlx_hook(env->win_ptr, 17, StructureNotifyMask, deal_exit, env);
+	mlx_hook(env->win_ptr, 17, STRUCTURENOTIFYMASK, deal_exit, env);
 	mlx_hook(env->win_ptr, KEYPRESS, KEYPRESSMASK, ft_key_hit, env);
 	mlx_hook(env->win_ptr, KEYRELEASE, KEYRELEASEMASK, ft_key_release, env);
 	if ((env->error = mlx_loop_hook(env->mlx_ptr, ft_run, env)) != SUCCESS)

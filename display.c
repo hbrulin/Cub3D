@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 11:58:16 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:12:20 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int			ft_disp_screen(t_env *env)
 			return (env->error);
 		env->rc.zbuffer[x] = env->rc.dist;
 	}
-	if((env->error = init_sprite(env)))
-		return(env->error);
+	if ((env->error = init_sprite(env)))
+		return (env->error);
 	return (SUCCESS);
 }

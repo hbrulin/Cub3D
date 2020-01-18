@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 11:51:09 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:12:53 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,12 @@ void	pix_color(t_env *env)
 	}
 }
 
-int check_color(char **tab)
+int		check_color(char **tab)
 {
 	int r;
 	int g;
 	int b;
+
 	if (tab_size(tab) == 3)
 	{
 		r = ft_atoi(tab[0]);
@@ -61,7 +62,7 @@ int		get_color(t_color *color, char *s)
 {
 	int		i;
 	char	**tab;
-	
+
 	i = 0;
 	while (!ft_isdigit(s[i]) && s[i] != '-')
 		i++;

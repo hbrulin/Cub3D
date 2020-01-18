@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 19:48:36 by hbrulin           #+#    #+#             */
-/*   Updated: 2019/12/17 16:45:46 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:36:19 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@
 # define KEYRELEASE 3
 # define KEYPRESSMASK 1
 # define KEYRELEASEMASK 10
-#define StructureNotifyMask	10001
-//17 en binaire
+# define STRUCTURENOTIFYMASK 10001
 
 # define KEY_ESCAPE			53
 # define KEY_F1 			122

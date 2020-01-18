@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 14:13:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:19:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@
 # define MAX_HEIGHT 		1440
 # define PINK				9961608
 # define RIGHTS				0644
-
 
 typedef struct				s_rgb
 {
@@ -146,10 +145,9 @@ typedef struct				s_spdata
 	int						spriteWidth;
 	int						drawStartX;
 	int						drawEndX;
-	int 					stripe;
+	int						stripe;
 	int						sp_x;
 	int						sp_y;
-
 }							t_spdata;
 
 typedef struct				s_move
@@ -175,7 +173,7 @@ typedef struct				s_rc
 	t_pos_i					rmap;
 	int						wall;
 	int						wstart;
-	int						wend; 
+	int						wend;
 	double					camera;
 	int						hit;
 	double					rh;
@@ -191,14 +189,13 @@ typedef struct				s_rc
 
 typedef	struct				s_save
 {
-	int height;
-	int width;
-	unsigned char *file_header;
-	unsigned char *img_header;
-	int fd;
-	int pad;
+	int						height;
+	int						width;
+	unsigned char			*file_header;
+	unsigned char			*img_header;
+	int						fd;
+	int						pad;
 }							t_save;
-
 
 typedef	struct				s_env
 {
@@ -224,9 +221,8 @@ typedef	struct				s_env
 	t_tex					*sprite;
 	unsigned int			color;
 	t_rc					rc;
-	int							error;
+	int						error;
 }							t_env;
-
 
 int				get_map(t_env *env, char *file);
 int				get_data(t_env *env, char *line, int i, int *flag_map);

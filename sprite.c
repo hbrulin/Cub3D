@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 11:47:22 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 12:13:45 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,78 @@
 #include <stdio.h>
 
 
+void	ft_sprite_calc(t_env *env, int i)
+{
+	env->sp.spcamx = env->tab_sprite[env->rc.sp_order[i]].pos_x - env->pos.x; 
+	env->sp.spcamy = env->tab_sprite[env->rc.sp_order[i]].pos_y - env->pos.y;; 
+
+ 	double inv = 1.0 / (env->rc.plane.x * env->rc.dir.y - env->rc.dir.x * env->rc.plane.y); //required for correct matrix multiplication
+
+      env->sp.transx = inv * (env->rc.dir.y * env->sp.spcamx - env->rc.dir.x * env->sp.spcamy);
+      env->sp.transy = inv * (-env->rc.plane.y * env->sp.spcamx + env->rc.plane.x * env->sp.spcamy); //this is actually the depth inside the screen, that what Z is in 3D
+
+      env->sp.spriteScreenX = (int)((env->width / 2) * (1 + env->sp.transx / env->sp.transy));
+
+	//calculate height of the sprite on screen
+      env->sp.spriteHeight = abs((int)(env->height / env->sp.transy)); 
+      //calculate lowest and highest pixel to fill in current stripe
+      env->sp.drawStartY = -env->sp.spriteHeight / 2 + env->height / 2;
+      if(env->sp.drawStartY < 0) 
+	  	env->sp.drawStartY = 0;
+      env->sp.drawEndY = env->sp.spriteHeight / 2 + env->height / 2;
+      if(env->sp.drawEndY >= env->height) 
+	  	env->sp.drawEndY = env->height - 1;
+
+      //calculate width of the sprite
+      env->sp.spriteWidth = abs( (int) (env->height / (env->sp.transy)));
+      env->sp.drawStartX = - env->sp.spriteWidth / 2 + env->sp.spriteScreenX;
+      if(env->sp.drawStartX < 0) 
+	  	env->sp.drawStartX = 0;
+      env->sp.drawEndX = env->sp.spriteWidth / 2 + env->sp.spriteScreenX;
+      if(env->sp.drawEndX >= env->width) 
+	  	env->sp.drawEndX = env->width - 1;
+}
+
+void	add_sprite_two(t_env *env)
+{
+	int d;
+	int y;
+
+	y = env->sp.drawStartY;
+	if (env->sp.transy > 0 && env->sp.stripe > 0 && env->sp.stripe < env->width
+		&& env->sp.transy < env->rc.zbuffer[env->sp.stripe])
+	{
+		while (y < env->sp.drawEndY)
+		{
+			d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
+			env->sp.sp_y = ((d * env->sprite->height) / env->sp.spriteHeight) /
+				256;
+			env->color = env->sprite->tex_data[env->sprite->width * env->sp.sp_y
+				+ env->sp.sp_x];
+			if(env->color != PINK) 
+				ft_put_pixel(env->img, env->color, env->sp.stripe, y);
+			y++;
+		}
+	}
+}
+
+
 void	add_sprite(t_env *env)
 {
 	int i;
-	int stripe;
-	int sp_x = 0;
-	int y = 0;
-	int d = 0;
-	int sp_y = 0;
 
 	i = -1;
 	while (++i < env->nb_sprite)
 	{
 		ft_sprite_calc(env, i);
-		stripe = env->sp.drawStartX;
-		while(stripe < env->sp.drawEndX)
+		env->sp.stripe = env->sp.drawStartX;
+		while(env->sp.stripe < env->sp.drawEndX)
 		{
-			sp_x = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth / 256);
-			y= env->sp.drawStartY;
-			if (env->sp.transy > 0 && stripe > 0 && stripe < env->width && env->sp.transy < env->rc.zbuffer[stripe])
-			{
-				while (y < env->sp.drawEndY)
-				{
-					d = y * 256 - env->height * 128 + env->sp.spriteHeight * 128;
-					sp_y = ((d * env->sprite->height) / env->sp.spriteHeight) / 256;
-					env->color = env->sprite->tex_data[env->sprite->width * sp_y + sp_x];
-					if(env->color != PINK) 
-						ft_put_pixel(env->img, env->color, stripe, y);
-					y++;
-				}
-			}
-			stripe++;
+			env->sp.sp_x = (int)(256 * (env->sp.stripe - (-env->sp.spriteWidth /
+				2 + env->sp.spriteScreenX)) * env->sprite->width / 
+				env->sp.spriteWidth / 256);
+			add_sprite_two(env);
+			env->sp.stripe++;
 		}
 	}
 }
@@ -114,18 +155,17 @@ void	ft_place_sprite(t_env *env)
 	}
 }
 
-void	init_sprite(t_env *env)
+int	init_sprite(t_env *env)
 {
-	int			i;
+	int		i;
 
 	i = 0;
-	//secu ici system error +leaks
 	if (!(env->tab_sprite = malloc(sizeof(t_sprite) * env->nb_sprite)))
-		return ;
+		return (MALLOC_FAIL);
 	if (!(env->rc.sp_order = malloc(sizeof(int) * env->nb_sprite)))
-		return ;
+		return (MALLOC_FAIL);
 	if (!(env->rc.sp_distance = malloc(sizeof(double) * env->nb_sprite)))
-		return ;
+		return (MALLOC_FAIL);
 	ft_place_sprite(env);
 	ft_order_sprite(env);
 	if (env->tab_sprite)
@@ -134,36 +174,5 @@ void	init_sprite(t_env *env)
 		free(env->rc.sp_order);
 	if (env->rc.sp_distance)
 		free(env->rc.sp_distance);
-}
-
-void	ft_sprite_calc(t_env *env, int i)
-{
-	env->sp.spcamx = env->tab_sprite[env->rc.sp_order[i]].pos_x - env->pos.x; 
-	env->sp.spcamy = env->tab_sprite[env->rc.sp_order[i]].pos_y - env->pos.y;; 
-
- 	double inv = 1.0 / (env->rc.plane.x * env->rc.dir.y - env->rc.dir.x * env->rc.plane.y); //required for correct matrix multiplication
-
-      env->sp.transx = inv * (env->rc.dir.y * env->sp.spcamx - env->rc.dir.x * env->sp.spcamy);
-      env->sp.transy = inv * (-env->rc.plane.y * env->sp.spcamx + env->rc.plane.x * env->sp.spcamy); //this is actually the depth inside the screen, that what Z is in 3D
-
-      env->sp.spriteScreenX = (int)((env->width / 2) * (1 + env->sp.transx / env->sp.transy));
-
-	//calculate height of the sprite on screen
-      env->sp.spriteHeight = abs((int)(env->height / env->sp.transy)); 
-      //calculate lowest and highest pixel to fill in current stripe
-      env->sp.drawStartY = -env->sp.spriteHeight / 2 + env->height / 2;
-      if(env->sp.drawStartY < 0) 
-	  	env->sp.drawStartY = 0;
-      env->sp.drawEndY = env->sp.spriteHeight / 2 + env->height / 2;
-      if(env->sp.drawEndY >= env->height) 
-	  	env->sp.drawEndY = env->height - 1;
-
-      //calculate width of the sprite
-      env->sp.spriteWidth = abs( (int) (env->height / (env->sp.transy)));
-      env->sp.drawStartX = - env->sp.spriteWidth / 2 + env->sp.spriteScreenX;
-      if(env->sp.drawStartX < 0) 
-	  	env->sp.drawStartX = 0;
-      env->sp.drawEndX = env->sp.spriteWidth / 2 + env->sp.spriteScreenX;
-      if(env->sp.drawEndX >= env->width) 
-	  	env->sp.drawEndX = env->width - 1;
+	return (SUCCESS);
 }

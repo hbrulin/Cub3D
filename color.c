@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 16:39:01 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:51:09 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,21 @@
 
 void	pixel_tex(t_tex *tex, t_env *env)
 {
-	env->color = tex->tex_data[tex->width * env->tex.y + env->tex.x];
+	env->color = tex->tex_data[tex->width * env->rc.tex.y + env->rc.tex.x];
 }
 
 void	pix_color(t_env *env)
 {
-	if (env->wall == 0)
+	if (env->rc.wall == 0)
 	{
-		if (env->step.x < 0)
+		if (env->rc.step.x < 0)
 			pixel_tex(env->tex1, env);
 		else
 			pixel_tex(env->tex2, env);
 	}
 	else
 	{
-		if (env->step.y > 0)
+		if (env->rc.step.y > 0)
 			pixel_tex(env->tex3, env);
 		else
 			pixel_tex(env->tex4, env);

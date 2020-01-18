@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:26:33 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 19:30:22 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:48:58 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ void	ft_free_img(t_env *env)
 
 void	ft_free_tabs(t_env *env)
 {
-	if (env->zbuffer)
-		free(env->zbuffer);
+	if (env->rc.zbuffer)
+		free(env->rc.zbuffer);
 	if (env->map.tab_map)
 		ft_tabdel((void *)env->map.tab_map);
 	if (env->data.R)

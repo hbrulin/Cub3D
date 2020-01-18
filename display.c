@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 19:46:07 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:51:20 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static int	ft_disp_col(t_env *env, int x)
 	int	y;
 
 	y = 0;
-	while (y < env->wstart)
+	while (y < env->rc.wstart)
 		ft_put_pixel(env->img, env->color_ceiling.all, x, y++);
-	while (y >= env->wstart && y <= env->wend)
+	while (y >= env->rc.wstart && y <= env->rc.wend)
 	{
-		env->tex.y = (int)env->tex_pos & (64 - 1);
-		env->tex_pos += env->step_tex;
+		env->rc.tex.y = (int)env->rc.tex_pos & (64 - 1);
+		env->rc.tex_pos += env->rc.step_tex;
 		pix_color(env);
 		ft_put_pixel(env->img, env->color, x, y);
 		y++;
@@ -42,7 +42,6 @@ static int	ft_disp_col(t_env *env, int x)
 int			ft_disp_screen(t_env *env)
 {
 	int	x;
-	int error;
 
 	x = 0;
 	while (x < env->width)
@@ -51,9 +50,9 @@ int			ft_disp_screen(t_env *env)
 		ft_direction_ray(env);
 		ft_hit_ray(env);
 		ft_size_ray(env);
-		if ((error = ft_disp_col(env, x++)))
-			return (error);
-		env->zbuffer[x] = env->dist;
+		if ((env->error = ft_disp_col(env, x++)))
+			return (env->error);
+		env->rc.zbuffer[x] = env->rc.dist;
 	}
 	init_sprite(env);
 	return (SUCCESS);

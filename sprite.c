@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/08 15:31:18 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:28:06 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:47:22 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	add_sprite(t_env *env)
 		{
 			sp_x = (int)(256 * (stripe - (-env->sp.spriteWidth / 2 + env->sp.spriteScreenX)) * env->sprite->width / env->sp.spriteWidth / 256);
 			y= env->sp.drawStartY;
-			if (env->sp.transy > 0 && stripe > 0 && stripe < env->width && env->sp.transy < env->zbuffer[stripe])
+			if (env->sp.transy > 0 && stripe > 0 && stripe < env->width && env->sp.transy < env->rc.zbuffer[stripe])
 			{
 				while (y < env->sp.drawEndY)
 				{
@@ -81,11 +81,11 @@ void		ft_order_sprite(t_env *env)
 	i = 0;
 	while (i < env->nb_sprite)
 	{
-		env->sp_order[i] = i;
-		env->sp_distance[i] = ((env->pos.x - env->tab_sprite[i].pos_x) * (env->pos.x - env->tab_sprite[i].pos_x) + (env->pos.y - env->tab_sprite[i].pos_y) * (env->pos.y - env->tab_sprite[i].pos_y));
+		env->rc.sp_order[i] = i;
+		env->rc.sp_distance[i] = ((env->pos.x - env->tab_sprite[i].pos_x) * (env->pos.x - env->tab_sprite[i].pos_x) + (env->pos.y - env->tab_sprite[i].pos_y) * (env->pos.y - env->tab_sprite[i].pos_y));
 		i++;
 	}
-	ft_sort(env->sp_order, env->sp_distance, env->nb_sprite);
+	ft_sort(env->rc.sp_order, env->rc.sp_distance, env->nb_sprite);
 	add_sprite(env);
 }
 
@@ -122,29 +122,29 @@ void	init_sprite(t_env *env)
 	//secu ici system error +leaks
 	if (!(env->tab_sprite = malloc(sizeof(t_sprite) * env->nb_sprite)))
 		return ;
-	if (!(env->sp_order = malloc(sizeof(int) * env->nb_sprite)))
+	if (!(env->rc.sp_order = malloc(sizeof(int) * env->nb_sprite)))
 		return ;
-	if (!(env->sp_distance = malloc(sizeof(double) * env->nb_sprite)))
+	if (!(env->rc.sp_distance = malloc(sizeof(double) * env->nb_sprite)))
 		return ;
 	ft_place_sprite(env);
 	ft_order_sprite(env);
 	if (env->tab_sprite)
 		free(env->tab_sprite);
-	if (env->sp_order)
-		free(env->sp_order);
-	if (env->sp_distance)
-		free(env->sp_distance);
+	if (env->rc.sp_order)
+		free(env->rc.sp_order);
+	if (env->rc.sp_distance)
+		free(env->rc.sp_distance);
 }
 
 void	ft_sprite_calc(t_env *env, int i)
 {
-	env->sp.spcamx = env->tab_sprite[env->sp_order[i]].pos_x - env->pos.x; 
-	env->sp.spcamy = env->tab_sprite[env->sp_order[i]].pos_y - env->pos.y;; 
+	env->sp.spcamx = env->tab_sprite[env->rc.sp_order[i]].pos_x - env->pos.x; 
+	env->sp.spcamy = env->tab_sprite[env->rc.sp_order[i]].pos_y - env->pos.y;; 
 
- 	double inv = 1.0 / (env->plane.x * env->dir.y - env->dir.x * env->plane.y); //required for correct matrix multiplication
+ 	double inv = 1.0 / (env->rc.plane.x * env->rc.dir.y - env->rc.dir.x * env->rc.plane.y); //required for correct matrix multiplication
 
-      env->sp.transx = inv * (env->dir.y * env->sp.spcamx - env->dir.x * env->sp.spcamy);
-      env->sp.transy = inv * (-env->plane.y * env->sp.spcamx + env->plane.x * env->sp.spcamy); //this is actually the depth inside the screen, that what Z is in 3D
+      env->sp.transx = inv * (env->rc.dir.y * env->sp.spcamx - env->rc.dir.x * env->sp.spcamy);
+      env->sp.transy = inv * (-env->rc.plane.y * env->sp.spcamx + env->rc.plane.x * env->sp.spcamy); //this is actually the depth inside the screen, that what Z is in 3D
 
       env->sp.spriteScreenX = (int)((env->width / 2) * (1 + env->sp.transx / env->sp.transy));
 

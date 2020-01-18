@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:07:10 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:15:35 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:50:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,40 +19,40 @@ void	ft_rotate(t_env *env, int advance)
 	double	dir;
 	double	plane;
 
-	dir = env->dir.x;
-	plane = env->plane.x;
-	env->dir.x = env->dir.x * cos(advance * 0.1)
-		- env->dir.y * sin(advance * 0.1);
-	env->dir.y = dir * sin(advance * 0.1)
-		+ env->dir.y * cos(advance * 0.1);
-	env->plane.x = env->plane.x * cos(advance * 0.1)
-		- env->plane.y * sin(advance * 0.1);
-	env->plane.y = plane * sin(advance * 0.1)
-		+ env->plane.y * cos(advance * 0.1);
+	dir = env->rc.dir.x;
+	plane = env->rc.plane.x;
+	env->rc.dir.x = env->rc.dir.x * cos(advance * 0.1)
+		- env->rc.dir.y * sin(advance * 0.1);
+	env->rc.dir.y = dir * sin(advance * 0.1)
+		+ env->rc.dir.y * cos(advance * 0.1);
+	env->rc.plane.x = env->rc.plane.x * cos(advance * 0.1)
+		- env->rc.plane.y * sin(advance * 0.1);
+	env->rc.plane.y = plane * sin(advance * 0.1)
+		+ env->rc.plane.y * cos(advance * 0.1);
 }
 
 void	ft_move(t_env *env)
 {
 	if (env->move.up == 1)
 	{	
-		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x + env->dir.x * env->speed)] == '0')
-			env->pos.x += env->dir.x * env->speed;
-		if (env->map.tab_map[(int)(env->pos.y + env->dir.y * env->speed)][(int)(env->pos.x)] == '0')
-			env->pos.y += env->dir.y * env->speed;
+		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x + env->rc.dir.x * env->rc.speed)] == '0')
+			env->pos.x += env->rc.dir.x * env->rc.speed;
+		if (env->map.tab_map[(int)(env->pos.y + env->rc.dir.y * env->rc.speed)][(int)(env->pos.x)] == '0')
+			env->pos.y += env->rc.dir.y * env->rc.speed;
 	}
 	if (env->move.strafr == 1)
 	{
-		if (env->map.tab_map[(int)(env->pos.y - env->dir.x * env->speed)][(int)(env->pos.x)] == '0')
-			env->pos.y += -env->dir.x * env->speed;
-		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x + env->dir.y * env->speed)] == '0')
-			env->pos.x += env->dir.y * env->speed;
+		if (env->map.tab_map[(int)(env->pos.y - env->rc.dir.x * env->rc.speed)][(int)(env->pos.x)] == '0')
+			env->pos.y += -env->rc.dir.x * env->rc.speed;
+		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x + env->rc.dir.y * env->rc.speed)] == '0')
+			env->pos.x += env->rc.dir.y * env->rc.speed;
 	}
 	if (env->move.strafl == 1)
 	{
-		if (env->map.tab_map[(int)(env->pos.y + env->dir.x * env->speed)][(int)(env->pos.x)] == '0')
-			env->pos.y -= -env->dir.x * env->speed;
-		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x - env->dir.y * env->speed)] == '0')
-			env->pos.x -= env->dir.y * env->speed;
+		if (env->map.tab_map[(int)(env->pos.y + env->rc.dir.x * env->rc.speed)][(int)(env->pos.x)] == '0')
+			env->pos.y -= -env->rc.dir.x * env->rc.speed;
+		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x - env->rc.dir.y * env->rc.speed)] == '0')
+			env->pos.x -= env->rc.dir.y * env->rc.speed;
 	}
 	if (env->move.left == 1)
 		ft_rotate(env, 1);
@@ -60,9 +60,9 @@ void	ft_move(t_env *env)
 		ft_rotate(env, -1);
 	if (env->move.down == 1)
 	{
-		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x - env->dir.x * env->speed)] == '0')
-			env->pos.x -= env->dir.x * env->speed;
-		if (env->map.tab_map[(int)(env->pos.y - env->dir.y * env->speed)][(int)(env->pos.x)] == '0')
-			env->pos.y -= env->dir.y * env->speed;
+		if (env->map.tab_map[(int)(env->pos.y)][(int)(env->pos.x - env->rc.dir.x * env->rc.speed)] == '0')
+			env->pos.x -= env->rc.dir.x * env->rc.speed;
+		if (env->map.tab_map[(int)(env->pos.y - env->rc.dir.y * env->rc.speed)][(int)(env->pos.x)] == '0')
+			env->pos.y -= env->rc.dir.y * env->rc.speed;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 20:19:51 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:46:47 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,6 +155,34 @@ typedef struct				s_move
 	int						strafr;
 }							t_move;
 
+typedef struct				s_rc
+{
+	t_pos					plane;
+	t_pos					step;
+	t_pos					dir;
+	t_pos_i					tex;
+	t_pos					rpos;
+	t_pos					rdir;
+	t_pos					rdisd;
+	t_pos					rdist;
+	t_pos_i					rmap;
+	int						wall;
+	int						wstart;
+	int						wend; 
+	double					camera;
+	int						hit;
+	double					rh;
+	double					step_tex;
+	double					tex_pos;
+	double					dist;
+	double					speed;
+	double					*zbuffer;
+	int						*sp_order;
+	double					*sp_distance;
+
+}							t_rc;
+
+
 typedef	struct				s_env
 {
 	void					*mlx_ptr;
@@ -166,15 +194,6 @@ typedef	struct				s_env
 	t_map					map;
 	t_img					*img;
 	t_pos					pos;
-	t_pos					dir;
-	t_pos					plane;
-	t_pos					step;
-	t_pos					rpos;
-	t_pos					rdir;
-	t_pos					rdisd;
-	t_pos					rdist;
-	t_pos_i					rmap;
-	t_pos_i					tex;
 	t_data					data;
 	t_move					move;
 	t_color					color_floor;
@@ -186,21 +205,9 @@ typedef	struct				s_env
 	t_tex					*tex3;
 	t_tex					*tex4;
 	t_tex					*sprite;
-	double					speed;
-	int						wall;
 	unsigned int			color;
-	int						wstart;
-	int						wend; 
-	double					camera;
-	int						hit;
-	double					rh;
-	double					step_tex;
-	double					tex_pos;
-	double					dist;
-	double					*zbuffer;
-	int						*sp_order;
-	double					*sp_distance;
-	int						error;
+	t_rc					rc;
+	int							error;
 }							t_env;
 
 

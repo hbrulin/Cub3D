@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 15:29:49 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:47:51 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,94 +15,92 @@
 
 void	ft_init_ray(t_env *env, int x)
 {
-	env->camera = 2 * x / (double)(env->width) - 1;
-	env->rpos.x = env->pos.x;
-	env->rpos.y = env->pos.y;
-	env->rdir.x = env->dir.x + env->plane.x * env->camera;
-	env->rdir.y = env->dir.y + env->plane.y * env->camera;
-	env->rmap.x = (int)env->rpos.x;
-	env->rmap.y = (int)env->rpos.y;
-	env->rdisd.x = sqrt(1 + (env->rdir.y * env->rdir.y) / (env->rdir.x * env->rdir.x));
-	env->rdisd.y = sqrt(1 + (env->rdir.x * env->rdir.x) / (env->rdir.y * env->rdir.y));
-	env->hit = 0;
+	env->rc.camera = 2 * x / (double)(env->width) - 1;
+	env->rc.rpos.x = env->pos.x;
+	env->rc.rpos.y = env->pos.y;
+	env->rc.rdir.x = env->rc.dir.x + env->rc.plane.x * env->rc.camera;
+	env->rc.rdir.y = env->rc.dir.y + env->rc.plane.y * env->rc.camera;
+	env->rc.rmap.x = (int)env->rc.rpos.x;
+	env->rc.rmap.y = (int)env->rc.rpos.y;
+	env->rc.rdisd.x = sqrt(1 + (env->rc.rdir.y * env->rc.rdir.y) / (env->rc.rdir.x * env->rc.rdir.x));
+	env->rc.rdisd.y = sqrt(1 + (env->rc.rdir.x * env->rc.rdir.x) / (env->rc.rdir.y * env->rc.rdir.y));
+	env->rc.hit = 0;
 }
 
 void	ft_direction_ray(t_env *env)
 {
-	if (env->rdir.x < 0)
+	if (env->rc.rdir.x < 0)
 	{
-		env->step.x = -1;
-		env->rdist.x = (env->rpos.x - env->rmap.x) * env->rdisd.x;
+		env->rc.step.x = -1;
+		env->rc.rdist.x = (env->rc.rpos.x - env->rc.rmap.x) * env->rc.rdisd.x;
 	}
 	else
 	{
-		env->step.x = 1;
-		env->rdist.x = (env->rmap.x + 1.0 - env->rpos.x) * env->rdisd.x;
+		env->rc.step.x = 1;
+		env->rc.rdist.x = (env->rc.rmap.x + 1.0 - env->rc.rpos.x) * env->rc.rdisd.x;
 	}
-	if (env->rdir.y < 0)
+	if (env->rc.rdir.y < 0)
 	{
-		env->step.y = -1;
-		env->rdist.y = (env->rpos.y - env->rmap.y) * env->rdisd.y;
+		env->rc.step.y = -1;
+		env->rc.rdist.y = (env->rc.rpos.y - env->rc.rmap.y) * env->rc.rdisd.y;
 	}
 	else
 	{
-		env->step.y = 1;
-		env->rdist.y = (env->rmap.y + 1.0 - env->rpos.y) * env->rdisd.y;
+		env->rc.step.y = 1;
+		env->rc.rdist.y = (env->rc.rmap.y + 1.0 - env->rc.rpos.y) * env->rc.rdisd.y;
 	}
 }
 
 void	ft_hit_ray(t_env *env)
 {
-	while (env->hit == 0)
+	while (env->rc.hit == 0)
 	{
-		if (env->rdist.x < env->rdist.y)
+		if (env->rc.rdist.x < env->rc.rdist.y)
 		{
-			env->rdist.x += env->rdisd.x;
-			env->rmap.x += env->step.x;
-			env->wall = 0;
+			env->rc.rdist.x += env->rc.rdisd.x;
+			env->rc.rmap.x += env->rc.step.x;
+			env->rc.wall = 0;
 		}
 		else
 		{
-			env->rdist.y += env->rdisd.y;
-			env->rmap.y += env->step.y;
-			env->wall = 1;
+			env->rc.rdist.y += env->rc.rdisd.y;
+			env->rc.rmap.y += env->rc.step.y;
+			env->rc.wall = 1;
 		}
-		if (env->map.tab_map[env->rmap.y][env->rmap.x] != '0' && env->map.tab_map[env->rmap.y][env->rmap.x] != '2' && env->map.tab_map[env->rmap.y][env->rmap.x] != 'E' && env->map.tab_map[env->rmap.y][env->rmap.x] != 'N' && env->map.tab_map[env->rmap.y][env->rmap.x] != 'S' && env->map.tab_map[env->rmap.y][env->rmap.x] != 'W')
-			env->hit = 1;
+		if (env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != '0' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != '2' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'E' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'N' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'S' && env->map.tab_map[env->rc.rmap.y][env->rc.rmap.x] != 'W')
+			env->rc.hit = 1;
 	}
 }
 
 void	ft_size_ray(t_env *env)
 {
-	//double dist;
-
-	if (env->wall == 0)
-		env->dist = fabs((env->rmap.x - env->rpos.x
-					+ (1 - env->step.x) / 2) / env->rdir.x);
+	if (env->rc.wall == 0)
+		env->rc.dist = fabs((env->rc.rmap.x - env->rc.rpos.x
+					+ (1 - env->rc.step.x) / 2) / env->rc.rdir.x);
 	else
-		env->dist = fabs((env->rmap.y - env->rpos.y
-					+ (1 - env->step.y) / 2) / env->rdir.y);
-	env->rh = fabs((env->height / env->dist));
-	env->wstart = (-1 * (env->rh)) / 2 + env->height / 2;
-	if (env->wstart < 0)
-		env->wstart = 0;
-	env->wend = env->rh / 2 + env->height / 2;
-	if (env->wend >= env->height)
-		env->wend = env->height - 1;
+		env->rc.dist = fabs((env->rc.rmap.y - env->rc.rpos.y
+					+ (1 - env->rc.step.y) / 2) / env->rc.rdir.y);
+	env->rc.rh = fabs((env->height / env->rc.dist));
+	env->rc.wstart = (-1 * (env->rc.rh)) / 2 + env->height / 2;
+	if (env->rc.wstart < 0)
+		env->rc.wstart = 0;
+	env->rc.wend = env->rc.rh / 2 + env->height / 2;
+	if (env->rc.wend >= env->height)
+		env->rc.wend = env->height - 1;
 
 ///textures
 
 	double wallx;
-	if (env->wall == 0)
-		wallx = env->rpos.y + env->dist * env->rdir.y;
+	if (env->rc.wall == 0)
+		wallx = env->rc.rpos.y + env->rc.dist * env->rc.rdir.y;
 	else
-		wallx = env->rpos.x + env->dist * env->rdir.x;
+		wallx = env->rc.rpos.x + env->rc.dist * env->rc.rdir.x;
 	wallx -= (int)wallx;
-	env->tex.x = (int)(wallx * 64);
-	if (env->wall == 0 && env->rdir.x > 0)
-		env->tex.x = 64 - env->tex.x - 1;
-	else if (env->wall == 1 && env->rdir.x < 0)
-		env->tex.x = 64 - env->tex.x - 1;
-	env->step_tex = 1.0 * 64 / env->rh;
-	env->tex_pos = (env->wstart -env->height / 2 + env->rh / 2) * env->step_tex;
+	env->rc.tex.x = (int)(wallx * 64);
+	if (env->rc.wall == 0 && env->rc.rdir.x > 0)
+		env->rc.tex.x = 64 - env->rc.tex.x - 1;
+	else if (env->rc.wall == 1 && env->rc.rdir.x < 0)
+		env->rc.tex.x = 64 - env->rc.tex.x - 1;
+	env->rc.step_tex = 1.0 * 64 / env->rc.rh;
+	env->rc.tex_pos = (env->rc.wstart -env->height / 2 + env->rc.rh / 2) * env->rc.step_tex;
 }

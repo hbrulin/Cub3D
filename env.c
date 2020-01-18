@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 20:54:20 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 19:09:58 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 11:47:07 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,34 +17,34 @@ int	ft_init(t_env *env)
 {
 	if (env->map.player == 'N')
 	{
-		env->dir.x = 0;
-		env->dir.y = -1;
-		env->plane.x = -0.80;
-		env->plane.y = 0;
+		env->rc.dir.x = 0;
+		env->rc.dir.y = -1;
+		env->rc.plane.x = -0.80;
+		env->rc.plane.y = 0;
 	}
 	if (env->map.player == 'S')
 	{
-		env->dir.x = 0;
-		env->dir.y = 1;
-		env->plane.x = 0.80;
-		env->plane.y = 0;
+		env->rc.dir.x = 0;
+		env->rc.dir.y = 1;
+		env->rc.plane.x = 0.80;
+		env->rc.plane.y = 0;
 	}
 	if (env->map.player == 'E')
 	{
-		env->dir.x = 1;
-		env->dir.y = 0;
-		env->plane.x = 0;
-		env->plane.y = -0.80;
+		env->rc.dir.x = 1;
+		env->rc.dir.y = 0;
+		env->rc.plane.x = 0;
+		env->rc.plane.y = -0.80;
 	}
 	if (env->map.player == 'W')
 	{
-		env->dir.x = -1;
-		env->dir.y = 0;
-		env->plane.x = 0;
-		env->plane.y = 0.80;
+		env->rc.dir.x = -1;
+		env->rc.dir.y = 0;
+		env->rc.plane.x = 0;
+		env->rc.plane.y = 0.80;
 	}
 
-	if (!(env->zbuffer = malloc(sizeof(double) * env->width)))
+	if (!(env->rc.zbuffer = malloc(sizeof(double) * env->width)))
 		return (MALLOC_FAIL);
 
 	if((env->tex1 = ft_new_tex(env, env->data.NO)) == NULL)

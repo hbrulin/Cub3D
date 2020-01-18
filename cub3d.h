@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 13:48:20 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 14:13:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -234,7 +234,7 @@ int				check_data(t_env *env);
 int				path_fix(t_env *env);
 int				ft_parser(t_env *env);
 int				init_flag_save(t_env *env, int argc, char *s);
-int				init_env(t_env *env);
+int				init_env_pos(t_env *env);
 int				get_color(t_color *color, char *s);
 t_img			*ft_new_image(t_env *env, int width, int height);
 void			ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);

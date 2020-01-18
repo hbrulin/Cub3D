@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 12:10:20 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 12:50:57 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ typedef struct				s_spdata
 	int 					stripe;
 	int						sp_x;
 	int						sp_y;
-	int						y;
+
 }							t_spdata;
 
 typedef struct				s_move
@@ -243,7 +243,6 @@ int				deal_exit(t_env *env);
 char			*ft_strdup_no_space(const char *s);
 int				init_sprite(t_env *env);
 void			add_sprite(t_env *env);
-void			ft_sprite_calc(t_env *env, int i);
 int				ft_error(int error, t_env *env);
 int				init_var(t_env *env, char *s);
 int				launch_save(t_env *env);

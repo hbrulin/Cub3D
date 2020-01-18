@@ -6,12 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/18 15:58:55 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 11:56:18 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:52:09 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "keycode.h"
+#include "cub.h"
 
 void	ft_init_ray(t_env *env, int x)
 {

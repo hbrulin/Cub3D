@@ -6,11 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 20:14:50 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:41:05 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:51:27 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D.h"
+#include "cub.h"
 
 int		check_data(t_env *env)
 {

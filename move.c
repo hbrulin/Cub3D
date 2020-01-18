@@ -6,13 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/17 16:07:10 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 13:34:23 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:51:52 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-#include "keycode.h"
-#include <stdio.h>
+#include "cub.h"
 
 void	ft_rotate(t_env *env, int advance)
 {

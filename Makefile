@@ -6,7 +6,7 @@
 #    By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/08 15:50:08 by hbrulin           #+#    #+#              #
-#    Updated: 2020/01/18 15:35:14 by hbrulin          ###   ########.fr        #
+#    Updated: 2020/01/18 15:53:33 by hbrulin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRCS = main.c parser.c env.c display.c color.c events.c move.c \
 		ray.c sprite.c save.c utils.c init.c error.c free.c read.c \
 		get_data.c path.c add_sprite.c headers.c
 
-HEADER = cub3d.h 
+HEADER = cub.h 
 KEYCODE = keycode.h
 
 CFLAGS = -Wall -Werror -Wextra -MMD -I$(HEADER) -I$(KEYCODE) -g

@@ -6,12 +6,12 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:39:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:50:19 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB_H
+# define CUB_H
 
 # include "libft.h"
 # include "mlx.h"
@@ -138,13 +138,13 @@ typedef struct				s_spdata
 	double					spcamy;
 	double					transx;
 	double					transy;
-	int						spriteScreenX;
-	int						spriteHeight;
-	int						drawStartY;
-	int						drawEndY;
-	int						spriteWidth;
-	int						drawStartX;
-	int						drawEndX;
+	int						spritescreenx;
+	int						sprite_height;
+	int						drawstart_y;
+	int						drawend_y;
+	int						sprite_width;
+	int						drawstart_x;
+	int						drawend_x;
 	int						stripe;
 	int						sp_x;
 	int						sp_y;

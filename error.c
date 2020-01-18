@@ -6,11 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:41:59 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 13:53:53 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:51:09 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub.h"
 
 int	ft_error(int error, t_env *env)
 {

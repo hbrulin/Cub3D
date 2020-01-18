@@ -6,11 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/14 21:03:01 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:12:20 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:51:01 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub.h"
 
 void		ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y)
 {

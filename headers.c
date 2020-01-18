@@ -6,11 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/18 13:25:04 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 13:26:44 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:51:31 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub.h"
 
 static void		set_in_char(unsigned char *start, int value)
 {

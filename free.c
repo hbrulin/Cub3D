@@ -6,11 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:26:33 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:42:55 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:51:21 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub.h"
 
 void	ft_free_tex(t_env *env, t_tex *tex)
 {

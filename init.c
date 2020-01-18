@@ -6,11 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:40:42 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:43:25 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:51:36 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub.h"
 
 int		init_tex(t_env *env)
 {

@@ -6,11 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 20:18:17 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:41:40 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:52:04 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cub3D.h"
+#include "cub.h"
 
 void	ft_free_path(char *s)
 {

@@ -6,11 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 17:46:39 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 20:24:12 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:52:14 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "cub.h"
 
 int		list_map(t_env *env, char *line, size_t *i, t_list *tmp)
 {

@@ -6,12 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/09 14:11:05 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/16 18:10:40 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 13:15:24 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "keycode.h"
 
 int	write_colors(t_env *env, int fd, int height, int width)
 {
@@ -55,9 +54,7 @@ unsigned char *create_file_header(t_env *env, int pad)
 	static unsigned char	file_header[14] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-	//3 BYTES PER PIXEL car compression 24
 	file_size = 54 + (BYTES_PER_PIX * ((int)env->width + pad) * (int)env->height);
-
 	file_header[0] = (unsigned char)('B');
 	file_header[1] = (unsigned char)('M');
 	set_in_char(file_header + 2, file_size);
@@ -75,52 +72,53 @@ unsigned char *create_img_header(int height, int width)
 	set_in_char(img_header + 4, width);
 	set_in_char(img_header + 8, height);
 	img_header[12] = (unsigned char)(1);
-	set_in_char(img_header + 14, COMPRESSION); // l'image est codée en 24 bits, chaque pixel est codé par un entier 24 bits (RVB), ordre little-endian, c'est-à-dire que les trois octets codent successivement les niveaux de bleu, vert et rouge.
+	set_in_char(img_header + 14, COMPRESSION);
 	return(img_header);
+}
+
+int		write_headers(t_save *save)
+{
+	if((write(save->fd, save->file_header, FILE_HEADER_SIZE)) < 0)
+	{	
+		close(save->fd);
+		return (WRITE_FAIL);
+	}
+	if((write(save->fd, save->img_header, IMG_HEADER_SIZE)) < 0)
+	{
+		close(save->fd);
+		return (WRITE_FAIL);
+	}
+	return (SUCCESS);
 }
 
 int	ft_save(t_env *env)
 {
-	int height;
-	int width;
-	unsigned char *file_header;
-	unsigned char *img_header;
-	int fd;
-	int error;
-	height = env->height - 1; //-1?
-	width = env->width;
-	int pad = (4 - ((int)env->width * 3) % 4) % 4; // car il faut nb de byte multiple de 4
+	t_save save;
 
-	file_header = create_file_header(env, pad);
-	img_header = create_img_header(height, width);
-	if ((fd = open(SCREEN_PATH, O_WRONLY | O_CREAT, RIGHTS)) < 0)
+	save.height = env->height - 1;
+	save.width = env->width;
+	save.pad = (4 - ((int)env->width * 3) % 4) % 4;
+	save.file_header = create_file_header(env, save.pad);
+	save.img_header = create_img_header(save.height, save.width);
+	if ((save.fd = open(SCREEN_PATH, O_WRONLY | O_CREAT, RIGHTS)) < 0)
 		return (OPEN_ERR);
-	if((write(fd, file_header, FILE_HEADER_SIZE)) < 0)
-	{	
-		close(fd);
-		return (WRITE_FAIL);
-	}
-	if((write(fd, img_header, IMG_HEADER_SIZE)) < 0)
+	if ((env->error = write_headers(&save)) != SUCCESS)
+		return (env->error);
+	if ((env->error = write_colors(env, save.fd, save.height, save.width))
+		!= SUCCESS)
 	{
-		close(fd);
-		return (WRITE_FAIL);
+		close(save.fd);
+		return (env->error);
 	}
-	if ((error = write_colors(env, fd, height, width)) != SUCCESS)
-	{
-		close(fd);
-		return (error);
-	}
-	close(fd);
+	close(save.fd);
 	return (SUCCESS);
 }
 
 int launch_save(t_env *env)
 {
-	int error;
-
 	ft_disp_screen(env);
-	if ((error = ft_save(env)) != SUCCESS)
-		return(error);
+	if ((env->error = ft_save(env)) != SUCCESS)
+		return(env->error);
 	deal_exit(env);
 	return (SUCCESS);
 }

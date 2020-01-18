@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 12:50:57 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 13:11:40 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "mlx.h"
+# include "keycode.h"
 # include <math.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -185,6 +186,16 @@ typedef struct				s_rc
 	double					*sp_distance;
 
 }							t_rc;
+
+typedef	struct				s_save
+{
+	int height;
+	int width;
+	unsigned char *file_header;
+	unsigned char *img_header;
+	int fd;
+	int pad;
+}							t_save;
 
 
 typedef	struct				s_env

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:50:19 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 16:00:27 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
-# include <string.h>
 
 # define SCREEN_PATH "screen.bmp"
 # define FILE_HEADER_SIZE 14
@@ -224,42 +223,44 @@ typedef	struct				s_env
 	int						error;
 }							t_env;
 
-int				get_map(t_env *env, char *file);
-int				get_data(t_env *env, char *line, int i, int *flag_map);
-int				check_data(t_env *env);
-int				path_fix(t_env *env);
-int				ft_parser(t_env *env);
-int				init_flag_save(t_env *env, int argc, char *s);
-int				init_env_pos(t_env *env);
-int				get_color(t_color *color, char *s);
-t_img			*ft_new_image(t_env *env, int width, int height);
-void			ft_put_pixel(t_img *img, unsigned int color, int p_x, int p_y);
-int				events(t_env *env);
-void			ft_move(t_env *env);
-void			ft_launch(t_env *env);
-int				ft_disp_screen(t_env *env);
-void			ft_init_ray(t_env *env, int x);
-void			ft_direction_ray(t_env *env);
-void			ft_hit_ray(t_env *env);
-void			ft_size_ray(t_env *env);
-void			ft_wall_tex(t_env *env);
-t_tex			*ft_new_tex(t_env *env, char *file);
-void			pix_color(t_env *env);
-void			add_sprite(t_env *env);
-void			ft_sprite_calc(t_env *env, int i);
-int				ft_save(t_env *env);
-int				deal_exit(t_env *env);
-char			*ft_strdup_no_space(const char *s);
-int				init_sprite(t_env *env);
-void			add_sprite(t_env *env);
-int				ft_error(int error, t_env *env);
-int				init_var(t_env *env, char *s);
-int				launch_save(t_env *env);
-void			ft_free_tabs(t_env *env);
-void			ft_free_img(t_env *env);
-void			ft_free_tex(t_env *env, t_tex *tex);
-unsigned char	*create_img_header(int height, int width);
-unsigned char	*create_file_header(t_env *env, int pad);
-int				write_headers(t_save *save);
+int							get_map(t_env *env, char *file);
+int							get_data(t_env *env, char *line, int i,
+							int *flag_map);
+int							check_data(t_env *env);
+int							path_fix(t_env *env);
+int							ft_parser(t_env *env);
+int							init_flag_save(t_env *env, int argc, char *s);
+int							init_env_pos(t_env *env);
+int							get_color(t_color *color, char *s);
+t_img						*ft_new_image(t_env *env, int width, int height);
+void						ft_put_pixel(t_img *img, unsigned int color,
+							int p_x, int p_y);
+int							events(t_env *env);
+void						ft_move(t_env *env);
+void						ft_launch(t_env *env);
+int							ft_disp_screen(t_env *env);
+void						ft_init_ray(t_env *env, int x);
+void						ft_direction_ray(t_env *env);
+void						ft_hit_ray(t_env *env);
+void						ft_size_ray(t_env *env);
+void						ft_wall_tex(t_env *env);
+t_tex						*ft_new_tex(t_env *env, char *file);
+void						pix_color(t_env *env);
+void						add_sprite(t_env *env);
+void						ft_sprite_calc(t_env *env, int i);
+int							ft_save(t_env *env);
+int							deal_exit(t_env *env);
+char						*ft_strdup_no_space(const char *s);
+int							init_sprite(t_env *env);
+void						add_sprite(t_env *env);
+int							ft_error(int error, t_env *env);
+int							init_var(t_env *env, char *s);
+int							launch_save(t_env *env);
+void						ft_free_tabs(t_env *env);
+void						ft_free_img(t_env *env);
+void						ft_free_tex(t_env *env, t_tex *tex);
+unsigned char				*create_img_header(int height, int width);
+unsigned char				*create_file_header(t_env *env, int pad);
+int							write_headers(t_save *save);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:41:59 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 15:50:31 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 13:53:53 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ int	ft_error(int error, t_env *env)
 		ft_putstr("Error\n Invalid input");
 	if (error == WRONG_MAP)
 		ft_putstr("Error\n Invalid map");
-	if (error == WRONG_MAP)
-		ft_putstr("Error\n Invalid input");
 	if (error == MALLOC_FAIL)
 		ft_putstr("Error\n Memory allocation has failed");
 	if (error == OPEN_ERR)

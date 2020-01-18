@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 19:26:33 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 11:48:58 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:42:55 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,20 +38,20 @@ void	ft_free_tabs(t_env *env)
 		free(env->rc.zbuffer);
 	if (env->map.tab_map)
 		ft_tabdel((void *)env->map.tab_map);
-	if (env->data.R)
-		free(env->data.R);
-	if (env->data.NO)
-		free(env->data.NO);
-	if (env->data.SO)
-		free(env->data.SO);
-	if (env->data.WE)
-		free(env->data.WE);
-	if (env->data.EA)
-		free(env->data.EA);
-	if (env->data.F)
-		free(env->data.F);
-	if (env->data.C)
-		free(env->data.C);
-	if (env->data.SP)
-		free(env->data.SP);
+	if (env->data.r)
+		free(env->data.r);
+	if (env->data.no)
+		free(env->data.no);
+	if (env->data.so)
+		free(env->data.so);
+	if (env->data.we)
+		free(env->data.we);
+	if (env->data.ea)
+		free(env->data.ea);
+	if (env->data.f)
+		free(env->data.f);
+	if (env->data.c)
+		free(env->data.c);
+	if (env->data.spr)
+		free(env->data.spr);
 }

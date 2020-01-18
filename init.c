@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:40:42 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 14:19:50 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:43:25 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 int		init_tex(t_env *env)
 {
-	if ((env->tex1 = ft_new_tex(env, env->data.NO)) == NULL)
+	if ((env->tex1 = ft_new_tex(env, env->data.no)) == NULL)
 		return (WRONG_TEX);
-	if ((env->tex2 = ft_new_tex(env, env->data.SO)) == NULL)
+	if ((env->tex2 = ft_new_tex(env, env->data.so)) == NULL)
 		return (WRONG_TEX);
-	if ((env->tex3 = ft_new_tex(env, env->data.EA)) == NULL)
+	if ((env->tex3 = ft_new_tex(env, env->data.ea)) == NULL)
 		return (WRONG_TEX);
-	if ((env->tex4 = ft_new_tex(env, env->data.WE)) == NULL)
+	if ((env->tex4 = ft_new_tex(env, env->data.we)) == NULL)
 		return (WRONG_TEX);
-	if ((env->sprite = ft_new_tex(env, env->data.SP)) == NULL)
+	if ((env->sprite = ft_new_tex(env, env->data.spr)) == NULL)
 		return (WRONG_TEX);
 	return (SUCCESS);
 }
@@ -33,9 +33,9 @@ int		get_res(t_env *env)
 	char	**tab;
 
 	i = 0;
-	while (!ft_isdigit(env->data.R[i]))
+	while (!ft_isdigit(env->data.r[i]))
 		i++;
-	if (!(tab = ft_split(env->data.R + i, ' ')))
+	if (!(tab = ft_split(env->data.r + i, ' ')))
 		return (MALLOC_FAIL);
 	if (tab[0])
 		env->width = ft_atoi(tab[0]);
@@ -67,9 +67,9 @@ int		init_var(t_env *env, char *s)
 		return (env->error);
 	if ((env->error = ft_parser(env)) != SUCCESS)
 		return (env->error);
-	if ((env->error = get_color(&env->color_floor, env->data.F)) != SUCCESS)
+	if ((env->error = get_color(&env->color_floor, env->data.f)) != SUCCESS)
 		return (env->error);
-	if ((env->error = get_color(&env->color_ceiling, env->data.C)) != SUCCESS)
+	if ((env->error = get_color(&env->color_ceiling, env->data.c)) != SUCCESS)
 		return (env->error);
 	if ((env->error = get_res(env)) != SUCCESS)
 		return (env->error);

@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 20:14:50 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/17 20:26:32 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:41:05 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 int		check_data(t_env *env)
 {
-	if (!env->data.R || !env->data.n || !env->data.s || !env->data.w ||
-		!env->data.e || !env->data.sp || !env->data.F || !env->data.C ||
+	if (!env->data.r || !env->data.n || !env->data.s || !env->data.w ||
+		!env->data.e || !env->data.sp || !env->data.f || !env->data.c ||
 		!env->map.list)
 		return (WRONG_INPUT);
-	if (env->data.R[1] != ' ' || env->data.n[2] != ' ' || env->data.s[2] != ' '
+	if (env->data.r[1] != ' ' || env->data.n[2] != ' ' || env->data.s[2] != ' '
 		|| env->data.w[2] != ' ' || env->data.e[2] != ' ' ||
-		env->data.sp[1] != ' ' || env->data.F[1] != ' ' ||
-		env->data.C[1] != ' ')
+		env->data.sp[1] != ' ' || env->data.f[1] != ' ' ||
+		env->data.c[1] != ' ')
 		return (WRONG_INPUT);
 	return (SUCCESS);
 }
@@ -29,22 +29,22 @@ int		check_data(t_env *env)
 int		get_data_four(t_env *env, char *line, int i, int *flag_map)
 {
 	if (line[i] == 'F' && line[i + 1] == ' ' && *flag_map == 0 &&
-		env->data.F == NULL)
+		env->data.f == NULL)
 	{
-		if (!(env->data.F = ft_strtrim(line + i, " ")))
+		if (!(env->data.f = ft_strtrim(line + i, " ")))
 			return (MALLOC_FAIL);
 	}
 	else if (line[i] == 'F' && line[i + 1] == ' ' && (flag_map != 0 ||
-		env->data.F != NULL))
+		env->data.f != NULL))
 		return (WRONG_INPUT);
 	if (line[i] == 'C' && line[i + 1] == ' ' && *flag_map == 0 &&
-		env->data.C == NULL)
+		env->data.c == NULL)
 	{
-		if (!(env->data.C = ft_strtrim(line + i, " ")))
+		if (!(env->data.c = ft_strtrim(line + i, " ")))
 			return (MALLOC_FAIL);
 	}
 	else if (line[i] == 'C' && line[i + 1] == ' ' && (flag_map != 0 ||
-		env->data.C != NULL))
+		env->data.c != NULL))
 		return (WRONG_INPUT);
 	return (SUCCESS);
 }
@@ -101,12 +101,12 @@ int		get_data_two(t_env *env, char *line, int i, int *flag_map)
 
 int		get_data(t_env *env, char *line, int i, int *flag_map)
 {
-	if (line[i] == 'R' && *flag_map == 0 && env->data.R == NULL)
+	if (line[i] == 'R' && *flag_map == 0 && env->data.r == NULL)
 	{
-		if (!(env->data.R = ft_strdup(line + i)))
+		if (!(env->data.r = ft_strdup(line + i)))
 			return (MALLOC_FAIL);
 	}
-	else if (line[i] == 'R' && (*flag_map != 0 || env->data.R != NULL))
+	else if (line[i] == 'R' && (*flag_map != 0 || env->data.r != NULL))
 		return (WRONG_INPUT);
 	if (line[i] == 'N' && line[i + 1] == 'O' && *flag_map == 0 &&
 		env->data.n == NULL)

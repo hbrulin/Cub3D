@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:19:36 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 15:39:17 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,15 +24,15 @@
 # include <fcntl.h>
 # include <string.h>
 
-# define SCREEN_PATH		"screen.bmp"
-# define FILE_HEADER_SIZE	14
-# define IMG_HEADER_SIZE	40
-# define BYTES_PER_PIX		3
-# define COMPRESSION		24
-# define MAX_WIDTH			2560
-# define MAX_HEIGHT 		1440
-# define PINK				9961608
-# define RIGHTS				0644
+# define SCREEN_PATH "screen.bmp"
+# define FILE_HEADER_SIZE 14
+# define IMG_HEADER_SIZE 40
+# define BYTES_PER_PIX 3
+# define COMPRESSION 24
+# define MAX_WIDTH 2560
+# define MAX_HEIGHT 1440
+# define PINK 9961608
+# define RIGHTS 0644
 
 typedef struct				s_rgb
 {
@@ -99,19 +99,19 @@ typedef struct				s_img
 
 typedef struct				s_data
 {
-	char					*R;
-	char					*NO;
+	char					*r;
+	char					*no;
 	char					*n;
-	char					*SO;
+	char					*so;
 	char					*s;
-	char					*WE;
+	char					*we;
 	char					*w;
-	char					*EA;
+	char					*ea;
 	char					*e;
-	char					*SP;
+	char					*spr;
 	char					*sp;
-	char					*F;
-	char					*C;
+	char					*f;
+	char					*c;
 }							t_data;
 
 typedef	struct				s_tex

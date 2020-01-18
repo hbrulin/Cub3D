@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 13:26:42 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 13:48:20 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef	struct				s_map
 	int						nb_line;
 	int						nb_char;
 	char					player;
+	int						flag_n;
+	int						k_total;
 }							t_map;
 
 typedef struct				s_img

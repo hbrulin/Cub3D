@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/16 14:05:41 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:50:57 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 16:23:42 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int		get_color(t_color *color, char *s)
 	i = 0;
 	while (!ft_isdigit(s[i]) && s[i] != '-')
 		i++;
+	if (look_for_alpha(s, i) != SUCCESS)
+		return (WRONG_INPUT);
 	if (!(tab = ft_split(s + i, ',')))
 		return (MALLOC_FAIL);
 	if (check_color(tab) == WRONG_INPUT)

@@ -6,11 +6,22 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:40:42 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:51:36 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 16:25:52 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+int		look_for_alpha(char *s, int i)
+{
+	while (s[i])
+	{
+		if (ft_isalpha(s[i]))
+			return (WRONG_INPUT);
+		i++;
+	}
+	return (SUCCESS);
+}
 
 int		init_tex(t_env *env)
 {
@@ -35,6 +46,8 @@ int		get_res(t_env *env)
 	i = 0;
 	while (!ft_isdigit(env->data.r[i]))
 		i++;
+	if ((env->error = look_for_alpha(env->data.r, i)) != SUCCESS)
+		return (env->error);
 	if (!(tab = ft_split(env->data.r + i, ' ')))
 		return (MALLOC_FAIL);
 	if (tab[0])

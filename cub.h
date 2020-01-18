@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/10 11:15:08 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 16:00:27 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/18 16:24:47 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,5 +262,6 @@ void						ft_free_tex(t_env *env, t_tex *tex);
 unsigned char				*create_img_header(int height, int width);
 unsigned char				*create_file_header(t_env *env, int pad);
 int							write_headers(t_save *save);
+int							look_for_alpha(char *s, int i);
 
 #endif

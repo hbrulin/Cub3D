@@ -6,25 +6,11 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 20:14:50 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/22 09:59:43 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/22 10:20:54 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-int		check_data(t_env *env)
-{
-	if (!env->data.r || !env->data.n || !env->data.s || !env->data.w ||
-		!env->data.e || !env->data.sp || !env->data.f || !env->data.c ||
-		!env->map.list)
-		return (WRONG_INPUT);
-	if (env->data.r[1] != ' ' || env->data.n[2] != ' ' || env->data.s[2] != ' '
-		|| env->data.w[2] != ' ' || env->data.e[2] != ' ' ||
-		env->data.sp[1] != ' ' || env->data.f[1] != ' ' ||
-		env->data.c[1] != ' ')
-		return (WRONG_INPUT);
-	return (SUCCESS);
-}
 
 int		get_data_four(t_env *env, char *line, int i, int *flag_map)
 {

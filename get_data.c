@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 20:14:50 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:51:27 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/22 09:59:43 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,11 @@ int		get_data_four(t_env *env, char *line, int i, int *flag_map)
 	}
 	else if (line[i] == 'C' && line[i + 1] == ' ' && (flag_map != 0 ||
 		env->data.c != NULL))
+		return (WRONG_INPUT);
+	else if (line[i] != 'R' && (line[i] != 'N' && line[i + 1] != 'O') &&
+		(line[i] != 'S' && line[i + 1] != 'O') && (line[i] != 'W' && line[i + 1]
+		!= 'E') && (line[i] != 'E' && line[i + 1] != 'A') && line[i] != 'S' &&
+		line[i] != 'F' && line[i] != 'C')
 		return (WRONG_INPUT);
 	return (SUCCESS);
 }

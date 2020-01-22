@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/16 15:41:59 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/18 15:51:09 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/22 10:40:30 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 int	ft_error(int error, t_env *env)
 {
 	if (error == INVALID_ARG)
-		ft_putstr("Error\n Invalid argument");
+		ft_putstr("Error\n Invalid argument passed to Cub3D");
 	if (error == WRONG_INPUT)
-		ft_putstr("Error\n Invalid input");
+		ft_putstr("Error\n Invalid resolution or color input");
 	if (error == WRONG_MAP)
 		ft_putstr("Error\n Invalid map");
 	if (error == MALLOC_FAIL)

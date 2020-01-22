@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/17 20:18:17 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/22 10:17:28 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/22 10:41:18 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		check_char(char *s)
 		i++;
 	while (s[i] != '.')
 	{
-		if(ft_isascii(s[i]) && s[i] != ' ')
+		if (ft_isascii(s[i]) && s[i] != ' ')
 			return (WRONG_INPUT);
 		i++;
 	}
@@ -30,15 +30,15 @@ int		check_char(char *s)
 
 int		check_char_path(t_env *env)
 {
-	if(check_char(env->data.n) == WRONG_INPUT)
+	if (check_char(env->data.n) == WRONG_INPUT)
 		return (WRONG_INPUT);
-	if(check_char(env->data.s) == WRONG_INPUT)
+	if (check_char(env->data.s) == WRONG_INPUT)
 		return (WRONG_INPUT);
-	if(check_char(env->data.w) == WRONG_INPUT)
+	if (check_char(env->data.w) == WRONG_INPUT)
 		return (WRONG_INPUT);
-	if(check_char(env->data.e) == WRONG_INPUT)
+	if (check_char(env->data.e) == WRONG_INPUT)
 		return (WRONG_INPUT);
-	if(check_char(env->data.sp) == WRONG_INPUT)
+	if (check_char(env->data.sp) == WRONG_INPUT)
 		return (WRONG_INPUT);
 	return (SUCCESS);
 }
@@ -64,7 +64,7 @@ int		path_fix(t_env *env)
 	int i;
 
 	if (check_char_path(env) == WRONG_INPUT)
-		return(WRONG_INPUT);
+		return (WRONG_INPUT);
 	i = get_start_path(env->data.n);
 	if (!(env->data.no = ft_strtrim(env->data.n + i, " ")))
 		return (MALLOC_FAIL);

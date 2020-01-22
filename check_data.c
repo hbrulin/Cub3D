@@ -6,7 +6,7 @@
 /*   By: hbrulin <hbrulin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/22 10:20:46 by hbrulin           #+#    #+#             */
-/*   Updated: 2020/01/22 10:38:17 by hbrulin          ###   ########.fr       */
+/*   Updated: 2020/01/22 10:44:00 by hbrulin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,33 @@ int		check_bet_rgb(char *s, int i)
 	i++;
 	while ((ft_isdigit(s[i]) != 1))
 	{
-		if(s[i] != ' ')
+		if (s[i] != ' ')
 			return (WRONG_INPUT);
 		i++;
 	}
-	return(SUCCESS);
+	return (SUCCESS);
 }
 
-int		check_data_two(t_env *env)
+int		check_data_c(t_env *env)
+{
+	int i;
+
+	i = 1;
+	while (env->data.c[i])
+	{
+		if (ft_isalpha(env->data.c[i]))
+			return (WRONG_INPUT);
+		if (env->data.c[i] == ',')
+		{
+			if (check_bet_rgb(env->data.c, i) != SUCCESS)
+				return (WRONG_INPUT);
+		}
+		i++;
+	}
+	return (SUCCESS);
+}
+
+int		check_data_f(t_env *env)
 {
 	int i;
 
@@ -33,26 +52,16 @@ int		check_data_two(t_env *env)
 	{
 		if (ft_isalpha(env->data.f[i]))
 			return (WRONG_INPUT);
-		if(env->data.f[i] == ',')
+		if (env->data.f[i] == ',')
 		{
 			if (check_bet_rgb(env->data.f, i) != SUCCESS)
 				return (WRONG_INPUT);
 		}
 		i++;
 	}
-	i = 1;
-	while (env->data.c[i])
-	{
-		if (ft_isalpha(env->data.c[i]))
-			return (WRONG_INPUT);
-		if(env->data.c[i] == ',')
-		{
-			if (check_bet_rgb(env->data.c, i) != SUCCESS)
-				return (WRONG_INPUT);
-		}
-		i++;
-	}
-	return(SUCCESS);
+	if (check_data_c(env) != SUCCESS)
+		return (WRONG_INPUT);
+	return (SUCCESS);
 }
 
 int		check_data(t_env *env)
@@ -70,7 +79,7 @@ int		check_data(t_env *env)
 			return (WRONG_INPUT);
 		i++;
 	}
-	if (check_data_two(env) != SUCCESS)
-		return(WRONG_INPUT);
+	if (check_data_f(env) != SUCCESS)
+		return (WRONG_INPUT);
 	return (SUCCESS);
 }

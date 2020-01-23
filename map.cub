@@ -1,7 +1,7 @@
 R 2000 1500
-NO ./textures/Spearreswalls/4.xpm
+NO ./textures/Spearreswalls/25.xpm
 SO ./textures/Spearreswalls/182.xpm   
-WE ./textures/Spearreswalls/25.xpm
+WE ./textures/Spearreswalls/7.xpm
 EA ./textures/Spearreswalls/35.xpm
 S ./textures/Spearressprites/10.xpm
 F 255, 87, 51

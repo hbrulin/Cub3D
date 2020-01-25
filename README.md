@@ -2,4 +2,5 @@
 
 opti compil : -O3 -lfto
 
-Trick : caster le pointeur retourné par get_data_addr en unsigned int pour pouvoir stocker couleur directement dans un pixe;.
+Trick : caster le pointeur retourné par get_data_addr en unsigned int pour pouvoir stocker couleur directement dans un pixel.
+Acces pixel : ptr[y * largeur + x].
